@@ -7,22 +7,25 @@ import { TextField } from "@mui/material";
  * Intended to be specified via the `component` prop in a Formik <Field> or <FastField> component.
  * Material-UI specific props are passed through.
  */
-export const FormTextField = (props) => {
-  const isTouched = getIn(props.form.touched, props.field.name);
-  const errorMessage = getIn(props.form.errors, props.field.name);
+export const FormTextField = () =>
+  // props
 
-  const { error, helperText, field, form, ...rest } = props;
+  {
+    // const isTouched = getIn(props.form.touched, props.field.name);
+    // const errorMessage = getIn(props.form.errors, props.field.name);
 
-  return (
-    <TextField
-      variant="outlined"
-      error={error ?? Boolean(isTouched && errorMessage)}
-      margin="none"
-      // helperText={
-      //   helperText ?? (isTouched && errorMessage ? errorMessage : undefined)
-      // }
-      {...rest}
-      {...field}
-    />
-  );
-};
+    // const { error, helperText, field, form, ...rest } = props;
+
+    return (
+      <TextField
+        variant="outlined"
+        // error={error ?? Boolean(isTouched && errorMessage)}
+        margin="none"
+        // helperText={
+        //   helperText ?? (isTouched && errorMessage ? errorMessage : undefined)
+        // }
+        // {...rest}
+        // {...field}
+      />
+    );
+  };
