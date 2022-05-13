@@ -8,18 +8,12 @@ import BaseLayout from "components/BaseLayout";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { PaymentElement } from "@stripe/react-stripe-js";
-import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
 
 const CheckoutPage = () => {
   // const router = useRouter();
   // const [publishableKey, setPublishableKey] = useState();
 
-  return (
-    <BaseLayout>
-      Checkout
-      <CheckoutForm />
-    </BaseLayout>
-  );
+  return <BaseLayout>Checkout</BaseLayout>;
 };
 
 export default CheckoutPage;
