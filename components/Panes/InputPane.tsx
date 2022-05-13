@@ -1,16 +1,24 @@
 import React from "react";
 import ThemeSelector from "../ThemeSelector";
 import LanguageSelector from "../LanguageSelector";
-import EditorExample from "../Editor/Editor";
+import Editor from "../Editor/Editor";
 import { Box, Grid } from "@mui/material";
+import { EditorTheme, LanguageOption } from "types";
 
 const InputPane = ({
+  language,
+  setLanguage,
   setTheme,
   setUserValue,
   theme,
   userValue,
-  setLanguage,
-  language,
+}: {
+  language: LanguageOption;
+  setLanguage: (v: LanguageOption) => void;
+  setTheme: (v: EditorTheme) => void;
+  setUserValue: (v: string) => void;
+  theme: EditorTheme;
+  userValue: string;
 }) => {
   return (
     <>
@@ -25,7 +33,7 @@ const InputPane = ({
         </Grid>
       </Box>
 
-      <EditorExample
+      <Editor
         language={language}
         setUserValue={setUserValue}
         theme={theme.theme}

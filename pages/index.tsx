@@ -5,8 +5,8 @@ import BaseLayout from "components/BaseLayout";
 const Index = () => {
   return (
     <BaseLayout>
-      <Link href="/raw">
-        <a>Raw</a>
+      <Link href="/canvas">
+        <a>Canvas</a>
       </Link>
     </BaseLayout>
   );

@@ -12,7 +12,9 @@ import AddToCard from "../AddToCart";
 import Sketches from "../Sketches";
 import SketchSelector from "../SketchSelector";
 
-const sketchOptions = [
+import { ColoredDataSet, EditorTheme, Sketch } from "types";
+
+const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
   { title: "Shadow", sketch: Shadow },
   { title: "Dots", sketch: Dots },
@@ -21,13 +23,23 @@ const sketchOptions = [
   { title: "Rotate", sketch: Rotate },
 ];
 
-const OutputPane = ({ keyCount, rawData, theme }) => {
-  const [selectedId, setSelectedId] = useState("5");
+const OutputPane = ({
+  keyCount,
+  rawData,
+  theme,
+}: {
+  keyCount: number;
+  rawData: ColoredDataSet;
+  theme: EditorTheme;
+}) => {
+  const [selectedId, setSelectedId] = useState<string>("5");
+
   const addToCard = () => {
     console.log(theme);
     console.log(rawData);
     console.log(selectedId);
   };
+
   return (
     <>
       <Box height={60} mb={1}>

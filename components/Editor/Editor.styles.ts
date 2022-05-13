@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { styled as styledMui } from "@mui/material";
+import Box from "@mui/material/Box";
 
 export const LineNo = styled.span`
   display: block;
@@ -13,23 +15,14 @@ export const LineNo = styled.span`
   opacity: 0.5;
 `;
 
-export const Pre = styled.pre`
-  /* text-align: left;
-  margin: -1em 0;
-  padding: 0.5em;
-
-  & .token-line {
-    line-height: 1.3em;
-    height: 1.3em;
-  } */
-`;
-export const styles = {
-  root: {
+export const EditorWrapper = styledMui(Box)(
+  ({ bg }: { bg?: string | number }) => ({
+    background: bg,
     boxSizing: "border-box",
     caretColor: "grey",
     fontFamily: "monospace",
     minHeight: 533,
     width: "100%",
     maxWidth: 800,
-  },
-};
+  })
+);

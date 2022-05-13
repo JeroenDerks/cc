@@ -16,7 +16,9 @@ import ultramin from "prism-react-renderer/themes/ultramin";
 import vsDark from "prism-react-renderer/themes/vsDark";
 import vsLight from "prism-react-renderer/themes/vsLight";
 
-export const themeOptions = [
+import { EditorTheme } from "types";
+
+export const themeOptions: Array<EditorTheme> = [
   { title: "dracula", theme: dracula, id: 0 },
   { title: "duotoneDark", theme: duotoneDark, id: 1 },
   { title: "duotoneLight", theme: duotoneLight, id: 2 },
@@ -33,9 +35,15 @@ export const themeOptions = [
   { title: "vsLight", theme: vsLight, id: 13 },
 ];
 
-const ThemeSelector = ({ setTheme, theme }) => {
-  const handleChange = (event) => {
-    setTheme({ ...themeOptions[event.target.value] });
+const ThemeSelector = ({
+  setTheme,
+  theme,
+}: {
+  setTheme: (v: EditorTheme) => void;
+  theme: EditorTheme;
+}) => {
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setTheme({ ...themeOptions[event.target.value as number] });
   };
 
   return (

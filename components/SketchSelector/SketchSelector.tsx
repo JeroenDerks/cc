@@ -7,6 +7,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
+import { Sketch } from "types";
+
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
   borderRadius: 4,
@@ -21,7 +23,15 @@ const Wrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SketchSelector = ({ sketchOptions, selectedId, setSelectedId }) => {
+const SketchSelector = ({
+  sketchOptions,
+  selectedId,
+  setSelectedId,
+}: {
+  sketchOptions: Array<Sketch>;
+  selectedId: string;
+  setSelectedId: (v: string) => void;
+}) => {
   return (
     <Wrapper>
       <FormControl>
