@@ -3,5 +3,5 @@ export type ColoredCharacter = {
   background: [number, number, number];
 };
 
-export type ColoredLine = Array<ColoredCharacter>;
-export type ColoredDat = Array<ColoredLine>;
+export type ColoredRow = Array<ColoredCharacter>;
+export type ColoredDataSet = Array<ColoredRow>;
