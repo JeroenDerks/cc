@@ -16,6 +16,7 @@ import ultramin from "prism-react-renderer/themes/ultramin";
 import vsDark from "prism-react-renderer/themes/vsDark";
 import vsLight from "prism-react-renderer/themes/vsLight";
 
+import { SelectChangeEvent } from "@mui/material";
 import { EditorTheme } from "types";
 
 export const themeOptions: Array<EditorTheme> = [
@@ -42,8 +43,9 @@ const ThemeSelector = ({
   setTheme: (v: EditorTheme) => void;
   theme: EditorTheme;
 }) => {
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setTheme({ ...themeOptions[event.target.value as number] });
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    const { value } = event.target as HTMLSelectElement;
+    setTheme({ ...themeOptions[parseInt(value)] });
   };
 
   return (

@@ -39,6 +39,8 @@ const HighLighter = ({
 
     lines?.forEach(({ childNodes }) => {
       const rowData: ColoredRow = [];
+      console.warn("define type for child node");
+      // @ts-ignore: correct types need to be defined
       childNodes?.forEach(({ style, innerText }) => {
         const emptyCharacters = getIndicesOfEmptyCharacters(innerText);
         const nodeColor = convertColorToRGB(style?.color || color);

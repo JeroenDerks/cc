@@ -38,13 +38,13 @@ const OrderPage = () => {
     if (router.query?.slug) setOrderId(router.query?.slug), [router];
   });
 
-  const getShipmentOptions = async (v) => {
-    console.log("get shipment options for: ", v);
-    const options = await getShippingOptions({ orderId, shippingAddress: v });
-    setShippingOptions(options);
+  // const getShipmentOptions = async (v) => {
+  //   console.log("get shipment options for: ", v);
+  //   const options = await getShippingOptions({ orderId, shippingAddress: v });
+  //   setShippingOptions(options);
 
-    // sendGelatoRequest({ orderId: orderId });
-  };
+  //   // sendGelatoRequest({ orderId: orderId });
+  // };
 
   return (
     <BaseLayout>
@@ -70,7 +70,7 @@ const OrderPage = () => {
           Provide your address details, and we will provide the best shipping
           prices.
         </Typography>
-        <ShippingAddress onSubmit={(v) => getShipmentOptions(v)} />
+        {/* <ShippingAddress onSubmit={(v) => getShipmentOptions(v)} /> */}
         {/* {shippingOptions && <ShippingOptions options={shippingOptions} />} */}
       </BorderBox>
     </BaseLayout>

@@ -4,12 +4,21 @@ import { countryOptions } from "./countryOptions";
 import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { FormHelperText } from "@mui/material";
+import { FormikErrors } from "formik";
 
-const FormSelect = ({ errors, setFieldValue, setTouched, touched, values }) => {
-  const err = errors.country && touched.country ? true : false;
+const FormSelect = (
+  {
+    // errors,
+    // setFieldValue,
+    // setTouched,
+    // touched,
+    // values,
+  }
+) => {
+  // const err = errors.country && touched.country ? true : false;
   return (
     <FormControl style={{ width: "100%" }}>
-      <InputLabel id="country-label" error={err}>
+      {/* <InputLabel id="country-label" error={err}>
         Country
       </InputLabel>
       <Select
@@ -26,7 +35,7 @@ const FormSelect = ({ errors, setFieldValue, setTouched, touched, values }) => {
             {label}
           </MenuItem>
         ))}
-      </Select>
+      </Select> */}
       {/* {errors.country && touched.country && (
         <FormHelperText error={err}>{errors?.country}</FormHelperText>
       )} */}

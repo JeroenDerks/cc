@@ -35,7 +35,7 @@ const validationSchema = yup.object().shape({
   email: yup.string().email("Invalid email format").required("Required"),
 });
 
-const ShippingAddress = ({ onSubmit }) => {
+const ShippingAddress = ({ onSubmit }: { onSubmit: () => void }) => {
   return (
     <Formik
       initialValues={intialValues}
@@ -71,13 +71,13 @@ const ShippingAddress = ({ onSubmit }) => {
               <Field name="city" label="City" {...props} />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-              <FormSelect
+              {/* <FormSelect
                 errors={errors}
                 setFieldValue={setFieldValue}
                 setTouched={setTouched}
                 touched={touched}
                 values={values}
-              />
+              /> */}
             </Grid>
 
             <Grid item xs={12} sm={12} md={6}>

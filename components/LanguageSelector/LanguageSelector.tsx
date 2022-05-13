@@ -1,5 +1,7 @@
 import React from "react";
 import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
+
+import { SelectChangeEvent } from "@mui/material";
 import { LanguageOption } from "types";
 
 export const languageOptions: Array<LanguageOption> = [
@@ -42,8 +44,9 @@ const LanguageSelector = ({
   language: LanguageOption;
   setLanguage: (v: LanguageOption) => void;
 }) => {
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLanguage({ ...languageOptions[event.target.value as number] });
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    const { value } = event.target as HTMLSelectElement;
+    setLanguage({ ...languageOptions[parseInt(value)] });
   };
 
   return (
