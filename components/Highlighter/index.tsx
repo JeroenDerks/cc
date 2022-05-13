@@ -1,18 +1,27 @@
 import React, { useEffect } from "react";
-
-import { convertColorToRGB } from "../../utils";
+import { convertColorToRGB } from "utils";
+import { ColoredDataSet, ColoredRow, LanguageOption } from "types";
+import { PrismTheme } from "prism-react-renderer";
 
 const HighLighter = ({
+  keyCount,
   language,
   setKeyCount,
   setRawData,
   theme,
   userValue,
+}: {
+  keyCount: number;
+  language: LanguageOption;
+  setKeyCount: (v: number) => void;
+  setRawData: (v: ColoredDataSet) => void;
+  theme: PrismTheme;
+  userValue: string;
 }) => {
   useEffect(() => theme && getRawData(), [theme, userValue, language]);
   const { background, backgroundColor, color } = theme.plain;
 
-  const getIndicesOfEmptyCharacters = (input) => {
+  const getIndicesOfEmptyCharacters = (input: string) => {
     var regex = /\s/g,
       result,
       emptyCharacters = [];
@@ -24,13 +33,13 @@ const HighLighter = ({
 
   const getRawData = () => {
     const lines = document?.querySelectorAll(".line");
-    const lineData = [];
+    const lineData: ColoredDataSet = [];
 
     const bgColor = convertColorToRGB(background || backgroundColor);
 
     lines?.forEach(({ childNodes }) => {
-      const rowData = [];
-      childNodes.forEach(({ style, innerText }) => {
+      const rowData: ColoredRow = [];
+      childNodes?.forEach(({ style, innerText }) => {
         const emptyCharacters = getIndicesOfEmptyCharacters(innerText);
         const nodeColor = convertColorToRGB(style?.color || color);
 
@@ -46,10 +55,10 @@ const HighLighter = ({
     });
 
     setRawData(lineData);
-    setKeyCount((keyCount) => keyCount + 1);
+    setKeyCount(keyCount + 1);
   };
 
-  return <></>;
+  return null;
 };
 
 export default HighLighter;

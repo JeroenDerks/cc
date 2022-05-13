@@ -10,16 +10,28 @@ import BaseLayout from "components/BaseLayout";
 import { sendGelatoRequest } from "utils/gelato_request";
 import { getShippingOptions } from "utils/getShippingOptions";
 
+type BorderProps = {
+  b?: true;
+  bx?: true;
+  by?: true;
+  bl?: true;
+  br?: true;
+  bt?: true;
+  bb?: true;
+};
+
+const border = "1px solid lightgray";
+
 const BorderBox = styled(Box)`
-  border-left: ${({ bl, bx, b }) => (bl || bx || b) && "1px solid lightgray"};
-  border-right: ${({ br, bx, b }) => (br || bx || b) && "1px solid lightgray"};
-  border-top: ${({ bt, by, b }) => (bt || by || b) && "1px solid lightgray"};
-  border-bottom: ${({ bb, by, b }) => (bb || by || b) && "1px solid lightgray"};
+  border-left: ${({ bl, bx, b }: BorderProps) => (bl || bx || b) && border};
+  border-right: ${({ br, bx, b }: BorderProps) => (br || bx || b) && border};
+  border-top: ${({ bt, by, b }: BorderProps) => (bt || by || b) && border};
+  border-bottom: ${({ bb, by, b }: BorderProps) => (bb || by || b) && border};
 `;
 
 const OrderPage = () => {
   const router = useRouter();
-  const [orderId, setOrderId] = useState();
+  const [orderId, setOrderId] = useState<string | string[]>("");
   const [shippingOptions, setShippingOptions] = useState();
 
   useEffect(() => {

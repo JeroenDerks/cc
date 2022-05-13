@@ -1,7 +1,8 @@
 import React from "react";
 import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
+import { LanguageOption } from "types";
 
-export const languageOptions = [
+export const languageOptions: Array<LanguageOption> = [
   { title: "Markup", code: "markup", id: 0 },
   { title: "Bash", code: "bash", id: 1 },
   { title: "C-like", code: "clike", id: 2 },
@@ -34,9 +35,15 @@ export const languageOptions = [
   { title: "YAML", code: "yaml", id: 29 },
 ];
 
-const LanguageSelector = ({ setLanguage, language }) => {
-  const handleChange = (event) => {
-    setLanguage({ ...languageOptions[event.target.value] });
+const LanguageSelector = ({
+  language,
+  setLanguage,
+}: {
+  language: LanguageOption;
+  setLanguage: (v: LanguageOption) => void;
+}) => {
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setLanguage({ ...languageOptions[event.target.value as number] });
   };
 
   return (
