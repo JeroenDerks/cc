@@ -5,6 +5,19 @@ import { FormTextField } from "./FormTextField";
 import FormSelect from "./FormSelect";
 import * as yup from "yup";
 
+export type ShippingAddressValues = {
+  companyName: string;
+  firstName: string;
+  lastName: string;
+  addressLine1: string;
+  addressLine2: string;
+  state: string;
+  city: string;
+  postCode: string;
+  country: string;
+  email: string;
+  phone: string;
+};
 const intialValues = {
   companyName: "",
   firstName: "",
@@ -71,13 +84,13 @@ const ShippingAddress = ({ onSubmit }: { onSubmit: () => void }) => {
               <Field name="city" label="City" {...props} />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-              {/* <FormSelect
+              <FormSelect
                 errors={errors}
                 setFieldValue={setFieldValue}
                 setTouched={setTouched}
                 touched={touched}
                 values={values}
-              /> */}
+              />
             </Grid>
 
             <Grid item xs={12} sm={12} md={6}>

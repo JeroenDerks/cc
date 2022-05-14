@@ -16,6 +16,15 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "utils/getShippingOptions.ss",
+    "components/Sketches/partials/Window.js",
+    "components/Sketches/partials/Rotate.js",
+    "components/Sketches/partials/Basic.js",
+    "components/Editor/Editor.js"
+  ],
   "exclude": ["node_modules"]
 }
