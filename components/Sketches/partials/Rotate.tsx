@@ -1,25 +1,34 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import p5Types from "p5";
+import Sketch from "react-p5";
+// import { uploadPhoto } from "./../../../utils/upload";
 import { groupDataByColor, isSameColor } from "../../../utils";
+import { sketchWidth, sketchHeigth } from "./constants";
+import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
+import { drawFrame } from "./constants";
+import { SketchProps } from "types";
 
-// Will only import `react-p5` on client-side
-const Rotate = dynamic(() => import("react-p5").then((mod) => mod.default), {
-  ssr: false,
-});
+const RotateSketch = dynamic(
+  () => import("react-p5").then((mod) => mod.default as typeof Sketch),
+  { ssr: false }
+) as typeof Sketch;
+
 const size = 30;
 const w = 15;
 
-let groupedData;
+const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+  const groupedData = groupDataByColor(data);
 
-export default ({ data, bg }) => {
-  const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(800, 533, p5.WEBGL).parent(canvasParentRef);
+  const setup = (p5: p5Types, canvasParentRef: Element) => {
+    p5.createCanvas(sketchWidth, sketchHeigth, p5.WEBGL).parent(
+      canvasParentRef
+    );
     p5.background(bg[0], bg[1], bg[2]);
-    groupedData = groupDataByColor(data);
     drawContent(p5);
   };
 
-  const drawContent = (p5) => {
+  const drawContent = (p5: p5Types) => {
     const linesOfCode = groupedData.length;
     const defaultLinesPerWindow = 34;
 
@@ -68,5 +77,7 @@ export default ({ data, bg }) => {
     p5.image(graphic, 0, 0);
   };
 
-  return <Rotate setup={setup} />;
+  return <RotateSketch setup={setup} />;
 };
+
+export default Rotate;
