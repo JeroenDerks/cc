@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
+import { useCart, Item } from "react-use-cart";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -23,6 +24,13 @@ const CheckoutLink = styled("a")(({ theme }) => ({
 }));
 
 const Header = () => {
+  const { items } = useCart();
+  const [itemsInCart, setItemsInCart] = useState<Array<Item>>([]);
+
+  useEffect(() => {
+    setItemsInCart(items);
+  }, [items]);
+
   return (
     <Wrapper>
       <Box
@@ -32,7 +40,7 @@ const Header = () => {
         alignItems="center"
         height="100%"
       >
-        <CheckoutLink href="checkout">x</CheckoutLink>
+        <CheckoutLink href="checkout">{itemsInCart.length}</CheckoutLink>
       </Box>
     </Wrapper>
   );
