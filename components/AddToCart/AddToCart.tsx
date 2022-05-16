@@ -19,7 +19,7 @@ const AddToCart = ({ addToCard }: { addToCard: () => void }) => {
   return (
     <Wrapper width={1} justifyContent="space-between">
       <Typography variant="h5">Price: 69,00</Typography>
-      <Button onClick={addToCard} variant="contained">
+      <Button onClick={addToCard} variant="contained" id="add_to_cart">
         Get me that
       </Button>
     </Wrapper>
