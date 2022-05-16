@@ -21,7 +21,7 @@
     "**/*.ts",
     "**/*.tsx",
     "utils/getShippingOptions.ss",
-    "components/Sketches/partials/Window.js",
+    "components/Sketches/partials/Window.tsx",
     "components/Sketches/partials/Rotate.js",
     "components/Sketches/partials/Basic.tsx",
     "components/Editor/Editor.js"
