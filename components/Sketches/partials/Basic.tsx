@@ -1,33 +1,22 @@
 import React from "react";
-import Sketch from "react-p5";
-import p5Types from "p5";
-import { SketchProps } from "types";
-import { groupDataByColor, isSameColor } from "../../../utils";
-// import { uploadPhoto } from "./../../../utils/upload";
 import dynamic from "next/dynamic";
+import p5Types from "p5";
+import Sketch from "react-p5";
+// import { uploadPhoto } from "./../../../utils/upload";
+import { groupDataByColor, isSameColor } from "../../../utils";
+import { sketchWidth, sketchHeigth } from "./constants";
+import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
+import { drawFrame } from "./constants";
+import { SketchProps } from "types";
 
 const BasicSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
 
-// Sketch details
-const sketchHeigth = 533;
-const sketchWidth = 800;
 const padding = 20;
 const charH = 15;
 const charW = 10;
-
-// Specs for printing on 60 x 40 cm canvas at 150 DPI
-const DPI = 150;
-const canvasPaddingMM = 49; // padding of canvas to account for wrapping of canvas and wooden frame
-const canvasWidthMM = 600; // width of printable section of canvas in millimeter
-const canvasHeightMM = 400; // height of printable section of canvas in millimeter
-
-const mmPerInch = 25.4; // millimeter per inch
-const canvasWidth = Math.round((DPI * canvasWidthMM) / mmPerInch); // required pixels of 600mm canvas width at 150 DPI
-const canvasHeight = Math.round((DPI * canvasHeightMM) / mmPerInch); // pixels of 400mm canvas height at 150 DPI
-const canvasPadding = Math.round((DPI * canvasPaddingMM) / mmPerInch); // pixels of 49mm canvas padding at 150 DPI
 
 const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -68,23 +57,6 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     return pg;
   };
 
-  const drawFrame = (p5: p5Types) => {
-    let frame = p5.createGraphics(
-      canvasWidth + canvasPadding * 2,
-      canvasHeight + canvasPadding * 2
-    );
-
-    frame.background(200);
-    frame.fill(bg[0], bg[1], bg[2], 220);
-    frame.rect(0, 0, frame.width, frame.height);
-
-    frame.fill(bg[0], bg[1], bg[2]);
-    frame.stroke(150);
-    frame.rect(canvasPadding, canvasPadding, canvasWidth, canvasHeight);
-
-    return frame;
-  };
-
   const mousePressed = (p5: p5Types, e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as Element;
 
@@ -93,7 +65,7 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
       const scaleY = canvasHeight / p5.height;
 
       const graphic = drawContent(p5, scaleX, scaleY);
-      const frame = drawFrame(p5);
+      const frame = drawFrame(p5, bg);
 
       frame.image(
         graphic,
@@ -103,7 +75,7 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
         canvasHeight
       );
 
-      p5.saveCanvas(frame, `${uuid}.jpg`);
+      p5.saveCanvas(frame, `basic_${uuid}.jpg`);
       // uploadPhoto(graphic, id);
     }
   };
