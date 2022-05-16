@@ -23,7 +23,7 @@
     "utils/getShippingOptions.ss",
     "components/Sketches/partials/Window.js",
     "components/Sketches/partials/Rotate.js",
-    "components/Sketches/partials/Basic.js",
+    "components/Sketches/partials/Basic.tsx",
     "components/Editor/Editor.js"
   ],
   "exclude": ["node_modules"]

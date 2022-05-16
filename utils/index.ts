@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 // export const hasWhiteSpace = (s) => /\s/g.test(s);
+
+import { ColoredDataSet, GroupedColoredDataLine, Color } from "types";
 
 // const getColor = ({ char, color, plain }) => {
 //   const isEmptyChar = hasWhiteSpace(char);
@@ -35,16 +36,15 @@ const colorToRgb = (rgb) =>
     .split(",")
     .map((v) => parseInt(v));
 
-export const isSameColor = (col1, col2) =>
+export const isSameColor = (col1: Color, col2: Color) =>
   col1[0] === col2[0] && col1[1] === col2[1] && col1[2] === col2[2];
 
-export const groupDataByColor = (input) => {
-  const lineData = [];
-  input.forEach((line) => {
-    let matchingArray = [[]];
-    let matchingCounter = 0;
+export const groupDataByColor = (input: ColoredDataSet) => {
+  const lineData: Array<GroupedColoredDataLine> = [[]];
 
-    console.log(line);
+  input.forEach((line) => {
+    let matchingArray: GroupedColoredDataLine = [];
+    let matchingCounter = 0;
 
     for (let i = 0; i < line.length; i++) {
       const bg = line[i].background;
@@ -59,6 +59,7 @@ export const groupDataByColor = (input) => {
         matchingArray[matchingCounter] = { letterCount: 1, bg, x: i, char };
       }
     }
+
     lineData.push(matchingArray);
   });
 

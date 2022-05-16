@@ -1,7 +1,7 @@
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export const uploadPhoto = async (pg) => {
-  const title = uuid();
+  const title = uuidv4();
   const filename = encodeURIComponent(`${title}.jpeg`);
 
   let file;

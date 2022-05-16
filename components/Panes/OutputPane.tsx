@@ -14,6 +14,7 @@ import Sketches from "../Sketches";
 import SketchSelector from "../SketchSelector";
 
 import { ColoredDataSet, EditorTheme, Sketch } from "types";
+import { v4 as uuidv4 } from "uuid";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
@@ -37,11 +38,15 @@ const OutputPane = ({
   const { addItem } = useCart();
 
   const addToCard = () => {
+    const id = uuidv4();
+
+    console.log(id);
+
     addItem({
       name: "canvas_60_40",
       price: 6900,
       quantity: 1,
-      id: String(Math.random()),
+      id,
       theme,
       rawData,
       sketchId,
@@ -64,6 +69,7 @@ const OutputPane = ({
         sketchOptions={sketchOptions}
         theme={theme.theme}
       />
+
       <AddToCard addToCard={addToCard} />
     </>
   );

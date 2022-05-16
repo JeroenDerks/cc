@@ -1,4 +1,12 @@
+import { Color, ColoredDataSet } from "types";
+
 export type Sketch = {
   title: string;
-  sketch: ({ data, bg }: { data: any; bg: any }) => JSX.Element;
+  sketch: React.FC<SketchProps>;
+};
+
+export type SketchProps = {
+  bg: Color;
+  data: ColoredDataSet;
+  saveImage?: true;
 };
