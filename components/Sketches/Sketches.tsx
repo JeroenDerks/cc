@@ -9,11 +9,13 @@ const Sketches = ({
   rawData,
   sketchOptions,
   sketchId,
+  uuid,
 }: {
   theme: PrismTheme;
   rawData: ColoredDataSet;
   sketchOptions: Array<Sketch>;
   sketchId: string;
+  uuid: string;
 }) => {
   const { background, backgroundColor } = theme.plain;
   const SelectedSketch = sketchOptions[parseInt(sketchId)].sketch;
@@ -23,6 +25,7 @@ const Sketches = ({
       <SelectedSketch
         bg={convertColorToRGB(background || backgroundColor)}
         data={rawData}
+        uuid={uuid}
       />
     </Box>
   );

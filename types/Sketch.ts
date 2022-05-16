@@ -8,5 +8,5 @@ export type Sketch = {
 export type SketchProps = {
   bg: Color;
   data: ColoredDataSet;
-  saveImage?: true;
+  uuid: string;
 };
