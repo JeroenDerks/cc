@@ -1,6 +1,6 @@
 import React from "react";
 import Sketch from "react-p5";
-import p5Types from "p5"; //Import this for typechecking and intellisense
+import p5Types from "p5";
 import { SketchProps } from "types";
 import { groupDataByColor, isSameColor } from "../../../utils";
 // import { uploadPhoto } from "./../../../utils/upload";
@@ -11,28 +11,37 @@ const BasicSketch = dynamic(
   { ssr: false }
 ) as typeof Sketch;
 
-const size = 15;
-const w = 10;
-const padding = 10;
+// Sketch details
+const sketchHeigth = 533;
+const sketchWidth = 800;
+const padding = 20;
+const charH = 15;
+const charW = 10;
+
+// Specs for printing on 60 x 40 cm canvas at 150 DPI
+const DPI = 150;
+const canvasPaddingMM = 49; // padding of canvas to account for wrapping of canvas and wooden frame
+const canvasWidthMM = 600; // width of printable section of canvas in millimeter
+const canvasHeightMM = 400; // height of printable section of canvas in millimeter
+
+const mmPerInch = 25.4; // millimeter per inch
+const canvasWidth = Math.round((DPI * canvasWidthMM) / mmPerInch); // required pixels of 600mm canvas width at 150 DPI
+const canvasHeight = Math.round((DPI * canvasHeightMM) / mmPerInch); // pixels of 400mm canvas height at 150 DPI
+const canvasPadding = Math.round((DPI * canvasPaddingMM) / mmPerInch); // pixels of 49mm canvas padding at 150 DPI
 
 const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(800, 533).parent(canvasParentRef);
+    p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
     p5.frameRate(20);
 
-    drawContent(p5, 1, false, uuid);
+    const graphic = drawContent(p5, 1, 1);
+    p5.image(graphic, 0, 0);
   };
 
-  const drawContent = (
-    p5: p5Types,
-    scale: number,
-    save: boolean,
-    uuid: string
-  ) => {
-    const s = scale;
-    const pg = p5.createGraphics(p5.width * s, p5.height * s);
+  const drawContent = (p5: p5Types, sx: number, sy: number) => {
+    const pg = p5.createGraphics(p5.width * sx, p5.height * sy);
     const groupedData = groupDataByColor(data);
 
     pg.background(bg[0], bg[1], bg[2]);
@@ -46,29 +55,56 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
 
           pg.fill(col[0], col[1], col[2]);
 
-          const _x = x * w + padding;
-          const _y = indexY * size + padding;
-          const _w = w * letterCount;
-          const _h = size - 2;
+          const _x = x * charW + padding;
+          const _y = indexY * charH + padding;
+          const _w = charW * letterCount;
+          const _h = charH - 2;
 
-          pg.rect(_x * s, _y * s, _w * s, _h * s);
+          pg.rect(_x * sx, _y * sy, _w * sx, _h * sy);
         }
       }
     });
-    if (save) {
-      console.log("saving frame with id: ", uuid);
-      // uploadPhoto(pg, id);
-      p5.saveCanvas(pg, `${uuid}.jpg`);
-    } else {
-      p5.image(pg, 0, 0, p5.width, p5.height);
-    }
+
+    return pg;
+  };
+
+  const drawFrame = (p5: p5Types) => {
+    let frame = p5.createGraphics(
+      canvasWidth + canvasPadding * 2,
+      canvasHeight + canvasPadding * 2
+    );
+
+    frame.background(200);
+    frame.fill(bg[0], bg[1], bg[2], 220);
+    frame.rect(0, 0, frame.width, frame.height);
+
+    frame.fill(bg[0], bg[1], bg[2]);
+    frame.stroke(150);
+    frame.rect(canvasPadding, canvasPadding, canvasWidth, canvasHeight);
+
+    return frame;
   };
 
   const mousePressed = (p5: p5Types, e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as Element;
 
     if (target.id === "add_to_cart") {
-      drawContent(p5, 2.5, true, uuid);
+      const scaleX = canvasWidth / p5.width;
+      const scaleY = canvasHeight / p5.height;
+
+      const graphic = drawContent(p5, scaleX, scaleY);
+      const frame = drawFrame(p5);
+
+      frame.image(
+        graphic,
+        canvasPadding,
+        canvasPadding,
+        canvasWidth,
+        canvasHeight
+      );
+
+      p5.saveCanvas(frame, `${uuid}.jpg`);
+      // uploadPhoto(graphic, id);
     }
   };
 

@@ -1,36 +1,42 @@
 import React from "react";
+import Sketch from "react-p5";
 import dynamic from "next/dynamic";
-import { groupDataByColor, isSameColor } from "./../../../utils";
-import { uploadPhoto } from "./../../../utils/upload";
+import p5Types from "p5";
+import { groupDataByColor, isSameColor } from "../../../utils";
+import { uploadPhoto } from "../../../utils/upload";
+import { SketchProps } from "types";
 
 // Will only import `react-p5` on client-side
-const Basic = dynamic(() => import("react-p5").then((mod) => mod.default), {
-  ssr: false,
-});
+const Basic = dynamic(
+  () => import("react-p5").then((mod) => mod.default as typeof Sketch),
+  { ssr: false }
+) as typeof Sketch;
 const size = 15;
 const padding = 10;
 const w = 10;
 
-let groupedData;
-
-let dragging = false;
-let offsetY = 0;
 let y = 0;
 let h = 0;
 
-export default ({ data, bg }) => {
-  const setup = (p5, canvasParentRef) => {
+const Dots: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+  const setup = (p5: p5Types, canvasParentRef: Element) => {
     const _height = data?.length * size - 4 + 2 * padding;
     h = parseInt((40 / 60) * 800);
 
     p5.createCanvas(800, _height < h ? h : _height).parent(canvasParentRef);
     p5.frameRate(20);
-    groupedData = groupDataByColor(data);
+
+    drawContent(p5, 1, false, uuid);
   };
 
-  const draw = (p5) => {
+  const drawContent = (
+    p5: p5Types,
+    scale: number,
+    save: boolean,
+    uuid: string
+  ) => {
     p5.background(bg[0], bg[1], bg[2]);
-
+    const groupedData = groupDataByColor(data);
     groupedData?.forEach((line, iY) => {
       // p5.fill(150, 150, 150, 127);
       // p5.rect(
@@ -61,44 +67,6 @@ export default ({ data, bg }) => {
         }
       }
     });
-    update(p5);
-    show(p5);
-  };
-
-  const update = (p5) => {
-    if (dragging) {
-      y = p5.mouseY + offsetY;
-      if (y < 0) y = 0;
-      if (y + h > p5.height) y = p5.height - h;
-    }
-  };
-
-  const show = (p5) => {
-    p5.fill(255, 255, 255, 220);
-    p5.rect(0, 0, p5.width, y);
-    // middle active section
-    if (dragging) {
-      p5.stroke(150);
-      p5.strokeWeight(2);
-    }
-
-    p5.fill(255, 255, 255, 0);
-    p5.rect(0, y, p5.width, h);
-    // bottom section
-    p5.noStroke();
-    p5.fill(255, 255, 255, 220);
-    p5.rect(0, y + h, p5.width, p5.height - h - y);
-  };
-
-  const mousePressed = (p5) => {
-    if (p5.mouseY > y && p5.mouseY < y + h) {
-      dragging = true;
-      offsetY = y - p5.mouseY;
-    }
-  };
-
-  const mouseReleased = () => {
-    dragging = false;
   };
 
   const keyPressed = (p5, { key }) => {
@@ -164,13 +132,19 @@ export default ({ data, bg }) => {
     }
   };
 
+  const mousePressed = (p5: p5Types, e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as Element;
+
+    if (target.id === "add_to_cart") {
+      drawContent(p5, 2.5, true, uuid);
+    }
+  };
+
   return (
     <Basic
       setup={setup}
-      draw={draw}
-      keyPressed={keyPressed}
+      // @ts-ignore: P5 library does not handle event types
       mousePressed={mousePressed}
-      mouseReleased={mouseReleased}
     />
   );
 };
