@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { groupDataByColor, isSameColor } from "./../../../utils";
+import { groupDataByColor, isSameColor } from "../../../utils";
 
 const Window = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,

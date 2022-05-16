@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { groupDataByColor, isSameColor } from "./../../../utils";
+import { groupDataByColor, isSameColor } from "../../../utils";
 
 // Will only import `react-p5` on client-side
 const Dots = dynamic(() => import("react-p5").then((mod) => mod.default), {

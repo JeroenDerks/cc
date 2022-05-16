@@ -47,6 +47,7 @@ const Editor = ({
         <InputEditor
           value={textValue}
           onValueChange={(val) => setTextValue(val)}
+          style={{ minHeight: 533 }}
           highlight={(code) => (
             <Highlight
               {...defaultProps}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCart } from "react-use-cart";
 import Box from "@mui/material/Box";
 
 import Basic from "../Sketches/partials/Basic";
@@ -32,12 +33,19 @@ const OutputPane = ({
   rawData: ColoredDataSet;
   theme: EditorTheme;
 }) => {
-  const [selectedId, setSelectedId] = useState<string>("5");
+  const [sketchId, setSketchId] = useState<string>("5");
+  const { addItem } = useCart();
 
   const addToCard = () => {
-    console.log(theme);
-    console.log(rawData);
-    console.log(selectedId);
+    addItem({
+      name: "canvas_60_40",
+      price: 6900,
+      quantity: 1,
+      id: String(Math.random()),
+      theme,
+      rawData,
+      sketchId,
+    });
   };
 
   return (
@@ -45,14 +53,14 @@ const OutputPane = ({
       <Box height={60} mb={1}>
         <SketchSelector
           sketchOptions={sketchOptions}
-          setSelectedId={setSelectedId}
-          selectedId={selectedId}
+          setSketchId={setSketchId}
+          sketchId={sketchId}
         />
       </Box>
       <Sketches
         key={keyCount}
         rawData={rawData}
-        selectedId={selectedId}
+        sketchId={sketchId}
         sketchOptions={sketchOptions}
         theme={theme.theme}
       />

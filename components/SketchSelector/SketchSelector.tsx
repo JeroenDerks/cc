@@ -25,12 +25,12 @@ const Wrapper = styled(Box)(({ theme }) => ({
 
 const SketchSelector = ({
   sketchOptions,
-  selectedId,
-  setSelectedId,
+  sketchId,
+  setSketchId,
 }: {
   sketchOptions: Array<Sketch>;
-  selectedId: string;
-  setSelectedId: (v: string) => void;
+  sketchId: string;
+  setSketchId: (v: string) => void;
 }) => {
   return (
     <Wrapper>
@@ -38,9 +38,9 @@ const SketchSelector = ({
         <RadioGroup
           aria-labelledby="sketch-options"
           name="sketch-option-group"
-          onChange={(e) => setSelectedId(e.target.value)}
+          onChange={(e) => setSketchId(e.target.value)}
           row
-          value={selectedId}
+          value={sketchId}
         >
           {sketchOptions.map(({ title }, i) => (
             <FormControlLabel
