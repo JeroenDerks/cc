@@ -31,11 +31,11 @@ const Shadow: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     pg.noStroke();
 
     // @ts-ignore: P5 library does not shadow props
-    pg.drawingContext.shadowOffsetX = -5;
+    pg.drawingContext.shadowOffsetX = -5 * sx;
     // @ts-ignore: P5 library does not shadow props
-    pg.drawingContext.shadowOffsetY = 4;
+    pg.drawingContext.shadowOffsetY = 4 * sy;
     // @ts-ignore: P5 library does not shadow props
-    pg.drawingContext.shadowBlur = 4;
+    pg.drawingContext.shadowBlur = 4 * sx;
     // @ts-ignore: P5 library does not shadow props
     pg.drawingContext.shadowColor = "black";
 
@@ -50,10 +50,10 @@ const Shadow: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
 
           pg.fill(col[0], col[1], col[2]);
 
-          const _x = x * charW + padding;
-          const _y = indexY * charH + padding;
-          const _w = charW * letterCount;
-          const _h = charH - 2;
+          const _x = (x * charW + padding) * sx;
+          const _y = (indexY * charH + padding) * sy;
+          const _w = charW * letterCount * sx;
+          const _h = (charH - 2) * sy;
 
           pg.rect(_x, _y, _w, _h);
         }
@@ -80,7 +80,7 @@ const Shadow: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
         canvasHeight
       );
 
-      p5.saveCanvas(frame, `basic_${uuid}.jpg`);
+      p5.saveCanvas(frame, `shadow_${uuid}.jpg`);
       // uploadPhoto(graphic, id);
     }
   };
