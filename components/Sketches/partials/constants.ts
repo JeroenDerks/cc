@@ -15,6 +15,7 @@ export const canvasWidth = Math.round((DPI * canvasWidthMM) / mmPerInch); // req
 export const canvasHeight = Math.round((DPI * canvasHeightMM) / mmPerInch); // pixels of 400mm canvas height at 150 DPI
 export const canvasPadding = Math.round((DPI * canvasPaddingMM) / mmPerInch); // pixels of 49mm canvas padding at 150 DPI
 
+// handle the drawing of the padding for the canvas.
 export const drawFrame = (p5: p5Types, bg: [number, number, number]) => {
   let frame = p5.createGraphics(
     canvasWidth + canvasPadding * 2,

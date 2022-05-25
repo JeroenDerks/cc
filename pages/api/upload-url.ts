@@ -1,6 +1,10 @@
 import { Storage } from "@google-cloud/storage";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const storage = new Storage({
     projectId: process.env.PROJECT_ID,
     credentials: {
@@ -9,6 +13,7 @@ export default async function handler(req, res) {
     },
   });
 
+  if (!process.env.BUCKET_NAME) throw new Error("bucket name not available");
   const bucket = storage.bucket(process.env.BUCKET_NAME);
 
   const maxAgeSeconds = 3600;
@@ -29,20 +34,22 @@ export default async function handler(req, res) {
 
   configureBucketCors()
     .then(() => {
-      const file = bucket.file(req.query.file);
-      const options = {
-        expires: Date.now() + 1 * 60 * 1000, //  1 minute,
-        fields: { "x-goog-meta-test": "data" },
-      };
-      file
-        .generateSignedPostPolicyV4(options)
-        .then((response) => {
-          console.log(response[0]);
-          res.status(200).json(response[0]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (typeof req.query.file === "string") {
+        const file = bucket.file(req.query.file);
+        const options = {
+          expires: Date.now() + 1 * 60 * 1000, //  1 minute,
+          fields: { "x-goog-meta-test": "data" },
+        };
+        file
+          .generateSignedPostPolicyV4(options)
+          .then((response) => {
+            console.log(response[0]);
+            res.status(200).json(response[0]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     })
     .catch((err) => {
       console.log("Error on configuring CORS: " + err);

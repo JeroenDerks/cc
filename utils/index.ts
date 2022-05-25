@@ -1,41 +1,53 @@
-// export const hasWhiteSpace = (s) => /\s/g.test(s);
-
 import { ColoredDataSet, GroupedColoredDataLine, Color } from "types";
 
-// const getColor = ({ char, color, plain }) => {
-//   const isEmptyChar = hasWhiteSpace(char);
-//   if (isEmptyChar && plain.background) return plain.background;
-//   if (isEmptyChar && plain.backgroundColor) return plain.backgroundColor;
-//   if (color) return color;
-//   return plain.color;
-// };
+const defaultColor: Color = [155, 155, 155];
 
-// export const getCharColor = (char, node, plain) => {
-//   const color = node?.style?.color;
-//   const bg = getColor({ char, color, plain });
-//   //   console.log(`"${char}"`, bg);
-//   return convertColorToRGB(bg);
-// };
-
-export const convertColorToRGB = (col) => {
-  if (col.includes("#")) return hexToRgb(col);
-  return colorToRgb(col);
+// checks if input matches expected Color pattern
+const isValidColor = (input: any): boolean => {
+  if (
+    input?.length === 3 &&
+    typeof input[0] === "number" &&
+    typeof input[1] === "number" &&
+    typeof input[2] === "number"
+  )
+    return true;
+  else return false;
 };
 
-const hexToRgb = (hex) => {
-  var res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return res
-    ? [parseInt(res[1], 16), parseInt(res[2], 16), parseInt(res[3], 16)]
-    : null;
+export const convertColorToRGB = (col: string | number | void): Color => {
+  if (typeof col === "string") {
+    if (col.includes("#")) {
+      return hexToRgb(col);
+    } else {
+      return colorToRgb(col);
+    }
+  }
+  return defaultColor;
 };
 
-const colorToRgb = (rgb) =>
-  rgb
-    .substring(4, rgb.length - 1)
-    .replace(/ /g, "")
-    .split(",")
-    .map((v) => parseInt(v));
+const hexToRgb = (hex: string): Color => {
+  const res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
+  if (res) {
+    const col = [
+      parseInt(res[1], 16),
+      parseInt(res[2], 16),
+      parseInt(res[3], 16),
+    ];
+    if (isValidColor(col)) return col as Color;
+    else return defaultColor;
+  }
+  return defaultColor;
+};
+
+const colorToRgb = (col: string): Color => {
+  const rgb = col.match(/\d+/g)?.map(Number);
+  if (isValidColor(rgb)) {
+    return rgb as Color;
+  } else {
+    return defaultColor;
+  }
+};
 export const isSameColor = (col1: Color, col2: Color) =>
   col1[0] === col2[0] && col1[1] === col2[1] && col1[2] === col2[2];
 
