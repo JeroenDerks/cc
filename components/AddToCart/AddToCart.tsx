@@ -15,11 +15,22 @@ const Wrapper = styled(Box)(({ theme }) => ({
   padding: "0 16px",
 }));
 
-const AddToCart = ({ addToCard }: { addToCard: () => void }) => {
+const AddToCart = ({
+  addToCard,
+  loading,
+}: {
+  addToCard: () => void;
+  loading: boolean;
+}) => {
   return (
     <Wrapper width={1} justifyContent="space-between">
       <Typography variant="h5">Price: 69,00</Typography>
-      <Button onClick={addToCard} variant="contained" id="add_to_cart">
+      <Button
+        onClick={addToCard}
+        variant="contained"
+        disabled={loading}
+        id="add_to_cart"
+      >
         Get me that
       </Button>
     </Wrapper>

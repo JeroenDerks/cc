@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import BaseLayout from "components/BaseLayout";
 import { useCart, Item } from "react-use-cart";
 import { Typography } from "@mui/material";
-import { ShoppingCartItem } from "types";
 
 const CheckoutPage = () => {
   const { isEmpty, items, updateItemQuantity, removeItem } = useCart();
@@ -31,6 +30,9 @@ const CheckoutPage = () => {
             </p>
 
             <button onClick={() => removeItem(id)}>&times;</button>
+            <img
+              src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
+            />
           </li>
         ))}
       </ul>
