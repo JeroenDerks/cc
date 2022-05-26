@@ -30,10 +30,8 @@ export const uploadRawData = async ({
   let formData = new FormData();
 
   Object.entries({ ...fields, file }).forEach(([key, value]) => {
-    formData.append(key, value);
+    if (typeof value === "string") formData.append(key, value);
   });
-
-  // formData.append("file", file, filename);
 
   const upload = await fetch(url, {
     method: "POST",

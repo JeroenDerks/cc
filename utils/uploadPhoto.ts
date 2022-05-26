@@ -10,14 +10,12 @@ export const uploadPhoto = async (
     if (blob) file = new File([blob], filename, { type: "image/jpg" });
   }, "image/jpg");
 
-  console.log(file);
   const res = await fetch(`/api/upload-url?file=${filename}`);
-  console.log(res, res.status);
   const { url, fields } = await res.json();
   const formData = new FormData();
 
   Object.entries({ ...fields, file }).forEach(([key, value]) => {
-    formData.append(key, value);
+    if (typeof value === "string") formData.append(key, value);
   });
 
   console.log(formData);
