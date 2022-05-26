@@ -3,21 +3,9 @@ import { Box, Button, Grid } from "@mui/material";
 import { Formik, Form, Field } from "formik";
 import { FormTextField } from "./FormTextField";
 import FormSelect from "./FormSelect";
+import type { ShippingAddressValues } from "types";
 import * as yup from "yup";
 
-export type ShippingAddressValues = {
-  companyName: string;
-  firstName: string;
-  lastName: string;
-  addressLine1: string;
-  addressLine2: string;
-  state: string;
-  city: string;
-  postCode: string;
-  country: string;
-  email: string;
-  phone: string;
-};
 const intialValues = {
   companyName: "",
   firstName: "",
@@ -29,7 +17,6 @@ const intialValues = {
   postCode: "",
   country: "",
   email: "",
-  phone: "",
 };
 
 const props = {
@@ -48,7 +35,11 @@ const validationSchema = yup.object().shape({
   email: yup.string().email("Invalid email format").required("Required"),
 });
 
-const ShippingAddress = ({ onSubmit }: { onSubmit: () => void }) => {
+const ShippingAddress = ({
+  onSubmit,
+}: {
+  onSubmit: (v: ShippingAddressValues) => void;
+}) => {
   return (
     <Formik
       initialValues={intialValues}
@@ -61,7 +52,6 @@ const ShippingAddress = ({ onSubmit }: { onSubmit: () => void }) => {
             <Grid item xs={12} sm={12}>
               <Field name="companyName" label="Company name" {...props} />
             </Grid>
-
             <Grid item xs={12} sm={12} md={6}>
               <Field name="firstName" label="First name" {...props} />
             </Grid>
@@ -106,11 +96,11 @@ const ShippingAddress = ({ onSubmit }: { onSubmit: () => void }) => {
               >
                 <Button
                   type="submit"
-                  variant="contained"
+                  variant="outlined"
                   size="large"
-                  color="secondary"
+                  color="success"
                 >
-                  Calculate shipping
+                  Save
                 </Button>
               </Box>
             </Grid>

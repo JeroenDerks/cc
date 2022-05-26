@@ -14,11 +14,9 @@ export const uploadPhoto = async (
   const { url, fields } = await res.json();
   const formData = new FormData();
 
-  Object.entries({ ...fields, file }).forEach(([key, value]) => {
-    if (typeof value === "string") formData.append(key, value);
+  Object.entries({ ...fields, file }).forEach(([key, value]: any) => {
+    formData.append(key, value);
   });
-
-  console.log(formData);
 
   const upload = await fetch(url, {
     method: "POST",
