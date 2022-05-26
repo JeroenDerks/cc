@@ -14,7 +14,8 @@ import AddToCard from "../AddToCart";
 import Sketches from "../Sketches";
 import SketchSelector from "../SketchSelector";
 
-import { ColoredDataSet, EditorTheme, Sketch } from "types";
+import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
+import { uploadRawData } from "utils/uploadRawData";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
@@ -27,32 +28,30 @@ const sketchOptions: Array<Sketch> = [
 
 const OutputPane = ({
   keyCount,
+  language,
   rawData,
+  userValue,
   theme,
 }: {
   keyCount: number;
+  language: LanguageOption;
   rawData: ColoredDataSet;
+  userValue: string;
   theme: EditorTheme;
 }) => {
-  const [sketchId, setSketchId] = useState<string>("5");
+  const [sketchId, setSketchId] = useState<string>("0");
+  const [loading, setLoading] = useState<boolean>(false);
   const [uuid, setUuid] = useState<string>("");
   const { addItem } = useCart();
 
-  console.log(uuid);
   useEffect(() => {
     setUuid(uuidv4());
   }, [sketchId]);
 
-  const addToCard = () => {
-    addItem({
-      name: "canvas_60_40",
-      price: 6900,
-      quantity: 1,
-      id: uuid,
-      theme,
-      rawData,
-      sketchId,
-    });
+  const addToCard = async () => {
+    setLoading(true);
+    addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
+    uploadRawData({ uuid, userValue, sketchId, theme, language });
     setUuid(uuidv4());
   };
 
@@ -67,14 +66,16 @@ const OutputPane = ({
       </Box>
       <Sketches
         key={keyCount}
+        loading={loading}
         rawData={rawData}
         sketchId={sketchId}
         sketchOptions={sketchOptions}
         theme={theme.theme}
+        setLoading={setLoading}
         uuid={uuid}
       />
 
-      <AddToCard addToCard={addToCard} />
+      <AddToCard addToCard={addToCard} loading={loading} />
     </>
   );
 };

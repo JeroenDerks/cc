@@ -8,5 +8,7 @@ export type Sketch = {
 export type SketchProps = {
   bg: Color;
   data: ColoredDataSet;
+  loading: boolean;
   uuid: string;
+  setLoading: (v: boolean) => void;
 };
