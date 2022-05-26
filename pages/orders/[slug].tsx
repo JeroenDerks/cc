@@ -71,7 +71,7 @@ const OrderPage = () => {
           prices.
         </Typography>
         {/* <ShippingAddress onSubmit={(v) => getShipmentOptions(v)} /> */}
-        {/* {shippingOptions && <ShippingOptions options={shippingOptions} />} */}
+        {/* {shippingOptions && <ShippingOptions options={shippingOptions} />}*/}
       </BorderBox>
     </BaseLayout>
   );

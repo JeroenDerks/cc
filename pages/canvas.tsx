@@ -33,7 +33,13 @@ const Raw = () => {
           />
         </Grid>
         <Grid item sm={12} md={6}>
-          <OutputPane theme={theme} rawData={rawData} keyCount={keyCount} />
+          <OutputPane
+            theme={theme}
+            userValue={userValue}
+            language={language}
+            rawData={rawData}
+            keyCount={keyCount}
+          />
         </Grid>
       </Grid>
 

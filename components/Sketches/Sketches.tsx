@@ -7,6 +7,8 @@ import { ColoredDataSet, Sketch } from "types";
 const Sketches = ({
   theme,
   rawData,
+  loading,
+  setLoading,
   sketchOptions,
   sketchId,
   uuid,
@@ -14,6 +16,8 @@ const Sketches = ({
   theme: PrismTheme;
   rawData: ColoredDataSet;
   sketchOptions: Array<Sketch>;
+  loading: boolean;
+  setLoading: (v: boolean) => void;
   sketchId: string;
   uuid: string;
 }) => {
@@ -25,6 +29,8 @@ const Sketches = ({
       <SelectedSketch
         bg={convertColorToRGB(background || backgroundColor)}
         data={rawData}
+        loading={loading}
+        setLoading={setLoading}
         uuid={uuid}
       />
     </Box>

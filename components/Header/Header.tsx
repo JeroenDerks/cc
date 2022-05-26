@@ -40,7 +40,7 @@ const Header = () => {
         alignItems="center"
         height="100%"
       >
-        <CheckoutLink href="checkout">{itemsInCart.length}</CheckoutLink>
+        <CheckoutLink href="cart">{itemsInCart.length}</CheckoutLink>
       </Box>
     </Wrapper>
   );

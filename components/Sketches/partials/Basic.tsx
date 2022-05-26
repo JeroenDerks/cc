@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import p5Types from "p5";
 import Sketch from "react-p5";
-// import { uploadPhoto } from "./../../../utils/upload";
+import { uploadPhoto } from "utils/uploadPhoto";
 import { groupDataByColor, isSameColor } from "../../../utils";
 import { sketchWidth, sketchHeigth } from "./constants";
 import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
@@ -18,7 +18,13 @@ const padding = 20;
 const charH = 15;
 const charW = 10;
 
-const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+const Basic: React.FC<SketchProps> = ({
+  bg,
+  setLoading,
+  data,
+  uuid,
+  loading,
+}: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
@@ -57,7 +63,10 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     return pg;
   };
 
-  const mousePressed = (p5: p5Types, e: React.MouseEvent<HTMLElement>) => {
+  const mousePressed = async (
+    p5: p5Types,
+    e: React.MouseEvent<HTMLElement>
+  ) => {
     const target = e.target as Element;
 
     if (target.id === "add_to_cart") {
@@ -75,8 +84,12 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
         canvasHeight
       );
 
-      p5.saveCanvas(frame, `basic_${uuid}.jpg`);
-      // uploadPhoto(graphic, id);
+      const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
+      preview.image(graphic, 0, 0, preview.width, preview.height);
+      // @ts-ignore: P5 library does not handle event types
+      await uploadPhoto(preview, `${uuid}_preview`, setLoading);
+      // @ts-ignore: P5 library does not handle event types
+      await uploadPhoto(frame, `${uuid}_frame`);
     }
   };
 
