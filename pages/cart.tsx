@@ -41,13 +41,11 @@ const CartPage = () => {
   return (
     <BaseLayout>
       <BorderBox bx>
-        <Typography variant="h4" mb={3}>
-          Cart
-        </Typography>
-
+        <Typography variant="h4">Cart</Typography>
+        <SeparatorLine />
         <Stack>
           {itemsInCart.map(({ quantity, name, id, price }) => (
-            <Grid container spacing={4}>
+            <Grid container spacing={4} key={id}>
               <Grid item xs={12} sm={12} md={6}>
                 <Image
                   src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}

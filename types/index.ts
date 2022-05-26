@@ -9,6 +9,7 @@ export type { GroupedDataByColor } from "./ColoredData";
 export type { LanguageOption } from "./LanguageOption";
 export type { MarginProps } from "./Styling";
 export type { PaddingProps } from "./Styling";
+export type { ShippingAddressValues } from "./ShippingAddressValues";
 export type { ShoppingCartItem } from "./ShoppingCartItem";
 export type { Sketch } from "./Sketch";
 export type { SketchProps } from "./Sketch";
