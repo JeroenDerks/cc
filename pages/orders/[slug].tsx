@@ -70,8 +70,8 @@ const OrderPage = () => {
           Provide your address details, and we will provide the best shipping
           prices.
         </Typography>
-        {/* <ShippingAddress onSubmit={(v) => getShipmentOptions(v)} /> */}
-        {/* {shippingOptions && <ShippingOptions options={shippingOptions} />} */}
+        <ShippingAddress onSubmit={(v) => getShipmentOptions(v)} />
+        {/* {shippingOptions && <ShippingOptions options={shippingOptions} />}*/}
       </BorderBox>
     </BaseLayout>
   );
