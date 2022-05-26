@@ -29,9 +29,11 @@ export const uploadRawData = async ({
   const file = new File([blob], filename);
   let formData = new FormData();
 
-  Object.entries({ ...fields, file }).forEach(([key, value]) => {
+  Object.entries({ ...fields }).forEach(([key, value]) => {
     if (typeof value === "string") formData.append(key, value);
   });
+
+  formData.append("file", file, filename);
 
   const upload = await fetch(url, {
     method: "POST",
