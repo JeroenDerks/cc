@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { FormHelperText } from "@mui/material";
 import { FormikErrors, FormikTouched } from "formik";
-import { ShippingAddressValues } from "./ShippingAddress";
+import type { ShippingAddressValues } from "types";
 
 const FormSelect = ({
   errors,
