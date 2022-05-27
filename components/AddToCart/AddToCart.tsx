@@ -27,11 +27,12 @@ const AddToCart = ({
       <Typography variant="h5">Price: 69,00</Typography>
       <Button
         onClick={addToCard}
-        variant="contained"
+        variant="outlined"
+        color="success"
         disabled={loading}
         id="add_to_cart"
       >
-        Get me that
+        Add to cart
       </Button>
     </Wrapper>
   );
