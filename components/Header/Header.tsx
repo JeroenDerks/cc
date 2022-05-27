@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material";
+import Link from "next/link";
+import { styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useCart, Item } from "react-use-cart";
 
@@ -23,6 +24,15 @@ const CheckoutLink = styled("a")(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
+const Logo = styled(Typography)(({ theme }) => ({
+  "-webkit-text-stroke": theme.palette.text.primary,
+  "-webkit-text-fill-color": theme.palette.background.default,
+  "-webkit-text-stroke-width": "1px",
+  fontSize: 40,
+  lineHeight: 1,
+  textDecoration: "none",
+}));
+
 const Header = () => {
   const { items } = useCart();
   const [itemsInCart, setItemsInCart] = useState<Array<Item>>([]);
@@ -36,11 +46,14 @@ const Header = () => {
       <Box
         maxWidth={1800}
         display="flex"
-        justifyContent="flex-end"
+        justifyContent="space-between"
         alignItems="center"
         height="100%"
       >
-        <CheckoutLink href="cart">{itemsInCart.length}</CheckoutLink>
+        <Link href="/" passHref>
+          <Logo as="a">CC</Logo>
+        </Link>
+        <CheckoutLink href="/cart">{itemsInCart.length}</CheckoutLink>
       </Box>
     </Wrapper>
   );

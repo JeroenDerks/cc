@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       if (!stripe) throw new Error("Stripe not available");
       const body = JSON.parse(req.body);
-      console.log(body);
+
       const { amount, currency } = body;
       const paymentIntent = await stripe.paymentIntents.create({
         amount,
