@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { styled as styledMui } from "@mui/material";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
-export const LineNo = styled.span`
+export const LineNo = styled("span")`
   display: block;
   width: 50px;
   user-select: none;
@@ -15,7 +14,7 @@ export const LineNo = styled.span`
   opacity: 0.5;
 `;
 
-export const EditorWrapper = styledMui(Box)(
+export const EditorWrapper = styled(Box)(
   ({ bg }: { bg?: string | number }) => ({
     background: bg,
     boxSizing: "border-box",

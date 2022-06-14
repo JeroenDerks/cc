@@ -10,7 +10,7 @@ export const uploadPhoto = async (
     if (blob) file = new File([blob], filename, { type: "image/jpg" });
   }, "image/jpg");
 
-  const res = await fetch(`/api/upload-url?file=${filename}`);
+  const res = await fetch(`/api/upload-gcs?file=${filename}`);
   const { url, fields } = await res.json();
   const formData = new FormData();
 

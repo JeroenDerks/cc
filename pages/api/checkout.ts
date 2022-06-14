@@ -1,12 +1,16 @@
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
-  console.log(stripe);
+const stripe =
+  process.env.STRIPE_SECRET_KEY &&
+  new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2020-08-27" });
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
+      if (!stripe) throw new Error("Stripe not available");
       const body = JSON.parse(req.body);
-      console.log(body);
+
       const { amount, currency } = body;
       const paymentIntent = await stripe.paymentIntents.create({
         amount,
