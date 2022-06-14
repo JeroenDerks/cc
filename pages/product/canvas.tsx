@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import HighLighter from "../components/Highlighter";
+import HighLighter from "../../components/Highlighter";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import InputPane from "../components/Panes/InputPane";
-import OutputPane from "../components/Panes/OutputPane";
-import { languageOptions } from "../components/LanguageSelector/LanguageSelector";
-import { themeOptions } from "../components/ThemeSelector";
+import InputPane from "../../components/Panes/InputPane";
+import OutputPane from "../../components/Panes/OutputPane";
+import { languageOptions } from "../../components/LanguageSelector/LanguageSelector";
+import { themeOptions } from "../../components/ThemeSelector";
 import { ColoredDataSet, EditorTheme, LanguageOption } from "types";
 
 const initialValue = `

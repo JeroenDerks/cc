@@ -15,7 +15,7 @@ export const uploadRawData = async ({
 }) => {
   const filename = encodeURIComponent(`${uuid}.json`);
 
-  const res = await fetch(`/api/upload-url?file=${filename}`);
+  const res = await fetch(`/api/upload-gcs?file=${filename}`);
   const { url, fields } = await res.json();
 
   const body = JSON.stringify({

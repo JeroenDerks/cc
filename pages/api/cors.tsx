@@ -1,11 +1,10 @@
 import fetch from "isomorphic-unfetch";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const Cors = async (req, res) => {
+const Cors = async (req: NextApiRequest, res: NextApiResponse) => {
   const { url } = req.query;
-  console.log(res);
-  console.log(req.body);
-  console.log(req.headers);
   try {
+    if (typeof url !== "string") throw new Error("Not a vadid url");
     const resProxy = await fetch(url, {
       method: "POST",
       headers: {
@@ -17,7 +16,10 @@ const Cors = async (req, res) => {
     });
     res.status(200).send(resProxy.body);
   } catch (error) {
-    res.status(400).send(error.toString());
+    let message;
+    if (error instanceof Error) message = error.message;
+    else message = String(error);
+    res.status(400).send(message);
   }
 };
 
