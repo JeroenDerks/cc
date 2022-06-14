@@ -4,7 +4,6 @@ import { deepPurple, blueGrey, grey } from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     mode: "dark",
-
     // primary: {
     //   main: blueGrey[500],
     // },
