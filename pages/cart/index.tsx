@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material";
-import Link from "next/link";
 import BaseLayout from "components/BaseLayout";
 import { useCart, Item } from "react-use-cart";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
@@ -8,6 +7,7 @@ import BorderBox from "components/BorderBox";
 import Flex from "components/Flex";
 import SeparatorLine from "components/SeparatorLine";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useRouter } from "next/router";
 
 const Image = styled("img")({
   width: "100%",
@@ -16,6 +16,8 @@ const Image = styled("img")({
 const CartPage = () => {
   const { items, removeItem } = useCart();
   const [itemsInCart, setItemsInCart] = useState<Array<Item>>([]);
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setItemsInCart(items);
@@ -37,6 +39,21 @@ const CartPage = () => {
   const sum = itemsInCart.reduce((acc, { price }) => {
     return (acc += price);
   }, 0);
+
+  const handleCheckout = async () => {
+    setLoading(true);
+
+    const request = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      body: JSON.stringify({ items: itemsInCart }),
+    });
+    const data = await request.json();
+    console.log(data);
+    if (data.url) {
+      router.push(data.url);
+    }
+    setLoading(false);
+  };
 
   return (
     <BaseLayout>
@@ -86,16 +103,15 @@ const CartPage = () => {
         </Stack>
         <Flex justifyContent="space-between" alignItems="center">
           <Typography variant="h5">Total: {sum * 0.01},00</Typography>
-          <Link href="/checkout" passHref>
-            <Button
-              component="a"
-              variant="outlined"
-              color="success"
-              size="large"
-            >
-              Checkout
-            </Button>
-          </Link>
+          <Button
+            onClick={handleCheckout}
+            variant="outlined"
+            color="success"
+            size="large"
+            disabled={loading}
+          >
+            Checkout
+          </Button>
         </Flex>
       </BorderBox>
     </BaseLayout>
