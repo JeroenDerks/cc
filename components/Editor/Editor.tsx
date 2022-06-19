@@ -3,8 +3,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { default as InputEditor } from "react-simple-code-editor";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { EditorWrapper } from "./Editor.styles";
-import { PrismTheme } from "prism-react-renderer";
-import { LanguageOption } from "types";
+import type { PrismTheme } from "prism-react-renderer";
+import type { LanguageOption } from "types";
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
