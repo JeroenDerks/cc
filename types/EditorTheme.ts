@@ -1,7 +1,6 @@
-import { PrismTheme } from "prism-react-renderer";
-
 export type EditorTheme = {
   title: string;
-  theme: PrismTheme;
+  theme: any;
   id: number;
+  bg: string;
 };

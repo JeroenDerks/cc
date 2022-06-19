@@ -17,7 +17,7 @@ const Raw = () => {
   const [keyCount, setKeyCount] = useState<number>(1);
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[7]);
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
-  const [theme, setTheme] = useState<EditorTheme>(themeOptions[5]);
+  const [theme, setTheme] = useState<EditorTheme>(themeOptions[7]);
 
   return (
     <Box p={5} width={1} maxWidth={1600} m="auto">

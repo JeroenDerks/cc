@@ -70,7 +70,7 @@ const OutputPane = ({
         rawData={rawData}
         sketchId={sketchId}
         sketchOptions={sketchOptions}
-        theme={theme.theme}
+        theme={theme}
         setLoading={setLoading}
         uuid={uuid}
       />
