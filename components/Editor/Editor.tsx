@@ -1,13 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 // import EditorLineNumbers from "./EditorLineNumbers";
 import { default as InputEditor } from "react-simple-code-editor";
-import Highlight, { defaultProps } from "prism-react-renderer";
 import { EditorWrapper } from "./Editor.styles";
-import { PrismTheme } from "prism-react-renderer";
-// import Prism from "prismjs/components/prism-core";
-import { LanguageOption } from "types";
+import { EditorTheme, LanguageOption } from "types";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import vscDarkPlus from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -32,11 +28,10 @@ const Editor = ({
 }: {
   language: LanguageOption;
   setUserValue: (v: string) => void;
-  theme: PrismTheme;
+  theme: EditorTheme;
   userValue: string;
 }) => {
   const [textValue, setTextValue] = useState<string>(userValue || "");
-  const { background, backgroundColor } = theme.plain;
   const debouncedUserValue = useDebounce(textValue, 500);
 
   useEffect(() => {
@@ -46,42 +41,23 @@ const Editor = ({
   return (
     <>
       {/* <EditorLineNumbers theme={theme} textValue={textValue} /> */}
-      <EditorWrapper bg={background || backgroundColor}>
+      <EditorWrapper bg={theme.bg}>
         <InputEditor
           value={textValue}
           onValueChange={(val) => setTextValue(val)}
           style={{ minHeight: 533 }}
-          highlight={(code) => (
-            <>
-              <SyntaxHighlighter
-                language="jsx"
-                style={vscDarkPlus}
-                id="prims-syntax"
-              >
-                {textValue}
-              </SyntaxHighlighter>
-              <Highlight
-                {...defaultProps}
-                // Prism={Prism}
-                theme={theme}
-                code={code}
-                language={language.code}
-              >
-                {({ tokens, getLineProps, getTokenProps }) => (
-                  <Fragment>
-                    {tokens.map((line, i) => (
-                      <div {...getLineProps({ line, key: i })} className="line">
-                        {line.map((token, key) => (
-                          <span {...getTokenProps({ token, key })} />
-                        ))}
-                      </div>
-                    ))}
-                  </Fragment>
-                )}
-              </Highlight>
-            </>
+          highlight={() => (
+            <SyntaxHighlighter
+              language={language.code}
+              style={theme.theme}
+              id="prims-syntax"
+              useInlineStyles
+              wrapLines
+              lineProps={{ class: "lineOfCode" }}
+            >
+              {textValue}
+            </SyntaxHighlighter>
           )}
-          padding={10}
         />
       </EditorWrapper>
     </>

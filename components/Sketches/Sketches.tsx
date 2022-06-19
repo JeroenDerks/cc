@@ -1,8 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { convertColorToRGB } from "../../utils";
-import { PrismTheme } from "prism-react-renderer";
-import { ColoredDataSet, Sketch } from "types";
+import { ColoredDataSet, Sketch, EditorTheme } from "types";
 
 const Sketches = ({
   theme,
@@ -13,7 +12,7 @@ const Sketches = ({
   sketchId,
   uuid,
 }: {
-  theme: PrismTheme;
+  theme: EditorTheme;
   rawData: ColoredDataSet;
   sketchOptions: Array<Sketch>;
   loading: boolean;
@@ -21,13 +20,12 @@ const Sketches = ({
   sketchId: string;
   uuid: string;
 }) => {
-  const { background, backgroundColor } = theme.plain;
   const SelectedSketch = sketchOptions[parseInt(sketchId)].sketch;
 
   return (
     <Box overflow="hidden">
       <SelectedSketch
-        bg={convertColorToRGB(background || backgroundColor)}
+        bg={convertColorToRGB(theme.bg)}
         data={rawData}
         loading={loading}
         setLoading={setLoading}

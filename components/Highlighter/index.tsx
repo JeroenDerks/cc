@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { convertColorToRGB } from "utils";
-import { ColoredDataSet, ColoredRow, LanguageOption } from "types";
+import { ColoredDataSet, ColoredRow, EditorTheme, LanguageOption } from "types";
 import { PrismTheme } from "prism-react-renderer";
 import { Color } from "types";
 
@@ -16,11 +16,10 @@ const HighLighter = ({
   language: LanguageOption;
   setKeyCount: (v: number) => void;
   setRawData: (v: ColoredDataSet) => void;
-  theme: PrismTheme;
+  theme: EditorTheme;
   userValue: string;
 }) => {
   useEffect(() => theme && getRawData(), [theme, userValue, language]);
-  const { background, backgroundColor, color } = theme.plain;
 
   const getIndicesOfEmptyCharacters = (input: string) => {
     var regex = /\s/g,
@@ -34,29 +33,28 @@ const HighLighter = ({
 
   const getRawData = () => {
     const prism = document?.getElementById("prims-syntax");
-    const spans = prism?.querySelectorAll("span");
+    const linesOfCode = prism?.querySelectorAll(".lineOfCode");
     const bg = prism?.style.background;
 
     let lines: Array<Array<{ char: string; background: Color }>> = [[]];
     let lineCounter = 0;
 
-    spans?.forEach((span) => {
-      console.log(span);
+    linesOfCode?.forEach((line) => {
+      const spans = line.querySelectorAll("span");
+      spans?.forEach((span) => {
+        const col = window.getComputedStyle(span, null).color;
 
-      const col = window.getComputedStyle(span, null).color;
+        for (let i = 0; i < span.innerText.length; i++) {
+          const isChar = new RegExp("^\\S+$").test(span?.innerText[i]);
+          lines[lineCounter].push({
+            char: span?.innerText[i] || " ",
+            background: convertColorToRGB(isChar ? col : bg),
+          });
+        }
+      });
 
-      for (let i = 0; i < span.innerText.length; i++) {
-        const isChar = new RegExp("^\\S+$").test(span?.innerText[i]);
-        lines[lineCounter].push({
-          char: span?.innerText[i] || " ",
-          background: convertColorToRGB(isChar ? col : bg),
-        });
-      }
-
-      if (/\r|\n/.exec(span.innerHTML)) {
-        lines.push([{ char: " ", background: convertColorToRGB(bg) }]);
-        lineCounter += 1;
-      }
+      lines.push([]);
+      lineCounter += 1;
     });
 
     // const lines = document.getElementsByClassName("line");

@@ -36,7 +36,7 @@ const InputPane = ({
       <Editor
         language={language}
         setUserValue={setUserValue}
-        theme={theme.theme}
+        theme={theme}
         userValue={userValue}
       />
     </>
