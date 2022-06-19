@@ -4,7 +4,10 @@ import { default as InputEditor } from "react-simple-code-editor";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { EditorWrapper } from "./Editor.styles";
 import { PrismTheme } from "prism-react-renderer";
+// import Prism from "prismjs/components/prism-core";
 import { LanguageOption } from "types";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import vscDarkPlus from "react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus";
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -49,24 +52,34 @@ const Editor = ({
           onValueChange={(val) => setTextValue(val)}
           style={{ minHeight: 533 }}
           highlight={(code) => (
-            <Highlight
-              {...defaultProps}
-              theme={theme}
-              code={code}
-              language={language.code}
-            >
-              {({ tokens, getLineProps, getTokenProps }) => (
-                <Fragment>
-                  {tokens.map((line, i) => (
-                    <div {...getLineProps({ line, key: i })} className="line">
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </Fragment>
-              )}
-            </Highlight>
+            <>
+              <SyntaxHighlighter
+                language="jsx"
+                style={vscDarkPlus}
+                id="prims-syntax"
+              >
+                {textValue}
+              </SyntaxHighlighter>
+              <Highlight
+                {...defaultProps}
+                // Prism={Prism}
+                theme={theme}
+                code={code}
+                language={language.code}
+              >
+                {({ tokens, getLineProps, getTokenProps }) => (
+                  <Fragment>
+                    {tokens.map((line, i) => (
+                      <div {...getLineProps({ line, key: i })} className="line">
+                        {line.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} />
+                        ))}
+                      </div>
+                    ))}
+                  </Fragment>
+                )}
+              </Highlight>
+            </>
           )}
           padding={10}
         />
