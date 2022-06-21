@@ -38,26 +38,42 @@ const Editor = ({
     setUserValue(debouncedUserValue);
   }, [debouncedUserValue]);
 
+  // console.log(theme.theme['code[class*="language-"]']);
   return (
     <>
       {/* <EditorLineNumbers theme={theme} textValue={textValue} /> */}
       <EditorWrapper bg={theme.bg}>
+        <SyntaxHighlighter
+          language={language.code}
+          style={theme.theme}
+          id="prims-syntax"
+          useInlineStyles
+          wrapLines
+          lineProps={{ class: "lineOfCode" }}
+          customStyle={{
+            margin: 0,
+            padding: 0,
+            minHeight: 533,
+            marginBottom: -533,
+            zIndex: 1,
+            position: "relative",
+          }}
+        >
+          {textValue}
+        </SyntaxHighlighter>
         <InputEditor
           value={textValue}
           onValueChange={(val) => setTextValue(val)}
-          style={{ minHeight: 533 }}
-          highlight={() => (
-            <SyntaxHighlighter
-              language={language.code}
-              style={theme.theme}
-              id="prims-syntax"
-              useInlineStyles
-              wrapLines
-              lineProps={{ class: "lineOfCode" }}
-            >
-              {textValue}
-            </SyntaxHighlighter>
-          )}
+          style={{
+            minHeight: 533,
+            ...theme.theme['code[class*="language-"]'],
+            zIndex: 2,
+            position: "relative",
+            color: "transparent",
+            background: "transparent",
+            width: "100%",
+          }}
+          highlight={() => textValue}
         />
       </EditorWrapper>
     </>
