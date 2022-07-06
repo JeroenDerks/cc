@@ -13,7 +13,7 @@ const EditorComp = ({ shiki }: { shiki: any }) => {
       highlight={(code) => shiki && shiki.codeToHtml(code, "tsx")}
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 8,
+        fontSize: 12,
       }}
     />
   );
