@@ -24,7 +24,7 @@ export default function App(props: AppProps) {
         <Elements stripe={stripePromise}>
           <CartProvider>
             <CssBaseline />
-            <Header />
+            {/* <Header /> */}
             <Component {...pageProps} />
           </CartProvider>
         </Elements>
