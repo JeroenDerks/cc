@@ -20,6 +20,7 @@ export const EditorWrapper = styled(Box)(
     boxSizing: "border-box",
     caretColor: "grey",
     fontFamily: "monospace",
+    position: "relative",
     minHeight: 533,
     width: "100%",
     maxWidth: 800,
