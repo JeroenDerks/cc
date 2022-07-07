@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ThemeSelector from "../ThemeSelector";
 import LanguageSelector from "../LanguageSelector";
 import Editor from "../Editor/Editor";
 import { Box, Grid } from "@mui/material";
 import { EditorTheme, LanguageOption } from "types";
+import { Highlighter } from "shiki";
 
 const InputPane = ({
   language,
   setLanguage,
   setTheme,
   setUserValue,
+  shiki,
   theme,
   userValue,
 }: {
@@ -17,6 +19,7 @@ const InputPane = ({
   setLanguage: (v: LanguageOption) => void;
   setTheme: (v: EditorTheme) => void;
   setUserValue: (v: string) => void;
+  shiki: Highlighter | null;
   theme: EditorTheme;
   userValue: string;
 }) => {
@@ -36,6 +39,7 @@ const InputPane = ({
       <Editor
         language={language}
         setUserValue={setUserValue}
+        shiki={shiki}
         theme={theme}
         userValue={userValue}
       />

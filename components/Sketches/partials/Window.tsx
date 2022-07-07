@@ -90,7 +90,7 @@ const Window: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
 
       for (let i = 0; i < line.length; i++) {
         var col = line[i].bg || bg;
-        if (isSameColor(col, bg) === false) {
+        if (isSameColor(col, bg) === false && col[3] !== 0) {
           const { x, letterCount } = line[i];
 
           cnt.fill(col[0], col[1], col[2]);

@@ -1,11 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
-// import EditorLineNumbers from "./EditorLineNumbers";
-import { default as InputEditor } from "react-simple-code-editor";
+import React, { useState, useEffect } from "react";
 import { EditorWrapper } from "./Editor.styles";
 import { EditorTheme, LanguageOption } from "types";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import Box from "@mui/material/Box";
-const shiki = require("shiki");
+import Editor from "react-simple-code-editor";
+import { Highlighter } from "shiki";
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -22,97 +19,44 @@ export function useDebounce(value: string, delay: number) {
   return debouncedValue;
 }
 
-const Editor = ({
+const InputEditor = ({
   language,
   setUserValue,
+  shiki,
   theme,
   userValue,
 }: {
   language: LanguageOption;
   setUserValue: (v: string) => void;
+  shiki: Highlighter | null;
   theme: EditorTheme;
   userValue: string;
 }) => {
   const [textValue, setTextValue] = useState<string>(userValue || "");
   const debouncedUserValue = useDebounce(textValue, 500);
-  const [offsetHeight, setOffsetHeight] = useState<number>(-533);
-  const ref = useRef();
 
   useEffect(() => {
     setUserValue(debouncedUserValue);
   }, [debouncedUserValue]);
 
-  // console.log(theme.theme['code[class*="language-"]']);
-
-  shiki
-    .getHighlighter({
-      theme: "nord",
-    })
-    .then((highlighter) =>
-      highlighter.codeToHtml(`console.log('shiki');`, "javascript")
-    );
-
   return (
     <>
-      {/* <EditorLineNumbers theme={theme} textValue={textValue} /> */}
       <EditorWrapper bg={theme.bg}>
-        <SyntaxHighlighter
-          language={language.code}
-          style={theme.theme}
-          id="prims-syntax"
-          useInlineStyles
-          wrapLines
-          lineProps={{ class: "lineOfCode" }}
-          customStyle={{
-            margin: 0,
-            minHeight: 533,
-            height: "100%",
-            zIndex: 1,
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          {textValue}
-        </SyntaxHighlighter>
-        <Box
-          ref={ref}
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            pointerEvents: "none",
-            border: "1px solid red",
-          }}
-        >
-          <InputEditor
+        {shiki && (
+          <Editor
             value={textValue}
-            onClick={() => console.log("inout editor clicked")}
-            onValueChange={(val) => setTextValue(val)}
+            onValueChange={(code) => setTextValue(code)}
+            highlight={(code) => shiki.codeToHtml(code, language.code)}
             style={{
-              minHeight: 533,
-              ...theme.theme['code[class*="language-"]'],
-              border: "1px solid green",
-              zIndex: 2,
-              height: "100%",
-              pointerEvents: "all",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              resize: "none",
-              // color: "transparent",
-              // background: "transparent",
-              width: "100%",
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 16,
             }}
-            highlight={() => textValue}
-            padding={16}
           />
-        </Box>
+        )}
+        {!shiki && "Loading..."}
       </EditorWrapper>
     </>
   );
 };
 
-export default Editor;
+export default InputEditor;
