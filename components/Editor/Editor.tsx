@@ -46,10 +46,12 @@ const InputEditor = ({
           <Editor
             value={textValue}
             onValueChange={(code) => setTextValue(code)}
-            highlight={(code) => shiki.codeToHtml(code, language.code)}
+            highlight={(code) =>
+              shiki.codeToHtml(code, { lang: language.code })
+            }
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 16,
+              fontSize: 14,
             }}
           />
         )}
