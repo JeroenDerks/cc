@@ -23,6 +23,7 @@ export const EditorWrapper = styled(Box)(
     position: "relative",
     minHeight: 533,
     width: "100%",
+    padding: 16,
     maxWidth: 800,
   })
 );

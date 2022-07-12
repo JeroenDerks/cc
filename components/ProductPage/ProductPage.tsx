@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HighLighter from "components/Highlighter";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import InputPane from "components/Panes/InputPane";
 import OutputPane from "components/Panes/OutputPane";
 import { languageOptions } from "components/LanguageSelector/LanguageSelector";
@@ -13,17 +12,20 @@ import Radio from "@mui/material/Radio";
 `;
 
 const ProductPage = ({
-  theme,
+  renderCount,
+  setRenderCount,
   setTheme,
   shiki,
+  theme,
 }: {
-  theme: EditorTheme;
+  renderCount: number;
+  setRenderCount: (v: number) => void;
   setTheme: React.Dispatch<React.SetStateAction<EditorTheme>>;
   shiki: Highlighter | null;
+  theme: EditorTheme;
 }) => {
   const [userValue, setUserValue] = useState<string>(initialValue);
-  const [keyCount, setKeyCount] = useState<number>(1);
-  const [language, setLanguage] = useState<LanguageOption>(languageOptions[7]);
+  const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
 
   return (
@@ -46,17 +48,17 @@ const ProductPage = ({
             userValue={userValue}
             language={language}
             rawData={rawData}
-            keyCount={keyCount}
+            renderCount={renderCount}
           />
         </Grid>
       </Grid>
 
       <HighLighter
-        keyCount={keyCount}
+        renderCount={renderCount}
         language={language}
-        setKeyCount={setKeyCount}
+        setRenderCount={setRenderCount}
         setRawData={(v: ColoredDataSet) => setRawData(v)}
-        theme={theme.theme}
+        theme={theme}
         userValue={userValue}
       />
     </>

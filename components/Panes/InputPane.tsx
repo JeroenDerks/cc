@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ThemeSelector from "../ThemeSelector";
 import LanguageSelector from "../LanguageSelector";
 import Editor from "../Editor/Editor";
