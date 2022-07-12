@@ -4,21 +4,24 @@ import { ColoredDataSet, EditorTheme, LanguageOption } from "types";
 import { Color } from "types";
 
 const HighLighter = ({
-  keyCount,
+  renderCount,
   language,
-  setKeyCount,
+  setRenderCount,
   setRawData,
   theme,
   userValue,
 }: {
-  keyCount: number;
+  renderCount: number;
   language: LanguageOption;
-  setKeyCount: (v: number) => void;
+  setRenderCount: (v: number) => void;
   setRawData: (v: ColoredDataSet) => void;
   theme: EditorTheme;
   userValue: string;
 }) => {
-  useEffect(() => theme && getRawData(), [theme, userValue, language]);
+  useEffect(
+    () => theme && getRawData(),
+    [theme, userValue, renderCount, language]
+  );
 
   const getRawData = () => {
     const shikiContainer = document?.querySelector<HTMLElement>(".shiki");
@@ -47,7 +50,7 @@ const HighLighter = ({
     });
 
     setRawData(lines);
-    setKeyCount(keyCount + 1);
+    setRenderCount(renderCount + 1);
   };
 
   return null;

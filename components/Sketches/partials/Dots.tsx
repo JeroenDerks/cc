@@ -35,15 +35,15 @@ const Dots: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     groupedData?.forEach((line, iY) => {
       for (let i = 0; i < line.length; i++) {
         var col = line[i].bg || bg;
-        if (isSameColor(col, bg) === false && col[3] !== 0) {
+        if (isSameColor(col, bg) === false && col[3] != 0) {
           const { x, letterCount } = line[i];
 
           pg.fill(col[0], col[1], col[2]);
 
           const bl =
-            i === 0 || isSameColor(line[i - 1].bg, bg) ? Math.round(8 * sx) : 0;
+            i === 0 || line[i - 1].char.includes(" ") ? Math.round(8 * sx) : 0;
           const br =
-            i === line.length - 1 || isSameColor(line[i + 1].bg, bg)
+            i === line.length - 1 || line[i + 1].char.includes(" ")
               ? Math.round(8 * sx)
               : 0;
 

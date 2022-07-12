@@ -52,6 +52,7 @@ const InputEditor = ({
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 14,
+              minHeight: 493,
             }}
           />
         )}
