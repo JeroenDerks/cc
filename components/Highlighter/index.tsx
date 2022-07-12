@@ -1,63 +1,52 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { convertColorToRGB } from "utils";
-import { ColoredDataSet, ColoredRow, LanguageOption } from "types";
-import { PrismTheme } from "prism-react-renderer";
+import { EditorTheme, LanguageOption } from "types";
+import { ColoredCharacter, ColoredDataSet } from "types";
 
 const HighLighter = ({
-  keyCount,
+  renderCount,
   language,
-  setKeyCount,
+  setRenderCount,
   setRawData,
   theme,
   userValue,
 }: {
-  keyCount: number;
+  renderCount: number;
   language: LanguageOption;
-  setKeyCount: (v: number) => void;
+  setRenderCount: (v: number) => void;
   setRawData: (v: ColoredDataSet) => void;
-  theme: PrismTheme;
+  theme: EditorTheme;
   userValue: string;
 }) => {
   useEffect(() => theme && getRawData(), [theme, userValue, language]);
-  const { background, backgroundColor, color } = theme.plain;
-
-  const getIndicesOfEmptyCharacters = (input: string) => {
-    var regex = /\s/g,
-      result,
-      emptyCharacters = [];
-    while ((result = regex.exec(input))) {
-      emptyCharacters.push(result.index);
-    }
-    return emptyCharacters;
-  };
 
   const getRawData = () => {
-    const lines = document?.querySelectorAll(".line");
-    const lineData: ColoredDataSet = [];
+    const shikiContainer = document?.querySelector<HTMLElement>(".shiki");
+    const linesOfCode = shikiContainer?.querySelectorAll(".line");
 
-    const bgColor = convertColorToRGB(background || backgroundColor);
+    let lines: Array<Array<ColoredCharacter>> = [[]];
+    let lineCounter = 0;
 
-    lines?.forEach(({ childNodes }) => {
-      const rowData: ColoredRow = [];
-      console.warn("define type for child node");
-      // @ts-ignore: correct types need to be defined
-      childNodes?.forEach(({ style, innerText }) => {
-        const emptyCharacters = getIndicesOfEmptyCharacters(innerText);
-        const nodeColor = convertColorToRGB(style?.color || color);
+    linesOfCode?.forEach((line) => {
+      const spans = line.querySelectorAll("span");
+      spans?.forEach((span) => {
+        const col = window.getComputedStyle(span, null).color;
 
-        for (let i = 0; i < innerText.length; i++) {
-          rowData.push({
-            char: innerText[i],
-            background: emptyCharacters.includes(i) ? bgColor : nodeColor,
+        for (let i = 0; i < span.innerText.length; i++) {
+          const isChar = new RegExp("^\\S+$").test(span?.innerText[i]);
+          lines[lineCounter].push({
+            char: isChar ? span?.innerText[i] : " ",
+            background: isChar ? convertColorToRGB(col) : [-1, -1, -1],
           });
         }
       });
 
-      lineData.push(rowData);
+      lines.push([]);
+      lineCounter += 1;
     });
 
-    setRawData(lineData);
-    setKeyCount(keyCount + 1);
+    setRawData(lines);
+    // setRenderCount(renderCount + 1);
   };
 
   return null;

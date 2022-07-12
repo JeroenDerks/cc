@@ -61,19 +61,19 @@ export const groupDataByColor = (input: ColoredDataSet) => {
     for (let i = 0; i < line.length; i++) {
       const bg = line[i].background;
       const char = line[i].char;
+      const newColorSet = { letterCount: 1, bg, x: i, char };
       if (i === 0) {
-        matchingArray[matchingCounter] = { letterCount: 1, bg, x: i, char };
-      } else if (isSameColor(bg, line[i - 1].background)) {
+        matchingArray[matchingCounter] = newColorSet;
+      } else if (isSameColor(line[i].background, line[i - 1].background)) {
         matchingArray[matchingCounter].letterCount++;
         matchingArray[matchingCounter].char += char;
       } else {
         matchingCounter++;
-        matchingArray[matchingCounter] = { letterCount: 1, bg, x: i, char };
+        matchingArray[matchingCounter] = newColorSet;
       }
     }
 
     lineData.push(matchingArray);
   });
-
   return lineData;
 };

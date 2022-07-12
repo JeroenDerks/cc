@@ -27,13 +27,13 @@ const sketchOptions: Array<Sketch> = [
 ];
 
 const OutputPane = ({
-  keyCount,
+  renderCount,
   language,
   rawData,
   userValue,
   theme,
 }: {
-  keyCount: number;
+  renderCount: number;
   language: LanguageOption;
   rawData: ColoredDataSet;
   userValue: string;
@@ -65,12 +65,12 @@ const OutputPane = ({
         />
       </Box>
       <Sketches
-        key={keyCount}
+        key={renderCount}
         loading={loading}
         rawData={rawData}
         sketchId={sketchId}
         sketchOptions={sketchOptions}
-        theme={theme.theme}
+        theme={theme}
         setLoading={setLoading}
         uuid={uuid}
       />
