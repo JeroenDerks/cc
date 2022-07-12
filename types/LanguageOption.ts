@@ -1,7 +1,7 @@
-import { Language } from "prism-react-renderer";
+import { Lang } from "shiki";
 
 export type LanguageOption = {
   title: string;
-  code: Language;
+  code: Lang;
   id: number;
 };

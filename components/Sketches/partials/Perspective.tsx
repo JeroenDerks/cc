@@ -51,7 +51,7 @@ const Perspective: React.FC<SketchProps> = ({
       line?.forEach((section) => {
         var col = section.bg;
 
-        if (isSameColor(col, bg) === false) {
+        if (isSameColor(col, bg) === false && !col.includes(-1)) {
           pg.push();
 
           const _w = charH * section.letterCount;

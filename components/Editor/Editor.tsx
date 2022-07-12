@@ -1,10 +1,8 @@
-import React, { Fragment, useState, useEffect } from "react";
-// import EditorLineNumbers from "./EditorLineNumbers";
-import { default as InputEditor } from "react-simple-code-editor";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import React, { useState, useEffect } from "react";
 import { EditorWrapper } from "./Editor.styles";
-import { PrismTheme } from "prism-react-renderer";
-import { LanguageOption } from "types";
+import { EditorTheme, LanguageOption } from "types";
+import Editor from "react-simple-code-editor";
+import { Highlighter } from "shiki";
 
 export function useDebounce(value: string, delay: number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -21,19 +19,20 @@ export function useDebounce(value: string, delay: number) {
   return debouncedValue;
 }
 
-const Editor = ({
+const InputEditor = ({
   language,
   setUserValue,
+  shiki,
   theme,
   userValue,
 }: {
   language: LanguageOption;
   setUserValue: (v: string) => void;
-  theme: PrismTheme;
+  shiki: Highlighter | null;
+  theme: EditorTheme;
   userValue: string;
 }) => {
   const [textValue, setTextValue] = useState<string>(userValue || "");
-  const { background, backgroundColor } = theme.plain;
   const debouncedUserValue = useDebounce(textValue, 500);
 
   useEffect(() => {
@@ -42,37 +41,25 @@ const Editor = ({
 
   return (
     <>
-      {/* <EditorLineNumbers theme={theme} textValue={textValue} /> */}
-      <EditorWrapper bg={background || backgroundColor}>
-        <InputEditor
-          value={textValue}
-          onValueChange={(val) => setTextValue(val)}
-          style={{ minHeight: 533 }}
-          highlight={(code) => (
-            <Highlight
-              {...defaultProps}
-              theme={theme}
-              code={code}
-              language={language.code}
-            >
-              {({ tokens, getLineProps, getTokenProps }) => (
-                <Fragment>
-                  {tokens.map((line, i) => (
-                    <div {...getLineProps({ line, key: i })} className="line">
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </Fragment>
-              )}
-            </Highlight>
-          )}
-          padding={10}
-        />
+      <EditorWrapper bg={theme.bg}>
+        {shiki && (
+          <Editor
+            value={textValue}
+            onValueChange={(code) => setTextValue(code)}
+            highlight={(code) =>
+              shiki.codeToHtml(code, { lang: language.code })
+            }
+            style={{
+              fontFamily: '"Fira code", "Fira Mono", monospace',
+              fontSize: 14,
+              minHeight: 493,
+            }}
+          />
+        )}
+        {!shiki && "Loading..."}
       </EditorWrapper>
     </>
   );
 };
 
-export default Editor;
+export default InputEditor;

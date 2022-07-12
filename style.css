@@ -20,3 +20,13 @@ p {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
+textarea {
+  z-index: 100;
+  caret-color: grey;
+  outline: none;
+}
+
+pre {
+  margin-top: -2px;
+}
