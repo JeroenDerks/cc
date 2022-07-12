@@ -32,7 +32,6 @@ const Perspective: React.FC<SketchProps> = ({
 
   const drawContent = (p5: p5Types, sx: number, sy: number) => {
     const pg = p5.createGraphics(p5.width * sx, p5.height * sy, p5.WEBGL);
-    console.log(sx, sy);
     pg.background(bg[0], bg[1], bg[2]);
 
     pg.lights();
