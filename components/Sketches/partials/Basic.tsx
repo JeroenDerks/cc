@@ -45,7 +45,7 @@ const Basic: React.FC<SketchProps> = ({
     groupedData?.forEach((line, indexY) => {
       for (let i = 0; i < line.length; i++) {
         var col = line[i].bg || bg;
-        if (isSameColor(col, bg) === false && col[3] !== 0) {
+        if (isSameColor(col, bg) === false && !col.includes(-1)) {
           const { x, letterCount } = line[i];
 
           pg.fill(col[0], col[1], col[2]);

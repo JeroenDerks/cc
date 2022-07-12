@@ -1,4 +1,4 @@
-export type Color = [number, number, number] | [number, number, number, number];
+export type Color = [number, number, number];
 
 export type ColoredCharacter = {
   char: string;

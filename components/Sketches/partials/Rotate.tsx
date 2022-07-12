@@ -48,7 +48,7 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     groupedData?.forEach((line, iY) => {
       for (let i = 0; i < line.length; i++) {
         var col = line[i].bg || bg;
-        if (isSameColor(col, bg) === false && col[3] !== 0) {
+        if (isSameColor(col, bg) === false && !col.includes(-1)) {
           const { x, letterCount } = line[i];
 
           graphic.fill(col[0], col[1], col[2]);
