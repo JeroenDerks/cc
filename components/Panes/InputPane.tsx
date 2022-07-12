@@ -40,7 +40,6 @@ const InputPane = ({
         language={language}
         setUserValue={setUserValue}
         shiki={shiki}
-        theme={theme}
         userValue={userValue}
       />
     </>
