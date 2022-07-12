@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { convertColorToRGB } from "utils";
-import { ColoredDataSet, EditorTheme, LanguageOption } from "types";
-import { Color } from "types";
+import { EditorTheme, LanguageOption } from "types";
+import { ColoredCharacter, ColoredDataSet } from "types";
 
 const HighLighter = ({
   renderCount,
@@ -18,17 +18,13 @@ const HighLighter = ({
   theme: EditorTheme;
   userValue: string;
 }) => {
-  useEffect(
-    () => theme && getRawData(),
-    [theme, userValue, renderCount, language]
-  );
+  useEffect(() => theme && getRawData(), [theme, userValue, language]);
 
   const getRawData = () => {
     const shikiContainer = document?.querySelector<HTMLElement>(".shiki");
     const linesOfCode = shikiContainer?.querySelectorAll(".line");
-    const bg = shikiContainer?.style.background;
 
-    let lines: Array<Array<{ char: string; background: Color }>> = [[]];
+    let lines: Array<Array<ColoredCharacter>> = [[]];
     let lineCounter = 0;
 
     linesOfCode?.forEach((line) => {
@@ -39,8 +35,8 @@ const HighLighter = ({
         for (let i = 0; i < span.innerText.length; i++) {
           const isChar = new RegExp("^\\S+$").test(span?.innerText[i]);
           lines[lineCounter].push({
-            char: span?.innerText[i] || " ",
-            background: isChar ? convertColorToRGB(col) : [255, 0, 0, 0],
+            char: isChar ? span?.innerText[i] : " ",
+            background: isChar ? convertColorToRGB(col) : [-1, -1, -1],
           });
         }
       });
@@ -50,7 +46,7 @@ const HighLighter = ({
     });
 
     setRawData(lines);
-    setRenderCount(renderCount + 1);
+    // setRenderCount(renderCount + 1);
   };
 
   return null;
