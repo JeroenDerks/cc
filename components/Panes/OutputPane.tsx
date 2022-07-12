@@ -27,17 +27,17 @@ const sketchOptions: Array<Sketch> = [
 ];
 
 const OutputPane = ({
-  renderCount,
   language,
   rawData,
-  userValue,
+  sketchRenewKey,
   theme,
+  userValue,
 }: {
-  renderCount: number;
   language: LanguageOption;
   rawData: ColoredDataSet;
-  userValue: string;
+  sketchRenewKey: number;
   theme: EditorTheme;
+  userValue: string;
 }) => {
   const [sketchId, setSketchId] = useState<string>("0");
   const [loading, setLoading] = useState<boolean>(false);
@@ -65,7 +65,7 @@ const OutputPane = ({
         />
       </Box>
       <Sketches
-        key={renderCount}
+        key={sketchRenewKey}
         loading={loading}
         rawData={rawData}
         sketchId={sketchId}

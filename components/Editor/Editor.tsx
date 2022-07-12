@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { EditorWrapper } from "./Editor.styles";
-import { EditorTheme, LanguageOption } from "types";
+import { LanguageOption } from "types";
 import Editor from "react-simple-code-editor";
 import { Highlighter } from "shiki";
 
@@ -23,13 +23,11 @@ const InputEditor = ({
   language,
   setUserValue,
   shiki,
-  theme,
   userValue,
 }: {
   language: LanguageOption;
   setUserValue: (v: string) => void;
   shiki: Highlighter | null;
-  theme: EditorTheme;
   userValue: string;
 }) => {
   const [textValue, setTextValue] = useState<string>(userValue || "");
@@ -41,7 +39,7 @@ const InputEditor = ({
 
   return (
     <>
-      <EditorWrapper bg={theme.bg}>
+      <EditorWrapper bg={shiki?.getBackgroundColor()}>
         {shiki && (
           <Editor
             value={textValue}
@@ -56,7 +54,7 @@ const InputEditor = ({
             }}
           />
         )}
-        {!shiki && "Loading..."}
+        {!shiki && "Working on it..."}
       </EditorWrapper>
     </>
   );
