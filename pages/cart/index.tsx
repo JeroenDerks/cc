@@ -53,61 +53,83 @@ const CartPage = () => {
   };
 
   return (
-    <>
-      <Typography variant="h4">Cart</Typography>
+    <Section>
+      <Flex width={1} justifyContent="center">
+        <Box maxWidth={880} width={1}>
+          <Typography variant="h3" mt={5}>
+            Cart
+          </Typography>
+        </Box>
+      </Flex>
       <SeparatorLine />
       <Stack>
         {itemsInCart.map(({ quantity, name, id, price }) => (
-          <Grid container spacing={4} key={id}>
-            <Grid item xs={12} sm={12} md={6}>
-              <Image
-                src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6}>
-              <Flex
-                height="100%"
-                flexDirection="column"
-                justifyContent="space-between"
-              >
-                <Box>
-                  <Typography variant="h5">
-                    {quantity} x {name}
-                  </Typography>
-                  <Typography variant="body2">{id}</Typography>
-                </Box>
-                <Flex mt={3} justifyContent="space-between" width={1}>
-                  <Button
-                    aria-label="delete item"
-                    color="error"
-                    variant="outlined"
-                    size="small"
-                    startIcon={<DeleteIcon fontSize="small" />}
-                    onClick={() => removeItem(id)}
-                  >
-                    Delete
-                  </Button>
-                  <Typography variant="h6">Price: {price * 0.01},00</Typography>
-                </Flex>
-              </Flex>
-            </Grid>
+          <>
+            <Flex width={1} justifyContent="center">
+              <Box maxWidth={880}>
+                <Grid container spacing={4} key={id}>
+                  <Grid item xs={12} sm={12} md={6}>
+                    <Image
+                      src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={6}>
+                    <Flex
+                      height="100%"
+                      flexDirection="column"
+                      justifyContent="space-between"
+                    >
+                      <Box>
+                        <Typography variant="h5">
+                          {quantity} x {name}
+                        </Typography>
+                        <Typography variant="body2">{id}</Typography>
+                      </Box>
+                      <Flex mt={3} justifyContent="space-between" width={1}>
+                        <Button
+                          aria-label="delete item"
+                          color="error"
+                          variant="outlined"
+                          size="small"
+                          startIcon={<DeleteIcon fontSize="small" />}
+                          onClick={() => removeItem(id)}
+                        >
+                          Delete
+                        </Button>
+                        <Typography variant="h6">
+                          Price: {price * 0.01},00
+                        </Typography>
+                      </Flex>
+                    </Flex>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Flex>
             <SeparatorLine />
-          </Grid>
+          </>
         ))}
       </Stack>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Typography variant="h5">Total: {sum * 0.01},00</Typography>
-        <Button
-          onClick={handleCheckout}
-          variant="outlined"
-          color="success"
-          size="large"
-          disabled={loading}
+      <Flex justifyContent="center" width={1}>
+        <Flex
+          justifyContent="space-between"
+          alignItems="center"
+          maxWidth={880}
+          width={1}
+          mb={10}
         >
-          Checkout
-        </Button>
+          <Typography variant="h5">Total: {sum * 0.01},00</Typography>
+          <Button
+            onClick={handleCheckout}
+            variant="outlined"
+            color="success"
+            size="large"
+            disabled={loading}
+          >
+            Checkout
+          </Button>
+        </Flex>
       </Flex>
-    </>
+    </Section>
   );
 };
 
