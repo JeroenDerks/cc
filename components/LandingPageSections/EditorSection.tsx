@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import type { ColoredDataSet, EditorTheme, LanguageOption } from "types";
 import { convertTextToArtworkColors } from "utils/convertTextToArtworkColors";
-import { getHighlighter, setCDN, Highlighter } from "shiki";
+import { getHighlighter, Highlighter } from "shiki";
 import { intialEditorValue } from "utils/intialEditorValue";
 import { languageOptions } from "components/LanguageSelector/LanguageSelector";
 import { themeOptions } from "components/ThemeSelector";
 import Grid from "@mui/material/Grid";
 import InputPane from "components/Panes/InputPane";
+import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-setCDN("https://unpkg.com/shiki/");
+import { gridP, border } from "theme";
+import { Typography } from "@mui/material";
 
-const Canvas = () => {
+const EditorSection = () => {
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
   const [shiki, setShiki] = useState<Highlighter | null>(null);
@@ -49,30 +51,35 @@ const Canvas = () => {
 
   return (
     <Section>
-      <Grid container spacing={2}>
-        <Grid item sm={12} md={6}>
-          <InputPane
-            language={language}
-            setLanguage={setLanguage}
-            setTheme={setTheme}
-            setUserValue={handleInputTextChange}
-            shiki={shiki}
-            theme={theme}
-            userValue={userValue}
-          />
+      <Box py={20} px={gridP}>
+        <Typography variant="h4" mb={5}>
+          Paste your code
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item sm={12} md={6}>
+            <InputPane
+              language={language}
+              setLanguage={setLanguage}
+              setTheme={setTheme}
+              setUserValue={handleInputTextChange}
+              shiki={shiki}
+              theme={theme}
+              userValue={userValue}
+            />
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <OutputPane
+              language={language}
+              rawData={rawData}
+              sketchRenewKey={sketchRenewKey}
+              theme={theme}
+              userValue={userValue}
+            />
+          </Grid>
         </Grid>
-        <Grid item sm={12} md={6}>
-          <OutputPane
-            language={language}
-            rawData={rawData}
-            sketchRenewKey={sketchRenewKey}
-            theme={theme}
-            userValue={userValue}
-          />
-        </Grid>
-      </Grid>
+      </Box>
     </Section>
   );
 };
 
-export default Canvas;
+export default EditorSection;
