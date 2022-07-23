@@ -23,13 +23,12 @@ const Basic: React.FC<SketchProps> = ({
   setLoading,
   data,
   uuid,
-  loading,
 }: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
-    p5.frameRate(20);
+    p5.frameRate(1);
 
     const graphic = drawContent(p5, 1, 1);
     p5.image(graphic, 0, 0);
@@ -87,9 +86,11 @@ const Basic: React.FC<SketchProps> = ({
       const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
       preview.image(graphic, 0, 0, preview.width, preview.height);
       // @ts-ignore: P5 library does not handle event types
-      await uploadPhoto(preview, `${uuid}_preview`, setLoading);
+      uploadPhoto(preview, `${uuid}_preview`, setLoading);
       // @ts-ignore: P5 library does not handle event types
-      await uploadPhoto(frame, `${uuid}_frame`);
+      uploadPhoto(frame, `${uuid}_frame`);
+
+      p5.save(frame, `${uuid}.jpg`);
     }
   };
 

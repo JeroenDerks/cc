@@ -30,7 +30,10 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
 
   const drawContent = (p5: p5Types) => {
     const linesOfCode = groupedData.length;
-    const defaultLinesPerWindow = 34;
+    const defaultLinesPerWindow = 28;
+    const yOffset = p5.height / 2;
+
+    console.log(linesOfCode);
 
     const stretchFactor =
       linesOfCode < defaultLinesPerWindow
@@ -39,7 +42,7 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
 
     let graphic = p5.createGraphics(
       p5.width * 1.25 * stretchFactor,
-      linesOfCode * size
+      linesOfCode * size + yOffset
     );
 
     graphic.background(bg[0], bg[1], bg[2]);
@@ -62,7 +65,7 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
           const _w = w * letterCount * stretchFactor;
           const _h = size - 4;
 
-          graphic.rect(_x, _y, _w, _h, bl, br, br, bl);
+          graphic.rect(_x, _y + yOffset, _w, _h, bl, br, br, bl);
         }
       }
     });

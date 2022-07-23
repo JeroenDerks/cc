@@ -1,19 +1,23 @@
 import React from "react";
-import Link from "next/link";
-import BaseLayout from "components/BaseLayout";
 import Hero from "components/Hero";
-import BorderBox from "components/BorderBox";
+import PromiseOne from "components/LandingPageSections/PromiseOne";
+import PromiseTwo from "components/LandingPageSections/PromiseTwo";
+import HowItWorks from "components/LandingPageSections/HowItWorks";
+import EditorSection from "components/LandingPageSections/EditorSection";
+import ProductDetails from "components/LandingPageSections/ProductDetails";
+import { setCDN } from "shiki";
+setCDN("https://unpkg.com/shiki/");
 
 const Index = () => {
   return (
-    <BaseLayout>
+    <>
       <Hero />
-      <BorderBox>
-        <Link href="/product/canvas">
-          <a>Canvas</a>
-        </Link>
-      </BorderBox>
-    </BaseLayout>
+      <PromiseOne />
+      <PromiseTwo />
+      <HowItWorks />
+      <EditorSection />
+      <ProductDetails />
+    </>
   );
 };
 

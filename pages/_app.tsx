@@ -5,9 +5,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CartProvider } from "react-use-cart";
 import { AppProps } from "next/app";
+import Header from "components/Header";
 import theme from "theme";
 import "style.css";
-import Header from "components/Header";
 
 const stripePromise =
   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY &&
@@ -24,7 +24,7 @@ export default function App(props: AppProps) {
         <Elements stripe={stripePromise}>
           <CartProvider>
             <CssBaseline />
-            {/* <Header /> */}
+            <Header />
             <Component {...pageProps} />
           </CartProvider>
         </Elements>

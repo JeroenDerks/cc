@@ -18,7 +18,7 @@ export default async function handler(
 
   const maxAgeSeconds = 3600;
   const method = "POST";
-  const origin = "https://www.celebratecode.com";
+  const origin = "http://localhost:3000";
   const responseHeader = "Content-Type";
 
   async function configureBucketCors() {
@@ -48,6 +48,7 @@ export default async function handler(
           })
           .catch((err) => {
             console.log(err);
+            res.status(400).json({});
           });
       }
     })

@@ -18,10 +18,8 @@ export const uploadPhoto = async (
     formData.append(key, value);
   });
 
-  const upload = await fetch(url, {
-    method: "POST",
-    body: formData,
-  });
+  const upload = await fetch(url, { method: "POST", body: formData });
+
   if (upload?.ok) {
     console.log("Uploaded successfully!");
     setLoading && setLoading(false);
