@@ -53,7 +53,7 @@ const EditorSection = () => {
     <Section>
       <Box py={20} px={gridP}>
         <Typography variant="h4" mb={5}>
-          Paste your code
+          Paste it right here...
         </Typography>
         <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
