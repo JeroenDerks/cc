@@ -5,7 +5,7 @@ export const sketchHeigth = 533;
 export const sketchWidth = 800;
 
 // Specs for printing on 60 x 40 cm canvas at 150 DPI
-const DPI = 150;
+const DPI = 100;
 const canvasPaddingMM = 49; // padding of canvas to account for wrapping of canvas and wooden frame
 const canvasWidthMM = 600; // width of printable section of canvas in millimeter
 const canvasHeightMM = 400; // height of printable section of canvas in millimeter

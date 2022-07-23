@@ -25,6 +25,8 @@ textarea {
   z-index: 100;
   caret-color: grey;
   outline: none;
+  white-space: nowrap !important;
+  overflow: auto !important;
 }
 
 pre {
