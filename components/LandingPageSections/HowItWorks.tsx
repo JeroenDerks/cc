@@ -20,8 +20,7 @@ const HowItWorks = () => {
               1. Paste your code
             </Typography>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Find that example of great code and paste it in the editor below.
             </Typography>
           </Box>
         </Grid>
@@ -29,10 +28,11 @@ const HowItWorks = () => {
           <Box>
             <Image alt="theme" src={themeIcon} height={68} width={100} />
             <Typography variant="h4" gutterBottom mt={4}>
-              2. Choose your theme and language
+              2. Pick your poison
             </Typography>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Select your favourite IDE theme and the language in which you
+              write your magic.
             </Typography>
           </Box>
         </Grid>
@@ -43,7 +43,8 @@ const HowItWorks = () => {
               3. Get your artwork
             </Typography>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sit back and relax while we create a work of art from your source
+              code.
             </Typography>
           </Box>
         </Grid>

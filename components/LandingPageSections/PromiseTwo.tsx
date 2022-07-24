@@ -5,7 +5,7 @@ import Image from "next/image";
 import Section from "components/Section";
 import Typography from "@mui/material/Typography";
 import teamWork from "public/images/office_teamwork.jpg";
-import theme, { gridP } from "theme";
+import { gridP, border } from "theme";
 
 const PromiseOne = () => {
   return (
@@ -17,7 +17,7 @@ const PromiseOne = () => {
           sm={12}
           md={6}
           p={gridP}
-          sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
+          sx={{ borderRight: `1px solid ${border}` }}
         >
           <Box position="relative" height={420}>
             <Image
