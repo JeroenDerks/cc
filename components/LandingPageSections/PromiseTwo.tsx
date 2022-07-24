@@ -11,14 +11,7 @@ const PromiseOne = () => {
   return (
     <Section>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          p={gridP}
-          sx={{ borderRight: `1px solid ${border}` }}
-        >
+        <Grid item xs={12} sm={12} md={6} p={gridP} borderRight={border}>
           <Box position="relative" height={420}>
             <Image
               layout="fill"
