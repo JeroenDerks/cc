@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CartProvider } from "react-use-cart";
 import { AppProps } from "next/app";
 import Header from "components/Header";
+import Footer from "components/Footer";
 import theme from "theme";
 import "style.css";
 
@@ -26,6 +27,7 @@ export default function App(props: AppProps) {
             <CssBaseline />
             <Header />
             <Component {...pageProps} />
+            <Footer />
           </CartProvider>
         </Elements>
       </ThemeProvider>

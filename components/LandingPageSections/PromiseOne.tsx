@@ -12,7 +12,7 @@ const PromiseOne = () => {
     <Section>
       <Grid container>
         <Grid item xs={12} sm={12} md={6} p={gridP} borderRight={border}>
-          <Box position="relative" height={500}>
+          <Box position="relative" height={420}>
             <Image
               layout="fill"
               objectFit="cover"
@@ -36,11 +36,16 @@ const PromiseOne = () => {
         >
           <Box py={3} maxWidth={600}>
             <Typography variant="h3" gutterBottom>
-              No more faceless offices
+              Inspire best practices
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Testing and commenting code is not the most exciting part of a dev
+              job. Yet our future selfs and our team mates benefit heavily from
+              properly documented code.
             </Typography>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              You can now show how important testing and commenting is, by
+              wearing it on your skin.
             </Typography>
           </Box>
         </Grid>

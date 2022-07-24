@@ -16,6 +16,7 @@ import SketchSelector from "../SketchSelector";
 
 import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 import { uploadRawData } from "utils/uploadRawData";
+import { useRouter } from "next/router";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
@@ -43,6 +44,7 @@ const OutputPane = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [uuid, setUuid] = useState<string>("");
   const { addItem } = useCart();
+  const router = useRouter();
 
   useEffect(() => {
     setUuid(uuidv4());
@@ -51,8 +53,9 @@ const OutputPane = ({
   const addToCard = async () => {
     setLoading(true);
     addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
-    uploadRawData({ uuid, userValue, sketchId, theme, language });
+    await uploadRawData({ uuid, userValue, sketchId, theme, language });
     setUuid(uuidv4());
+    router.push("/cart");
   };
 
   return (
