@@ -36,11 +36,16 @@ const PromiseOne = () => {
         >
           <Box py={3} maxWidth={600}>
             <Typography variant="h3" gutterBottom>
-              No more faceless offices
+              Promote code documentation
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Testing and commenting code is not the most exciting part of a dev
+              job. Yet our future selfs and our team mates benefit heavily from
+              properly documented code.
             </Typography>
             <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              If testing and commenting is important to you, then show it on
+              your skin.
             </Typography>
           </Box>
         </Grid>

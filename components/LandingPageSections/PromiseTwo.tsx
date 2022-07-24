@@ -44,9 +44,17 @@ const PromiseOne = () => {
             <Typography variant="h3" gutterBottom>
               Celebrate your team's achievements
             </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Typography variant="body1" gutterBottom>
+              • Got a piece piece of code you're very proud of?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Did your team deliver on a huge milestone?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Want to show your appreciation for your team's efforts?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Got anyone to thank for their contribution to your cause?
             </Typography>
           </Box>
         </Grid>
