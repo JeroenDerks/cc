@@ -25,10 +25,20 @@ const CartPage = () => {
   if (itemsInCart.length < 1) {
     return (
       <Section>
-        <Typography variant="h4">Cart</Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Your cart is empty
-        </Typography>
+        <Flex width={1} justifyContent="center">
+          <Box maxWidth={880} width={1} my={5} minHeight="80vh">
+            <Typography variant="h4">
+              Are you a Picasso in Python or a Javascript da Vinci?
+            </Typography>
+            <Typography variant="body1" mt={2}>
+              Get started{" "}
+              <a href="/#editor" style={{ color: "#fff" }}>
+                here
+              </a>{" "}
+              because your cart is empty.
+            </Typography>
+          </Box>
+        </Flex>
       </Section>
     );
   }
@@ -57,7 +67,7 @@ const CartPage = () => {
       <Flex width={1} justifyContent="center">
         <Box maxWidth={880} width={1}>
           <Typography variant="h3" mt={5}>
-            Cart
+            Your code is just a work of art
           </Typography>
         </Box>
       </Flex>
@@ -80,9 +90,7 @@ const CartPage = () => {
                       justifyContent="space-between"
                     >
                       <Box>
-                        <Typography variant="h5">
-                          {quantity} x {name}
-                        </Typography>
+                        <Typography variant="h5">Canvas 60 x 40 cm</Typography>
                         <Typography variant="body2">{id}</Typography>
                       </Box>
                       <Flex mt={3} justifyContent="space-between" width={1}>
@@ -97,7 +105,7 @@ const CartPage = () => {
                           Delete
                         </Button>
                         <Typography variant="h6">
-                          Price: {price * 0.01},00
+                          Price: € {price * 0.01},-
                         </Typography>
                       </Flex>
                     </Flex>
@@ -117,7 +125,7 @@ const CartPage = () => {
           width={1}
           mb={10}
         >
-          <Typography variant="h5">Total: {sum * 0.01},00</Typography>
+          <Typography variant="h5">Total Price: € {sum * 0.01},-</Typography>
           <Button
             onClick={handleCheckout}
             variant="outlined"
