@@ -54,7 +54,13 @@ const PromiseOne = () => {
               • Want to show your appreciation for your team's efforts?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              • Got anyone to thank for their contribution to your cause?
+              • Got anyone to thank for their contribution to your business?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Got a Picasso in Python or a Javascript da Vinci?
+            </Typography>
+            <Typography variant="body1" mt={4}>
+              Hang it on that wall for all to see.
             </Typography>
           </Box>
         </Grid>

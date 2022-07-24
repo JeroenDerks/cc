@@ -20,7 +20,7 @@ const HowItWorks = () => {
               1. Paste your code
             </Typography>
             <Typography variant="body1">
-              Find that example of great code and paste it in the editor below.
+              Find that genius piece of code and paste it in the editor below.
             </Typography>
           </Box>
         </Grid>
@@ -31,7 +31,7 @@ const HowItWorks = () => {
               2. Pick your poison
             </Typography>
             <Typography variant="body1">
-              Select your favourite IDE theme and the language in which you
+              Select your favourite IDE theme, and the language in which you
               write your magic.
             </Typography>
           </Box>

@@ -36,7 +36,7 @@ const PromiseOne = () => {
         >
           <Box py={3} maxWidth={600}>
             <Typography variant="h3" gutterBottom>
-              Promote code documentation
+              Inspire best practices
             </Typography>
             <Typography variant="body1" paragraph>
               Testing and commenting code is not the most exciting part of a dev
@@ -44,8 +44,8 @@ const PromiseOne = () => {
               properly documented code.
             </Typography>
             <Typography variant="body1">
-              If testing and commenting is important to you, then show it on
-              your skin.
+              You can now show how important testing and commenting is, by
+              wearing it on your skin.
             </Typography>
           </Box>
         </Grid>
