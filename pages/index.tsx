@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "components/Hero";
+import Hero from "components/LandingPageSections/Hero";
 import PromiseOne from "components/LandingPageSections/PromiseOne";
 import PromiseTwo from "components/LandingPageSections/PromiseTwo";
 import HowItWorks from "components/LandingPageSections/HowItWorks";
