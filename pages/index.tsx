@@ -1,5 +1,6 @@
 import React from "react";
-import Hero from "components/Hero";
+import FAQ from "components/FAQ";
+import Hero from "components/LandingPageSections/Hero";
 import PromiseOne from "components/LandingPageSections/PromiseOne";
 import PromiseTwo from "components/LandingPageSections/PromiseTwo";
 import HowItWorks from "components/LandingPageSections/HowItWorks";
@@ -15,8 +16,9 @@ const Index = () => {
       <PromiseOne />
       <PromiseTwo />
       <HowItWorks />
-      <EditorSection />
+      <EditorSection id="editor" />
       <ProductDetails />
+      <FAQ />
     </>
   );
 };

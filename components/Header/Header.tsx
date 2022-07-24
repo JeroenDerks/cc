@@ -3,6 +3,8 @@ import Link from "next/link";
 import { styled, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useCart, Item } from "react-use-cart";
+import Badge from "@mui/material/Badge";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -53,7 +55,11 @@ const Header = () => {
         <Link href="/" passHref>
           <Logo as="a">CC</Logo>
         </Link>
-        <CheckoutLink href="/cart">{itemsInCart.length}</CheckoutLink>
+        <CheckoutLink href="/cart">
+          <Badge badgeContent={itemsInCart.length} color="success">
+            <ShoppingCartRoundedIcon color="action" fontSize="small" />
+          </Badge>
+        </CheckoutLink>
       </Box>
     </Wrapper>
   );

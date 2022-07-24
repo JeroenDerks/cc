@@ -3,7 +3,6 @@ import { styled } from "@mui/material";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -23,8 +22,7 @@ const AddToCart = ({
   loading: boolean;
 }) => {
   return (
-    <Wrapper width={1} justifyContent="space-between">
-      <Typography variant="h5">Price: 69,00</Typography>
+    <Wrapper width={1} justifyContent="flex-end">
       <Button
         onClick={addToCard}
         variant="outlined"
@@ -32,7 +30,7 @@ const AddToCart = ({
         disabled={loading}
         id="add_to_cart"
       >
-        Add to cart
+        Generate artwork
       </Button>
     </Wrapper>
   );

@@ -5,21 +5,14 @@ import Image from "next/image";
 import Section from "components/Section";
 import Typography from "@mui/material/Typography";
 import teamWork from "public/images/office_teamwork.jpg";
-import theme, { gridP } from "theme";
+import { gridP, border } from "theme";
 
 const PromiseOne = () => {
   return (
     <Section>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          p={gridP}
-          sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
-        >
-          <Box position="relative" height={500}>
+        <Grid item xs={12} sm={12} md={6} p={gridP} borderRight={border}>
+          <Box position="relative" height={420}>
             <Image
               layout="fill"
               objectFit="cover"
@@ -44,9 +37,23 @@ const PromiseOne = () => {
             <Typography variant="h3" gutterBottom>
               Celebrate your team's achievements
             </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Typography variant="body1" gutterBottom>
+              • Got a piece piece of code you're very proud of?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Did your team deliver on a huge milestone?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Want to show your appreciation for your team's efforts?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Got anyone to thank for their contribution to your business?
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              • Got a Picasso in Python or a Javascript da Vinci?
+            </Typography>
+            <Typography variant="body1" mt={4}>
+              Hang it on that wall for all to see.
             </Typography>
           </Box>
         </Grid>

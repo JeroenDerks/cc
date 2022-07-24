@@ -10,10 +10,10 @@ import InputPane from "components/Panes/InputPane";
 import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-import { gridP, border } from "theme";
+import { gridP } from "theme";
 import { Typography } from "@mui/material";
 
-const EditorSection = () => {
+const EditorSection = ({ id }: { id: string }) => {
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
   const [shiki, setShiki] = useState<Highlighter | null>(null);
@@ -50,7 +50,7 @@ const EditorSection = () => {
   }, [shiki]);
 
   return (
-    <Section>
+    <Section id={id}>
       <Box py={20} px={gridP}>
         <Typography variant="h4" mb={5}>
           Paste it right here...
