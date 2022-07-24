@@ -24,12 +24,14 @@ const ContentWrapper = styled(Box)(
 const Section = ({
   children,
   hideSideBorders,
+  id,
 }: {
   children: React.ReactNode;
   hideSideBorders?: true;
+  id?: string;
 }) => {
   return (
-    <OuterWrapper px={gridP}>
+    <OuterWrapper px={gridP} id={id}>
       <ContentWrapper hideBorders={Boolean(hideSideBorders)}>
         {children}
       </ContentWrapper>

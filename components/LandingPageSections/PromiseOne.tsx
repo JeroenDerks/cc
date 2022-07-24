@@ -12,7 +12,7 @@ const PromiseOne = () => {
     <Section>
       <Grid container>
         <Grid item xs={12} sm={12} md={6} p={gridP} borderRight={border}>
-          <Box position="relative" height={500}>
+          <Box position="relative" height={420}>
             <Image
               layout="fill"
               objectFit="cover"
