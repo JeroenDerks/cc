@@ -14,39 +14,37 @@ const ProductDetails = () => {
       <Grid container>
         <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
           <Box>
+            <Typography variant="h4" gutterBottom>
+              Huge frame for huge impact
+            </Typography>
+            <Typography variant="body1" mb={2}>
+              With its dimensions of 70 x 50 centimeter, this piece of art will
+              surely turn some heads.
+            </Typography>
             <Image height={320} src={hangDetail1} alt="Hang detail 1" />
-
-            <Typography variant="h4" gutterBottom>
-              Drop your best code
-            </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
           </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
           <Box>
-            <Image height={320} src={hangDetail2} alt="Hang detail 2" />
             <Typography variant="h4" gutterBottom>
-              Drop your best code
+              Made of high quality canvas
             </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Typography variant="body1" mb={2}>
+              The artworks are created on the industry's best canvas material
             </Typography>
+            <Image height={320} src={hangDetail1} alt="Hang detail 2" />
           </Box>
         </Grid>
         <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
           <Box>
-            <Image height={320} src={hangDetail1} alt="Hang detail 3" />
             <Typography variant="h4" gutterBottom>
-              Drop your best code
+              Easy to mount
             </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <Typography variant="body1" mb={2}>
+              You are all engineers, and the artwork ships with everything
+              you'll need...
             </Typography>
+            <Image height={320} src={hangDetail2} alt="Hang detail 3" />
           </Box>
         </Grid>
       </Grid>
