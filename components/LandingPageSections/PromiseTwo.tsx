@@ -19,7 +19,7 @@ const PromiseOne = () => {
           p={gridP}
           sx={{ borderRight: `1px solid ${theme.palette.divider}` }}
         >
-          <Box position="relative" height={500}>
+          <Box position="relative" height={420}>
             <Image
               layout="fill"
               objectFit="cover"

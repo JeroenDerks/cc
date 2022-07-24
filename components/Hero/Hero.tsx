@@ -48,18 +48,16 @@ const Hero = () => {
         >
           <Box maxWidth={420} mb={1}>
             <Typography variant="h1" fontWeight={800} color="#000">
-              Turn your team's code into art
+              Celebrate great code
             </Typography>
           </Box>
           <Box maxWidth={420}>
-            <Typography variant="body1" color="#000" mb={2}>
-              Praesent sapien massa, convallis a pellentesque nec, egestas non
-              nisi. Cras ultricies ligula sed magna dictum porta. Sed porttitor
-              lectus nibh. Vivamus suscipit tortor eget felis porttitor
-              volutpat.
+            <Typography variant="body1" color="#000" mb={2} fontSize={20}>
+              Inspire your tech team by visualizing the best code practices for
+              your office.
             </Typography>
             <Link href="#editor" passHref>
-              <StartButton variant="contained">Create art</StartButton>
+              <StartButton variant="contained">Paste your code</StartButton>
             </Link>
           </Box>
         </Flex>

@@ -15,7 +15,7 @@ const Index = () => {
       <PromiseOne />
       <PromiseTwo />
       <HowItWorks />
-      <EditorSection />
+      <EditorSection id="editor" />
       <ProductDetails />
     </>
   );
