@@ -16,6 +16,7 @@ const GridOuterItem = ({ children }: { children: React.ReactNode[] }) => (
     sm={12}
     md={4}
     p={gridP}
+    pt={{ ...gridP, xs: 4, sm: 4 }}
     sx={{
       borderRight: { xs: "none", sm: "none", md: border },
       borderBottom: { xs: border, sm: border, md: "none" },
@@ -30,7 +31,7 @@ const HowItWorks = () => {
     <Section>
       <Grid container>
         <GridOuterItem>
-          <Grid item xs={3} sm={3} md={12}>
+          <Grid item xs={3} sm={3} md={12} mb={4}>
             <Image alt="theme" src={screenIcon} height={68} width={100} />
           </Grid>
           <Grid item xs={9} sm={9} md={12}>
@@ -43,7 +44,7 @@ const HowItWorks = () => {
           </Grid>
         </GridOuterItem>
         <GridOuterItem>
-          <Grid item xs={3} sm={3} md={12}>
+          <Grid item xs={3} sm={3} md={12} mb={4}>
             <Image alt="theme" src={themeIcon} height={68} width={100} />
           </Grid>
           <Grid item xs={9} sm={9} md={12}>
@@ -57,7 +58,7 @@ const HowItWorks = () => {
           </Grid>
         </GridOuterItem>
         <GridOuterItem>
-          <Grid item xs={3} sm={3} md={12}>
+          <Grid item xs={3} sm={3} md={12} mb={4}>
             <Image alt="theme" src={artworkIcon} height={68} width={100} />
           </Grid>
           <Grid item xs={9} sm={9} md={12}>
