@@ -55,7 +55,7 @@ const CartPage = () => {
       body: JSON.stringify({ items: itemsInCart }),
     });
     const data = await request.json();
-    console.log(data);
+
     if (data.url) {
       router.push(data.url);
     }
@@ -73,7 +73,7 @@ const CartPage = () => {
       </Flex>
       <SeparatorLine />
       <Stack>
-        {itemsInCart.map(({ quantity, name, id, price }) => (
+        {itemsInCart.map(({ id, price }) => (
           <>
             <Flex width={1} justifyContent="center">
               <Box maxWidth={880}>
