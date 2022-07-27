@@ -58,10 +58,10 @@ const FAQ = () => {
       </Box>
       <Grid container>
         <Grid item xs={12} sm={12} md={6}>
-          {questionsColumn1.map(({ title, answerParagraphs }) => (
-            <Question title={title}>
-              {answerParagraphs.map((paragraph) => (
-                <Typography variant="body1" paragraph={true}>
+          {questionsColumn1.map(({ title, answerParagraphs }, i) => (
+            <Question title={title} key={i}>
+              {answerParagraphs.map((paragraph, j) => (
+                <Typography variant="body1" paragraph={true} key={j}>
                   {paragraph}
                 </Typography>
               ))}
@@ -69,10 +69,10 @@ const FAQ = () => {
           ))}
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
-          {questionsColumn2.map(({ title, answerParagraphs }) => (
-            <Question title={title}>
-              {answerParagraphs.map((paragraph) => (
-                <Typography variant="body1" paragraph={true}>
+          {questionsColumn2.map(({ title, answerParagraphs }, i) => (
+            <Question title={title} key={i}>
+              {answerParagraphs.map((paragraph, j) => (
+                <Typography variant="body1" paragraph={true} key={j}>
                   {paragraph}
                 </Typography>
               ))}
