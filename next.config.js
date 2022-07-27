@@ -4,6 +4,7 @@ const nextConfig = {
   ignoreBuildErrors: true,
   env: {
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    UPLOAD_ORIGIN: process.env.UPLOAD_ORIGIN,
   },
 };
 
