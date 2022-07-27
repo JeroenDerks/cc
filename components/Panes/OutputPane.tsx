@@ -7,8 +7,8 @@ import Basic from "../Sketches/partials/Basic";
 import Dots from "../Sketches/partials/Dots";
 import Rotate from "../Sketches/partials/Rotate";
 import Perspective from "../Sketches/partials/Perspective";
-import Shadow from "../Sketches/partials/Shadow";
-import Window from "../Sketches/partials/Window";
+// import Shadow from "../Sketches/partials/Shadow";
+// import Window from "../Sketches/partials/Window";
 
 import AddToCard from "../AddToCart";
 import Sketches from "../Sketches";
@@ -20,10 +20,10 @@ import { useRouter } from "next/router";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
-  { title: "Shadow", sketch: Shadow },
-  { title: "Dots", sketch: Dots },
+  // { title: "Shadow", sketch: Shadow },
+  { title: "Pills", sketch: Dots },
   { title: "Perspective", sketch: Perspective },
-  { title: "Window", sketch: Window },
+  // { title: "Window", sketch: Window },
   { title: "Rotate", sketch: Rotate },
 ];
 

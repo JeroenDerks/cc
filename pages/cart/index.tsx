@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material";
 import { useCart, Item } from "react-use-cart";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Flex from "components/Flex";
@@ -7,10 +6,7 @@ import SeparatorLine from "components/SeparatorLine";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/router";
 import Section from "components/Section";
-
-const Image = styled("img")({
-  width: "100%",
-});
+import ImageGallery from "components/ImageGallery";
 
 const CartPage = () => {
   const { items, removeItem } = useCart();
@@ -74,16 +70,14 @@ const CartPage = () => {
       <SeparatorLine />
       <Stack>
         {itemsInCart.map(({ id, price }) => (
-          <>
+          <React.Fragment key={id}>
             <Flex width={1} justifyContent="center">
               <Box maxWidth={880}>
                 <Grid container spacing={4} key={id}>
-                  <Grid item xs={12} sm={12} md={6}>
-                    <Image
-                      src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
-                    />
+                  <Grid item xs={12} sm={12} md={8}>
+                    <ImageGallery id={id} />
                   </Grid>
-                  <Grid item xs={12} sm={12} md={6}>
+                  <Grid item xs={12} sm={12} md={4}>
                     <Flex
                       height="100%"
                       flexDirection="column"
@@ -114,7 +108,7 @@ const CartPage = () => {
               </Box>
             </Flex>
             <SeparatorLine />
-          </>
+          </React.Fragment>
         ))}
       </Stack>
       <Flex justifyContent="center" width={1}>
