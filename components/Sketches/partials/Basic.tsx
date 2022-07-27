@@ -90,7 +90,7 @@ const Basic: React.FC<SketchProps> = ({
       // @ts-ignore: P5 library does not handle event types
       uploadPhoto(frame, `${uuid}_frame`);
 
-      p5.save(frame, `${uuid}.jpg`);
+      // p5.save(frame, `${uuid}.jpg`);
     }
   };
 
