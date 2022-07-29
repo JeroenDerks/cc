@@ -8,6 +8,7 @@ import { sketchWidth, sketchHeigth } from "./constants";
 import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
 import { drawFrame } from "./constants";
 import { SketchProps } from "types";
+import { uploadPhoto } from "utils/uploadPhoto";
 
 const PerspectiveSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
@@ -20,6 +21,7 @@ const charH = charW;
 const Perspective: React.FC<SketchProps> = ({
   bg,
   data,
+  setLoading,
   uuid,
 }: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -74,18 +76,23 @@ const Perspective: React.FC<SketchProps> = ({
 
     if (target.id === "add_to_cart") {
       const graphic = drawContent(p5, 5, 5);
-      const frame = drawFrame(p5, bg);
+      // const frame = drawFrame(p5, bg);
 
-      frame.image(
-        graphic,
-        canvasPadding,
-        canvasPadding,
-        canvasWidth,
-        canvasHeight
-      );
+      // frame.image(
+      //   graphic,
+      //   canvasPadding,
+      //   canvasPadding,
+      //   canvasWidth,
+      //   canvasHeight
+      // );
 
-      p5.saveCanvas(frame, `perspective_${uuid}.jpg`);
+      // p5.saveCanvas(frame, `perspective_${uuid}.jpg`);
       // uploadPhoto(graphic, id);
+
+      const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
+      preview.image(graphic, 0, 0, preview.width, preview.height);
+      // @ts-ignore: P5 library does not handle event types
+      uploadPhoto(preview, `${uuid}_preview`, setLoading);
     }
   };
 

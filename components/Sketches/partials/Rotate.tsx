@@ -33,8 +33,6 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     const defaultLinesPerWindow = 28;
     const yOffset = p5.height / 2;
 
-    console.log(linesOfCode);
-
     const stretchFactor =
       linesOfCode < defaultLinesPerWindow
         ? 1
@@ -80,7 +78,23 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     p5.image(graphic, 0, 0);
   };
 
-  return <RotateSketch setup={setup} />;
+  const mousePressed = async (
+    p5: p5Types,
+    e: React.MouseEvent<HTMLElement>
+  ) => {
+    const target = e.target as Element;
+
+    if (target.id === "add_to_cart") {
+      console.log("generate artowkr");
+    }
+  };
+
+  return (
+    <RotateSketch
+      setup={setup} // @ts-ignore: P5 library does not handle event types
+      mousePressed={mousePressed}
+    />
+  );
 };
 
 export default Rotate;

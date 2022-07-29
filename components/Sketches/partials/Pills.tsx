@@ -8,8 +8,9 @@ import { sketchWidth, sketchHeigth } from "./constants";
 import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
 import { drawFrame } from "./constants";
 import { SketchProps } from "types";
+import { uploadPhoto } from "utils/uploadPhoto";
 
-const DotSketch = dynamic(
+const PillSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
@@ -18,7 +19,12 @@ const charH = 15;
 const charW = 10;
 const padding = 10;
 
-const Dots: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+const Pills: React.FC<SketchProps> = ({
+  bg,
+  data,
+  setLoading,
+  uuid,
+}: SketchProps) => {
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
 
@@ -68,23 +74,29 @@ const Dots: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
       const scaleY = canvasHeight / p5.height;
 
       const graphic = drawContent(p5, scaleX, scaleY);
-      const frame = drawFrame(p5, bg);
+      // const frame = drawFrame(p5, bg);
 
-      frame.image(
-        graphic,
-        canvasPadding,
-        canvasPadding,
-        canvasWidth,
-        canvasHeight
-      );
+      // frame.image(
+      //   graphic,
+      //   canvasPadding,
+      //   canvasPadding,
+      //   canvasWidth,
+      //   canvasHeight
+      // );
 
-      p5.saveCanvas(frame, `dots_${uuid}.jpg`);
+      // p5.saveCanvas(frame, `dots_${uuid}.jpg`);
+
+      const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
+      preview.image(graphic, 0, 0, preview.width, preview.height);
+      // @ts-ignore: P5 library does not handle event types
+      uploadPhoto(preview, `${uuid}_preview`, setLoading);
+
       // uploadPhoto(graphic, id);
     }
   };
 
   return (
-    <DotSketch
+    <PillSketch
       setup={setup}
       // @ts-ignore: P5 library does not handle event types
       mousePressed={mousePressed}
@@ -92,4 +104,4 @@ const Dots: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   );
 };
 
-export default Dots;
+export default Pills;
