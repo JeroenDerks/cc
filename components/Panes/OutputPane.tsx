@@ -4,7 +4,7 @@ import { useCart } from "react-use-cart";
 import Box from "@mui/material/Box";
 
 import Basic from "../Sketches/partials/Basic";
-import Dots from "../Sketches/partials/Dots";
+import Pills from "../Sketches/partials/Pills";
 import Rotate from "../Sketches/partials/Rotate";
 import Perspective from "../Sketches/partials/Perspective";
 // import Shadow from "../Sketches/partials/Shadow";
@@ -21,7 +21,7 @@ import { useRouter } from "next/router";
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
   // { title: "Shadow", sketch: Shadow },
-  { title: "Pills", sketch: Dots },
+  { title: "Pills", sketch: Pills },
   { title: "Perspective", sketch: Perspective },
   // { title: "Window", sketch: Window },
   { title: "Rotate", sketch: Rotate },
