@@ -16,14 +16,14 @@ const OverLayImage = styled("img")({
   height: 146,
   position: "absolute",
   top: 68,
-  left: 216,
+  left: 66,
   borderRadius: 2,
 });
 
 const ProductImage = ({ id }: { id: string }) => {
   return (
     <Wrapper>
-      <BackgroundImage src="/images/product_image_1.jpg" />
+      <BackgroundImage src="/images/hero-bg-small.jpg" />
       <OverLayImage
         src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
       />
