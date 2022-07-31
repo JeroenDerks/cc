@@ -8,6 +8,8 @@ export const themeOptions: Array<EditorTheme> = [
   { title: "Monokai", code: "monokai", id: 1, bg: "#272822" },
   { title: "One dark pro", code: "one-dark-pro", id: 2, bg: "#282c34" },
   { title: "VSC dark plus", code: "dark-plus", id: 3, bg: "#1E1E1E" },
+  { title: "VSC light plus", code: "light-plus", id: 4, bg: "#ffffff" },
+  { title: "Vitesse light", code: "solarized-light", id: 5, bg: "#fdf6e3" },
 ];
 
 const ThemeSelector = ({
