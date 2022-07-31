@@ -8,6 +8,7 @@ import { sketchWidth, sketchHeigth } from "./constants";
 import { canvasWidth, canvasHeight, canvasPadding } from "./constants";
 import { drawFrame } from "./constants";
 import { SketchProps } from "types";
+import { uploadPhoto } from "utils/uploadPhoto";
 
 const RotateSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
@@ -16,21 +17,29 @@ const RotateSketch = dynamic(
 
 const size = 30;
 const w = 15;
+const defaultLinesPerWindow = 28;
 
-const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+const Rotate: React.FC<SketchProps> = ({
+  bg,
+  data,
+  uuid,
+  setLoading,
+}: SketchProps) => {
   const groupedData = groupDataByColor(data);
+  const linesOfCode = groupedData.length;
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth, p5.WEBGL).parent(
       canvasParentRef
     );
     p5.background(bg[0], bg[1], bg[2]);
-    drawContent(p5);
+
+    const graphic = drawContent(p5, 1);
+    p5.imageMode(p5.CENTER);
+    p5.image(graphic, 0, 0);
   };
 
-  const drawContent = (p5: p5Types) => {
-    const linesOfCode = groupedData.length;
-    const defaultLinesPerWindow = 28;
+  const drawContent = (p5: p5Types, s: number) => {
     const yOffset = p5.height / 2;
 
     const stretchFactor =
@@ -68,14 +77,20 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
       }
     });
 
-    p5.angleMode(p5.DEGREES);
+    const preview = p5.createGraphics(p5.width * s, p5.height * s, p5.WEBGL);
 
+    preview.background(bg[0], bg[1], bg[2]);
+
+    preview.push();
     const scalar = defaultLinesPerWindow / linesOfCode;
-    p5.scale(scalar > 1 ? 1 : scalar);
+    preview.scale(scalar > 1 ? s : scalar * s);
 
-    p5.rotateZ(45);
-    p5.translate(-graphic.width / 2.5, -graphic.height / 2);
-    p5.image(graphic, 0, 0);
+    preview.rotateZ(p5.radians(45));
+    preview.translate(-graphic.width / 2.5, -graphic.height / 2);
+    preview.image(graphic, 0, 0);
+    preview.pop();
+
+    return preview;
   };
 
   const mousePressed = async (
@@ -85,7 +100,9 @@ const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
     const target = e.target as Element;
 
     if (target.id === "add_to_cart") {
-      console.log("generate artowkr");
+      const graphic = drawContent(p5, 0.5);
+
+      uploadPhoto(graphic, `${uuid}_preview`, setLoading);
     }
   };
 

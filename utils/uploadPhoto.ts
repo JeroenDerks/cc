@@ -1,5 +1,5 @@
 export const uploadPhoto = async (
-  pg: WebGL2RenderingContext | WebGLRenderingContext,
+  pg: WebGL2RenderingContext | WebGLRenderingContext | any,
   id: string,
   setLoading?: (v: boolean) => void
 ) => {
