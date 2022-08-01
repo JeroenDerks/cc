@@ -18,7 +18,7 @@ export default async function handler(
 
   const maxAgeSeconds = 3600;
   const method = "POST";
-  const origin = "http://localhost:3000";
+  const origin = "https://celebratecode.com";
   const responseHeader = "Content-Type";
 
   async function configureBucketCors() {

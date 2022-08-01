@@ -12,19 +12,19 @@ const BackgroundImage = styled("img")({
 });
 
 const ArtworkImage = styled("img")({
-  width: 214,
-  height: 146,
+  width: 194,
+  height: 132,
   position: "absolute",
   top: 68,
-  left: 66,
+  left: 40,
   borderRadius: 2,
   boxShadow: "-4px 3px 5px -3px rgba(0,0,0,0.7)",
 });
 
-const ProductImage = ({ id }: { id: string }) => {
+const ProductImageThree = ({ id }: { id: string }) => {
   return (
     <Wrapper>
-      <BackgroundImage src="/images/hero-bg-small.jpg" />
+      <BackgroundImage src="/images/product_image_3_bg.jpg" />
       <ArtworkImage
         src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
       />
@@ -32,4 +32,4 @@ const ProductImage = ({ id }: { id: string }) => {
   );
 };
 
-export default ProductImage;
+export default ProductImageThree;

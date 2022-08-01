@@ -7,7 +7,10 @@ export const themeOptions: Array<EditorTheme> = [
   { title: "Dracula", code: "dracula", id: 0, bg: "#282A36" },
   { title: "Monokai", code: "monokai", id: 1, bg: "#272822" },
   { title: "One dark pro", code: "one-dark-pro", id: 2, bg: "#282c34" },
-  { title: "VSC dark plus", code: "dark-plus", id: 3, bg: "#1E1E1E" },
+  { title: "Rose pine dawn", code: "rose-pine-dawn", id: 3, bg: "#faf4ed" },
+  { title: "Slack ochin", code: "slack-ochin", id: 5, bg: "#ffffff" },
+  { title: "solarized light", code: "solarized-light", id: 6, bg: "#fdf6e3" },
+  { title: "VSC dark plus", code: "dark-plus", id: 6, bg: "#1E1E1E" },
 ];
 
 const ThemeSelector = ({

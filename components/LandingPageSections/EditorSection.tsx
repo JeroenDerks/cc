@@ -18,7 +18,7 @@ const EditorSection = ({ id }: { id: string }) => {
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
   const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
-  const [theme, setTheme] = useState<EditorTheme>(themeOptions[3]);
+  const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [userValue, setUserValue] = useState<string>(intialEditorValue);
 
   const regenerateArtWork = () => {
@@ -50,8 +50,8 @@ const EditorSection = ({ id }: { id: string }) => {
   }, [shiki]);
 
   return (
-    <Section id={id}>
-      <Box py={20} px={gridP}>
+    <Section id={id} hideSideBorders>
+      <Box py={20}>
         <Typography variant="h4" mb={5}>
           Paste it right here...
         </Typography>

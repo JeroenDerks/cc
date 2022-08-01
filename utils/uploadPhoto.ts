@@ -1,12 +1,12 @@
 export const uploadPhoto = async (
-  pg: WebGL2RenderingContext | WebGLRenderingContext,
+  pg: WebGL2RenderingContext | WebGLRenderingContext | any,
   id: string,
   setLoading?: (v: boolean) => void
 ) => {
   const filename = encodeURIComponent(`${id}.jpg`);
   let file;
 
-  await pg.canvas.toBlob((blob) => {
+  await pg.canvas.toBlob((blob: any) => {
     if (blob) file = new File([blob], filename, { type: "image/jpg" });
   }, "image/jpg");
 

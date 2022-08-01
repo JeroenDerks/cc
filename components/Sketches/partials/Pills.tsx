@@ -17,7 +17,9 @@ const PillSketch = dynamic(
 
 const charH = 15;
 const charW = 10;
-const padding = 10;
+const padding = 20;
+const defaultLinesPerWindow = 34;
+const charHOffset = 2;
 
 const Pills: React.FC<SketchProps> = ({
   bg,
@@ -25,6 +27,9 @@ const Pills: React.FC<SketchProps> = ({
   setLoading,
   uuid,
 }: SketchProps) => {
+  const groupedData = groupDataByColor(data);
+  const linesOfCode = groupedData.length;
+
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
 
@@ -37,7 +42,16 @@ const Pills: React.FC<SketchProps> = ({
     pg.background(bg[0], bg[1], bg[2]);
     pg.noStroke();
 
-    const groupedData = groupDataByColor(data);
+    const stretchFactor =
+      linesOfCode < defaultLinesPerWindow
+        ? 1
+        : defaultLinesPerWindow / linesOfCode;
+
+    const offsetH =
+      linesOfCode < defaultLinesPerWindow
+        ? p5.height * 0.5 - linesOfCode * charH * 0.5 - padding
+        : 0;
+
     groupedData?.forEach((line, iY) => {
       for (let i = 0; i < line.length; i++) {
         var col = line[i].bg || bg;
@@ -54,9 +68,9 @@ const Pills: React.FC<SketchProps> = ({
               : 0;
 
           const _x = (x * charW + padding) * sx;
-          const _y = (iY * charH + padding) * sy;
+          const _y = (offsetH + (iY * charH * stretchFactor + padding)) * sy;
           const _w = charW * letterCount * sx;
-          const _h = (charH - 2) * sy;
+          const _h = (charH - charHOffset) * stretchFactor * sy;
 
           pg.rect(_x, _y, _w, _h, bl, br, br, bl);
         }
