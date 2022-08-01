@@ -7,7 +7,6 @@ const Sketches = ({
   theme,
   rawData,
   loading,
-  setLoading,
   sketchOptions,
   sketchId,
   uuid,
@@ -16,7 +15,6 @@ const Sketches = ({
   rawData: ColoredDataSet;
   sketchOptions: Array<Sketch>;
   loading: boolean;
-  setLoading: (v: boolean) => void;
   sketchId: string;
   uuid: string;
 }) => {
@@ -28,7 +26,6 @@ const Sketches = ({
         bg={convertColorToRGB(theme.bg)}
         data={rawData}
         loading={loading}
-        setLoading={setLoading}
         uuid={uuid}
       />
     </Box>

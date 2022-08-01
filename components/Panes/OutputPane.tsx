@@ -7,8 +7,6 @@ import Basic from "../Sketches/partials/Basic";
 import Pills from "../Sketches/partials/Pills";
 import Rotate from "../Sketches/partials/Rotate";
 import Perspective from "../Sketches/partials/Perspective";
-// import Shadow from "../Sketches/partials/Shadow";
-// import Window from "../Sketches/partials/Window";
 
 import AddToCard from "../AddToCart";
 import Sketches from "../Sketches";
@@ -20,10 +18,8 @@ import { useRouter } from "next/router";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
-  // { title: "Shadow", sketch: Shadow },
   { title: "Pills", sketch: Pills },
   { title: "Perspective", sketch: Perspective },
-  // { title: "Window", sketch: Window },
   { title: "Rotate", sketch: Rotate },
 ];
 
@@ -55,7 +51,8 @@ const OutputPane = ({
     addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
     await uploadRawData({ uuid, userValue, sketchId, theme, language });
     setUuid(uuidv4());
-    router.push("/cart");
+    await router.push("/cart");
+    setLoading(false);
   };
 
   return (
@@ -74,7 +71,6 @@ const OutputPane = ({
         sketchId={sketchId}
         sketchOptions={sketchOptions}
         theme={theme}
-        setLoading={setLoading}
         uuid={uuid}
       />
 

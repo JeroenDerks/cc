@@ -19,12 +19,7 @@ const size = 30;
 const w = 15;
 const defaultLinesPerWindow = 28;
 
-const Rotate: React.FC<SketchProps> = ({
-  bg,
-  data,
-  uuid,
-  setLoading,
-}: SketchProps) => {
+const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   const groupedData = groupDataByColor(data);
   const linesOfCode = groupedData.length;
 
@@ -102,7 +97,7 @@ const Rotate: React.FC<SketchProps> = ({
     if (target.id === "add_to_cart") {
       const graphic = drawContent(p5, 0.5);
 
-      uploadPhoto(graphic, `${uuid}_preview`, setLoading);
+      uploadPhoto(graphic, `${uuid}_preview`);
     }
   };
 
