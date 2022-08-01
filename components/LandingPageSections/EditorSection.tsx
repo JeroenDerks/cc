@@ -50,8 +50,8 @@ const EditorSection = ({ id }: { id: string }) => {
   }, [shiki]);
 
   return (
-    <Section id={id}>
-      <Box py={20} px={gridP}>
+    <Section id={id} hideSideBorders>
+      <Box py={20}>
         <Typography variant="h4" mb={5}>
           Paste it right here...
         </Typography>
