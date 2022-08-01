@@ -100,9 +100,7 @@ const Basic: React.FC<SketchProps> = ({
       const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
       preview.image(graphic, 0, 0, preview.width, preview.height);
       // @ts-ignore: P5 library does not handle event types
-      uploadPhoto(preview, `${uuid}_preview`, setLoading);
-      // @ts-ignore: P5 library does not handle event types
-      uploadPhoto(frame, `${uuid}_frame`);
+      uploadPhoto(preview, `${uuid}_preview`);
 
       // p5.save(frame, `${uuid}.jpg`);
     }
