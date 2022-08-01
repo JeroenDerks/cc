@@ -7,7 +7,9 @@ import Flex from "components/Flex";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { border } from "theme";
-import ProductImage from "components/ProductImage/ProductImageOne";
+import ProductImageOne from "components/ProductImage/ProductImageOne";
+import ProductImageTwo from "components/ProductImage/ProductImageTwo";
+// import ProductImageThree from "components/ProductImage/ProductImageThree";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -47,9 +49,18 @@ const ImageGallery = ({ id }: { id: string }) => {
         loop
         // autoplay={{ disableOnInteraction: true, delay: 2000 }}
       >
+        {/* <SwiperSlide>
+          <ProductImageThree id={id} />
+        </SwiperSlide> */}
+
         <SwiperSlide>
-          <ProductImage id={id} />
+          <ProductImageTwo id={id} />
         </SwiperSlide>
+
+        <SwiperSlide>
+          <ProductImageOne id={id} />
+        </SwiperSlide>
+
         <SwiperSlide>
           <Image
             src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
