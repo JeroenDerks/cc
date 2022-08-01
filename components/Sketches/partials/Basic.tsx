@@ -20,12 +20,7 @@ const charW = 10;
 const defaultLinesPerWindow = 34;
 const charHOffset = 2;
 
-const Basic: React.FC<SketchProps> = ({
-  bg,
-  setLoading,
-  data,
-  uuid,
-}: SketchProps) => {
+const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   const groupedData = groupDataByColor(data);
   const linesOfCode = groupedData.length;
 
@@ -99,10 +94,7 @@ const Basic: React.FC<SketchProps> = ({
 
       const preview = p5.createGraphics(p5.width * 0.5, p5.height * 0.5);
       preview.image(graphic, 0, 0, preview.width, preview.height);
-      // @ts-ignore: P5 library does not handle event types
       uploadPhoto(preview, `${uuid}_preview`);
-
-      // p5.save(frame, `${uuid}.jpg`);
     }
   };
 

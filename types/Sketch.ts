@@ -10,5 +10,4 @@ export type SketchProps = {
   data: ColoredDataSet;
   loading: boolean;
   uuid: string;
-  setLoading: (v: boolean) => void;
 };
