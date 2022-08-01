@@ -11,20 +11,21 @@ const BackgroundImage = styled("img")({
   height: "100%",
 });
 
-const OverLayImage = styled("img")({
+const ArtworkImage = styled("img")({
   width: 214,
   height: 146,
   position: "absolute",
   top: 68,
   left: 66,
   borderRadius: 2,
+  boxShadow: "-4px 3px 5px -3px rgba(0,0,0,0.7)",
 });
 
 const ProductImage = ({ id }: { id: string }) => {
   return (
     <Wrapper>
       <BackgroundImage src="/images/hero-bg-small.jpg" />
-      <OverLayImage
+      <ArtworkImage
         src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
       />
     </Wrapper>

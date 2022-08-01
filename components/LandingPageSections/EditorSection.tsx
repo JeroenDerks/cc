@@ -18,7 +18,7 @@ const EditorSection = ({ id }: { id: string }) => {
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
   const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
-  const [theme, setTheme] = useState<EditorTheme>(themeOptions[3]);
+  const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [userValue, setUserValue] = useState<string>(intialEditorValue);
 
   const regenerateArtWork = () => {
