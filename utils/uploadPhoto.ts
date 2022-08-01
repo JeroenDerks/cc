@@ -6,7 +6,7 @@ export const uploadPhoto = async (
   const filename = encodeURIComponent(`${id}.jpg`);
   let file;
 
-  await pg.canvas.toBlob((blob) => {
+  await pg.canvas.toBlob((blob: any) => {
     if (blob) file = new File([blob], filename, { type: "image/jpg" });
   }, "image/jpg");
 
