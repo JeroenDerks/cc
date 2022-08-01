@@ -40,7 +40,7 @@ const OutputPane = ({
   theme: EditorTheme;
   userValue: string;
 }) => {
-  const [sketchId, setSketchId] = useState<string>("3");
+  const [sketchId, setSketchId] = useState<string>("0");
   const [loading, setLoading] = useState<boolean>(false);
   const [uuid, setUuid] = useState<string>("");
   const { addItem } = useCart();
@@ -51,11 +51,11 @@ const OutputPane = ({
   }, [sketchId]);
 
   const addToCard = async () => {
-    // setLoading(true);
+    setLoading(true);
     addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
     await uploadRawData({ uuid, userValue, sketchId, theme, language });
     setUuid(uuidv4());
-    // router.push("/cart");
+    router.push("/cart");
   };
 
   return (
