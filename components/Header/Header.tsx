@@ -7,12 +7,12 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  alignItems: "center",
   borderBottom: `1px solid ${theme.palette.action.disabled}`,
   maxHeight: 56,
   minHeight: 56,
   padding: "8px 32px",
-  width: "100%",
+  display: "flex",
+  justifyContent: "center",
 }));
 
 const CheckoutLink = styled("a")(({ theme }) => ({
@@ -46,11 +46,11 @@ const Header = () => {
   return (
     <Wrapper>
       <Box
-        maxWidth={1800}
+        alignItems="center"
         display="flex"
         justifyContent="space-between"
-        alignItems="center"
-        height="100%"
+        maxWidth={1800}
+        width={1}
       >
         <Link href="/" passHref>
           <Logo as="a">CC</Logo>

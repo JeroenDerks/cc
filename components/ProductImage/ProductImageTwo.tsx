@@ -1,14 +1,19 @@
 import React from "react";
 import { styled } from "@mui/material";
+import Image from "next/image";
+import bg from "public/images/team-bg.png";
+import fg from "public/images/team-fg.png";
+import fgBlur from "public/images/team-fg-blur.png";
 
 const Wrapper = styled("div")({
   position: "relative",
   height: "100%",
 });
 
-const BackgroundImage = styled("img")({
+const BackgroundWrapper = styled("div")({
   width: "100%",
   height: "100%",
+  position: "relative",
 });
 
 const ArtworkImage = styled("img")({
@@ -18,26 +23,31 @@ const ArtworkImage = styled("img")({
   top: 68,
   left: 150,
   borderRadius: 2,
+  zIndex: 1,
   boxShadow: "-4px 3px 5px -3px rgba(0,0,0,0.7)",
 });
 
-const OverLayImageTeam = styled("img")({
+const OverlayWrapper = styled("div")({
   width: "100%",
   height: "100%",
   position: "absolute",
   top: 0,
-  left: 0,
+  zIndex: 2,
 });
 
 const ProductImageTwo = ({ id }: { id: string }) => {
   return (
     <Wrapper>
-      <BackgroundImage src="/images/team-bg.png" />
+      <BackgroundWrapper>
+        <Image src={bg} layout="fill" placeholder="blur" />
+      </BackgroundWrapper>
       <ArtworkImage
         src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
       />
-      <OverLayImageTeam src="/images/team-fg.png" />
-      <OverLayImageTeam src="/images/team-fg-blur.png" />
+      <OverlayWrapper>
+        <Image src={fg} layout="fill" placeholder="blur" />
+        <Image src={fgBlur} layout="fill" placeholder="blur" />
+      </OverlayWrapper>
     </Wrapper>
   );
 };

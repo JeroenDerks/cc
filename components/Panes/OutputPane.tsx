@@ -17,7 +17,7 @@ import { uploadRawData } from "utils/uploadRawData";
 import { useRouter } from "next/router";
 
 const sketchOptions: Array<Sketch> = [
-  { title: "Basic", sketch: Basic },
+  { title: "Classic", sketch: Basic },
   { title: "Pills", sketch: Pills },
   { title: "Perspective", sketch: Perspective },
   { title: "Rotate", sketch: Rotate },
@@ -29,12 +29,14 @@ const OutputPane = ({
   sketchRenewKey,
   theme,
   userValue,
+  downloadJson,
 }: {
   language: LanguageOption;
   rawData: ColoredDataSet;
   sketchRenewKey: number;
   theme: EditorTheme;
   userValue: string;
+  downloadJson?: (v: string) => void;
 }) => {
   const [sketchId, setSketchId] = useState<string>("0");
   const [loading, setLoading] = useState<boolean>(false);
@@ -47,6 +49,10 @@ const OutputPane = ({
   }, [sketchId]);
 
   const addToCard = async () => {
+    if (downloadJson) {
+      downloadJson(JSON.stringify({ userValue, sketchId, theme, language }));
+      return;
+    }
     setLoading(true);
     addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
     await uploadRawData({ uuid, userValue, sketchId, theme, language });

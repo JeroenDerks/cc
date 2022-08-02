@@ -1,54 +1,38 @@
-import React, { useEffect, useState } from "react";
-import type { ColoredDataSet, EditorTheme, LanguageOption } from "types";
-import { convertTextToArtworkColors } from "utils/convertTextToArtworkColors";
-import { getHighlighter, Highlighter } from "shiki";
-import { intialEditorValue } from "utils/intialEditorValue";
-import { languageOptions } from "components/LanguageSelector/LanguageSelector";
-import { themeOptions } from "components/ThemeSelector";
+import React from "react";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import InputPane from "components/Panes/InputPane";
-import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-import { gridP } from "theme";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import type { Highlighter } from "shiki";
+import type { ColoredDataSet, EditorTheme, LanguageOption } from "types";
 
-const EditorSection = ({ id }: { id: string }) => {
-  const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
-  const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
-  const [shiki, setShiki] = useState<Highlighter | null>(null);
-  const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
-  const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
-  const [userValue, setUserValue] = useState<string>(intialEditorValue);
-
-  const regenerateArtWork = () => {
-    setRawData(convertTextToArtworkColors());
-    setSketchRenewKey((c) => c + 1);
-  };
-
-  const handleInputTextChange = (inputValue: string) => {
-    setUserValue(inputValue);
-    regenerateArtWork();
-  };
-
-  useEffect(() => {
-    if (!theme) return;
-    getHighlighter({
-      theme: theme.code,
-      langs: languageOptions.map(({ code }) => code),
-    }).then((hl: Highlighter) => {
-      setShiki(hl);
-    });
-  }, [theme]);
-
-  // regenrate art work every time shiki gets updated
-  useEffect(() => {
-    const shikiTheme = shiki?.getTheme();
-    if (shikiTheme && shikiTheme.name === theme.code) {
-      regenerateArtWork();
-    }
-  }, [shiki]);
-
+const EditorSection = ({
+  id,
+  downloadJson,
+  language,
+  setLanguage,
+  setTheme,
+  sketchRenewKey,
+  rawData,
+  setUserValue,
+  shiki,
+  theme,
+  userValue,
+}: {
+  id: string;
+  downloadJson?: (v: string) => void;
+  language: LanguageOption;
+  setLanguage: (v: LanguageOption) => void;
+  setTheme: (v: EditorTheme) => void;
+  rawData: ColoredDataSet;
+  sketchRenewKey: number;
+  setUserValue: (v: string) => void;
+  shiki: Highlighter | null;
+  theme: EditorTheme;
+  userValue: string;
+}) => {
   return (
     <Section id={id} hideSideBorders>
       <Box py={20}>
@@ -61,7 +45,7 @@ const EditorSection = ({ id }: { id: string }) => {
               language={language}
               setLanguage={setLanguage}
               setTheme={setTheme}
-              setUserValue={handleInputTextChange}
+              setUserValue={setUserValue}
               shiki={shiki}
               theme={theme}
               userValue={userValue}
@@ -74,6 +58,7 @@ const EditorSection = ({ id }: { id: string }) => {
               sketchRenewKey={sketchRenewKey}
               theme={theme}
               userValue={userValue}
+              downloadJson={downloadJson}
             />
           </Grid>
         </Grid>

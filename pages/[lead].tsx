@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import FAQ from "components/FAQ";
-import EditorSection from "components/LandingPageSections/EditorSection";
 import Hero from "components/LandingPageSections/Hero";
 import PromiseTwo from "components/LandingPageSections/PromiseTwo";
 import HowItWorks from "components/LandingPageSections/HowItWorks";
@@ -12,6 +11,9 @@ import { intialEditorValue } from "utils/intialEditorValue";
 import { themeOptions } from "components/ThemeSelector";
 import { getHighlighter, Highlighter } from "shiki";
 import { convertTextToArtworkColors } from "utils/convertTextToArtworkColors";
+import EditorSection from "components/LandingPageSections/EditorSection";
+
+import { useRouter } from "next/router";
 
 const Index = () => {
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
@@ -20,6 +22,15 @@ const Index = () => {
   const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
   const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [userValue, setUserValue] = useState<string>(intialEditorValue);
+  const router = useRouter();
+
+  useEffect(() => {
+    const getData = async () => {
+      const leadName = router.query.lead;
+      console.log("Get data for: ", leadName);
+    };
+    if (router.query.lead) getData();
+  }, [router.query.lead]);
 
   const regenerateArtWork = () => {
     setRawData(convertTextToArtworkColors());
@@ -66,6 +77,7 @@ const Index = () => {
         theme={theme}
         userValue={userValue}
       />
+
       <ProductDetails />
       <FAQ />
     </>
