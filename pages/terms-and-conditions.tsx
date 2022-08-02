@@ -1,5 +1,7 @@
 import React from "react";
 import Section from "components/Section";
+import SeparatorLine from "components/SeparatorLine";
+
 import { Box, Typography } from "@mui/material";
 import { gridP } from "theme";
 
@@ -49,6 +51,7 @@ const TermsAndConditions = () => {
           continued use of or access to the website following the posting of any
           changes constitutes acceptance of those changes.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 1 - ONLINE STORE TERMS
         </Typography>
@@ -67,6 +70,7 @@ const TermsAndConditions = () => {
           A breach or violation of any of the Terms will result in an immediate
           termination of your Services.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 2 - GENERAL CONDITIONS
         </Typography>
@@ -92,6 +96,7 @@ const TermsAndConditions = () => {
           The headings used in this agreement are included for convenience only
           and will not limit or otherwise affect these Terms.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 3 - ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION
         </Typography>
@@ -112,6 +117,7 @@ const TermsAndConditions = () => {
           on our site. You agree that it is your responsibility to monitor
           changes to our site.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES
         </Typography>
@@ -127,6 +133,7 @@ const TermsAndConditions = () => {
           modification, price change, suspension or discontinuance of the
           Service.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 5 - PRODUCTS OR SERVICES (if applicable)
         </Typography>
@@ -158,6 +165,7 @@ const TermsAndConditions = () => {
           your expectations, or that any errors in the Service will be
           corrected.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
         </Typography>
@@ -183,6 +191,7 @@ const TermsAndConditions = () => {
         <Typography paragraph>
           For more detail, please review our Returns Policy.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 7 - OPTIONAL TOOLS
         </Typography>
@@ -209,6 +218,7 @@ const TermsAndConditions = () => {
           new features and/or services shall also be subject to these Terms of
           Service.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 8 - THIRD-PARTY LINKS
         </Typography>
@@ -233,6 +243,7 @@ const TermsAndConditions = () => {
           claims, concerns, or questions regarding third-party products should
           be directed to the third-party.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 9 - USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS
         </Typography>
@@ -272,6 +283,7 @@ const TermsAndConditions = () => {
           Your submission of personal information through the store is governed
           by our Privacy Policy.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 11 - ERRORS, INACCURACIES AND OMISSIONS
         </Typography>
@@ -293,6 +305,7 @@ const TermsAndConditions = () => {
           be taken to indicate that all information in the Service or on any
           related website has been modified or updated.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 12 - PROHIBITED USES
         </Typography>
@@ -318,6 +331,7 @@ const TermsAndConditions = () => {
           reserve the right to terminate your use of the Service or any related
           website for violating any of the prohibited uses.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 13 - DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY
         </Typography>
@@ -364,6 +378,7 @@ const TermsAndConditions = () => {
           incidental damages, in such states or jurisdictions, our liability
           shall be limited to the maximum extent permitted by law.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 14 - INDEMNIFICATION
         </Typography>
@@ -377,6 +392,7 @@ const TermsAndConditions = () => {
           of Service or the documents they incorporate by reference, or your
           violation of any law or the rights of a third-party.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 15 - SEVERABILITY
         </Typography>
@@ -389,6 +405,7 @@ const TermsAndConditions = () => {
           affect the validity and enforceability of any other remaining
           provisions.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 16 - TERMINATION
         </Typography>
@@ -411,6 +428,7 @@ const TermsAndConditions = () => {
           termination; and/or accordingly may deny you access to our Services
           (or any part thereof).
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 17 - ENTIRE AGREEMENT
         </Typography>
@@ -432,6 +450,7 @@ const TermsAndConditions = () => {
           Any ambiguities in the interpretation of these Terms of Service shall
           not be construed against the drafting party.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 18 - GOVERNING LAW
         </Typography>
@@ -440,6 +459,7 @@ const TermsAndConditions = () => {
           you Services shall be governed by and construed in accordance with the
           laws of the United Kingdom.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 19 - CHANGES TO TERMS OF SERVICE
         </Typography>
@@ -455,6 +475,7 @@ const TermsAndConditions = () => {
           website or the Service following the posting of any changes to these
           Terms of Service constitutes acceptance of those changes.
         </Typography>
+        <SeparatorLine />
         <Typography variant="h4" gutterBottom mt={6}>
           SECTION 20 - CONTACT INFORMATION
         </Typography>
