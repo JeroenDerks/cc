@@ -33,27 +33,17 @@ const Footer = () => {
               flexDirection="column"
             >
               <Logo>CC</Logo>
-              <Box display="flex" alignItems="center">
-                <Link
-                  href="https://www.linkedin.com/company/celebrate-code/"
-                  passHref
-                >
-                  <IconButton component="a" target="_blank">
-                    <LinkedInIcon />
-                  </IconButton>
-                </Link>
 
-                <Typography>
-                  Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
-                </Typography>
-              </Box>
+              <Typography color="text.secondary" my={{ xs: 3, sm: 3, md: "0" }}>
+                Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
+              </Typography>
             </Flex>
           </Grid>
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid item xs={12} sm={12} md={4}>
             <Stack
               sx={{
                 "& a": { marginBottom: "12px" },
-                "& a:last-child": { marginBottom: "6px" },
+                "& a:last-child": { marginBottom: "0px" },
               }}
             >
               <LegalLink href="/legal-notice">Legal notice</LegalLink>
@@ -64,6 +54,32 @@ const Footer = () => {
                 Terms and conditions
               </LegalLink>
             </Stack>
+          </Grid>
+          <Grid item xs={12} sm={12} md={2}>
+            <Flex
+              height="100%"
+              justifyContent="flex-end"
+              flexDirection="column"
+            >
+              <Flex width={1} mt={2}>
+                <Link
+                  href="https://www.linkedin.com/company/celebrate-code/"
+                  passHref
+                >
+                  <IconButton component="a" target="_blank">
+                    <LinkedInIcon sx={{ opacity: 0.7 }} />
+                  </IconButton>
+                </Link>
+                <Link
+                  href="https://www.linkedin.com/company/celebrate-code/"
+                  passHref
+                >
+                  <IconButton component="a" target="_blank">
+                    <LinkedInIcon sx={{ opacity: 0.7 }} />
+                  </IconButton>
+                </Link>
+              </Flex>
+            </Flex>
           </Grid>
         </Grid>
       </Box>
