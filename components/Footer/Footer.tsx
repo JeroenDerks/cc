@@ -1,13 +1,16 @@
 import React from "react";
-import Section from "components/Section";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import { gridP } from "theme";
-import { IconButton, styled, Typography } from "@mui/material";
-import { Grid } from "@mui/material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Flex from "components/Flex";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
 import LegalLink from "components/Link";
 import Link from "next/link";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Section from "components/Section";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { gridP } from "theme";
 
 const Logo = styled(Typography)(({ theme }) => ({
   "-webkit-text-stroke": theme.palette.text.primary,
@@ -24,24 +27,35 @@ const Footer = () => {
       <Box p={gridP}>
         <Grid container>
           <Grid item xs={12} sm={12} md={6}>
-            <Logo>CC</Logo>
-            <Box mt={6}>
-              <Link
-                href="https://www.linkedin.com/company/celebrate-code/"
-                passHref
-              >
-                <IconButton component="a" target="_blank">
-                  <LinkedInIcon />
-                </IconButton>
-              </Link>
+            <Flex
+              height="100%"
+              justifyContent="space-between"
+              flexDirection="column"
+            >
+              <Logo>CC</Logo>
+              <Box display="flex" alignItems="center">
+                <Link
+                  href="https://www.linkedin.com/company/celebrate-code/"
+                  passHref
+                >
+                  <IconButton component="a" target="_blank">
+                    <LinkedInIcon />
+                  </IconButton>
+                </Link>
 
-              <Typography>
-                Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
-              </Typography>
-            </Box>
+                <Typography>
+                  Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
+                </Typography>
+              </Box>
+            </Flex>
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
-            <Stack>
+            <Stack
+              sx={{
+                "& a": { marginBottom: "12px" },
+                "& a:last-child": { marginBottom: "6px" },
+              }}
+            >
               <LegalLink href="/legal-notice">Legal notice</LegalLink>
               <LegalLink href="/return-policy">Return policy</LegalLink>
               <LegalLink href="/privacy-policy">Privacy policy</LegalLink>

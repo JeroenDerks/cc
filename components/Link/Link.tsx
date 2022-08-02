@@ -5,7 +5,6 @@ import Link from "next/link";
 const StyledLink = styled("a")(({ theme }) => ({
   color: theme.palette.text.secondary,
   textDecoration: "none",
-  marginBottom: 12,
   "&:hover": {
     textDecoration: "underline",
   },
