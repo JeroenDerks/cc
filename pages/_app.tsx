@@ -10,7 +10,7 @@ import Footer from "components/Footer";
 import theme from "theme";
 import { setCDN } from "shiki";
 import "style.css";
-setCDN("https://unpkg.com/shiki/");
+setCDN("https://unpkg.com/shiki@0.10.1/");
 
 const stripePromise =
   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY &&

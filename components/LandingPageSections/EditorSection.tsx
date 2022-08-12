@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
-import type { ColoredDataSet, EditorTheme, LanguageOption } from "types";
-import { convertTextToArtworkColors } from "utils/convertTextToArtworkColors";
-import { getHighlighter, Highlighter } from "shiki";
-import { intialEditorValue } from "utils/intialEditorValue";
-import { languageOptions } from "components/LanguageSelector/LanguageSelector";
-import { themeOptions } from "components/ThemeSelector";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import InputPane from "components/Panes/InputPane";
-import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-import { gridP } from "theme";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { convertTextToArtworkColors } from "utils/convertTextToArtworkColors";
+import { intialEditorValue } from "utils/intialEditorValue";
+import type { ColoredDataSet, EditorTheme, LanguageOption } from "types";
+import type { Highlighter } from "shiki";
 
-const EditorSection = ({ id }: { id: string }) => {
-  const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
+const EditorSection = ({
+  id,
+  language,
+  setLanguage,
+  setTheme,
+  shiki,
+  theme,
+}: {
+  id: string;
+  language: LanguageOption;
+  setLanguage: (v: LanguageOption) => void;
+  setTheme: (v: EditorTheme) => void;
+  shiki: Highlighter | null;
+  theme: EditorTheme;
+}) => {
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
-  const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
-  const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [userValue, setUserValue] = useState<string>(intialEditorValue);
 
   const regenerateArtWork = () => {
@@ -30,16 +38,6 @@ const EditorSection = ({ id }: { id: string }) => {
     setUserValue(inputValue);
     regenerateArtWork();
   };
-
-  useEffect(() => {
-    if (!theme) return;
-    getHighlighter({
-      theme: theme.code,
-      langs: languageOptions.map(({ code }) => code),
-    }).then((hl: Highlighter) => {
-      setShiki(hl);
-    });
-  }, [theme]);
 
   // regenrate art work every time shiki gets updated
   useEffect(() => {
