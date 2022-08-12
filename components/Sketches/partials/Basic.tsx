@@ -24,6 +24,8 @@ const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
   const groupedData = groupDataByColor(data);
   const linesOfCode = groupedData.length;
 
+  console.log(data);
+  console.log(groupedData);
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
