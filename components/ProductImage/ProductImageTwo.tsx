@@ -36,7 +36,7 @@ const ProductImageTwo = ({ id }: { id: string }) => {
       <ArtworkImage
         src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
       />
-      <OverLayImageTeam src="/images/team-fg.png" />
+
       <OverLayImageTeam src="/images/team-fg-blur.png" />
     </Wrapper>
   );
