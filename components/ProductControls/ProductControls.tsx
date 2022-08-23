@@ -16,15 +16,17 @@ const SwiperButton = styled(IconButton)({
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
-  borderRadius: 4,
   border: `1px solid ${theme.palette.action.disabled}`,
+  borderRadius: 4,
   display: "flex",
+  justifyContent: "space-between",
   maxHeight: 56,
   minHeight: 56,
   padding: "0 16px",
+  width: "100%",
 }));
 
-const AddToCart = ({
+const ProductControls = ({
   addToCard,
   loading,
 }: {
@@ -32,7 +34,7 @@ const AddToCart = ({
   loading: boolean;
 }) => {
   return (
-    <Wrapper width={1} justifyContent="space-between">
+    <Wrapper>
       <Box>
         <SwiperButton className="product-prev">
           <ChevronLeftIcon sx={{ fill: theme.palette.text.secondary }} />
@@ -54,4 +56,4 @@ const AddToCart = ({
   );
 };
 
-export default AddToCart;
+export default ProductControls;
