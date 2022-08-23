@@ -3,14 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 import { useCart } from "react-use-cart";
 import Box from "@mui/material/Box";
 
-import Basic from "../Sketches/partials/Basic";
-import Pills from "../Sketches/partials/Pills";
-import Rotate from "../Sketches/partials/Rotate";
-import Perspective from "../Sketches/partials/Perspective";
+import Basic from "components/Sketches/partials/Basic";
+import Pills from "components/Sketches/partials/Pills";
+import Rotate from "components/Sketches/partials/Rotate";
+import Perspective from "components/Sketches/partials/Perspective";
 
-import AddToCard from "../AddToCart";
-import Sketches from "../Sketches";
-import SketchSelector from "../SketchSelector";
+import ProductControls from "components/ProductControls";
+import SketchSelector from "components/SketchSelector";
 
 import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 import { uploadRawData } from "utils/uploadRawData";
@@ -76,7 +75,7 @@ const OutputPane = ({
         uuid={uuid}
       />
 
-      <AddToCard addToCard={addToCard} loading={loading} />
+      <ProductControls addToCard={addToCard} loading={loading} />
     </>
   );
 };
