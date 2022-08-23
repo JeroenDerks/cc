@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useCart } from "react-use-cart";
-import Box from "@mui/material/Box";
-
-import Basic from "../Sketches/partials/Basic";
-import Pills from "../Sketches/partials/Pills";
-import Rotate from "../Sketches/partials/Rotate";
-import Perspective from "../Sketches/partials/Perspective";
-
-import AddToCard from "../AddToCart";
-import Sketches from "../Sketches";
-import SketchSelector from "../SketchSelector";
-
-import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
-import { uploadRawData } from "utils/uploadRawData";
 import { useRouter } from "next/router";
+import { v4 as uuidv4 } from "uuid";
+
+import Box from "@mui/material/Box";
+import ProductControls from "components/ProductControls";
+import SketchSelector from "components/SketchSelector";
+
+import ProductSwiper from "components/ProductSwiper";
+import Basic from "components/Sketches/Basic";
+import BasicTeamPhoto from "components/Sketches/Basic/BasicTeamPhoto";
+import BasicWallPhoto from "components/Sketches/Basic/BasicWallPhoto";
+import Pill from "components/Sketches/Pill";
+import PillTeamPhoto from "components/Sketches/Pill/PillTeamPhoto";
+import PillWallPhoto from "components/Sketches/Pill/PillWallPhoto";
+import Perspective from "components/Sketches/Perspective";
+import PerspectiveTeamPhoto from "components/Sketches/Perspective/PerspectiveTeamPhoto";
+import PerspectiveWallPhoto from "components/Sketches/Perspective/PerspectiveWallPhoto";
+import Rotate from "components/Sketches/Rotate";
+import RotateTeamPhoto from "components/Sketches/Rotate/RotateTeamPhoto";
+import RotateWallPhoto from "components/Sketches/Rotate/RotateWallPhoto";
+import { uploadRawData } from "utils/uploadRawData";
+import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 
 const sketchOptions: Array<Sketch> = [
-  { title: "Basic", sketch: Basic },
-  { title: "Pills", sketch: Pills },
-  { title: "Perspective", sketch: Perspective },
-  { title: "Rotate", sketch: Rotate },
+  { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
+  { title: "Pills", sketches: [Pill, PillTeamPhoto, PillWallPhoto] },
+  {
+    title: "Perspective",
+    sketches: [Perspective, PerspectiveTeamPhoto, PerspectiveWallPhoto],
+  },
+  { title: "Rotate", sketches: [Rotate, RotateWallPhoto, RotateTeamPhoto] },
 ];
 
 const OutputPane = ({
@@ -64,17 +74,18 @@ const OutputPane = ({
           sketchId={sketchId}
         />
       </Box>
-      <Sketches
-        key={sketchRenewKey}
+
+      <ProductSwiper
         loading={loading}
         rawData={rawData}
         sketchId={sketchId}
         sketchOptions={sketchOptions}
+        sketchRenewKey={sketchRenewKey}
         theme={theme}
         uuid={uuid}
       />
 
-      <AddToCard addToCard={addToCard} loading={loading} />
+      <ProductControls addToCard={addToCard} loading={loading} />
     </>
   );
 };
