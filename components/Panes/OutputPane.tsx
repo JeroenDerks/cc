@@ -15,6 +15,7 @@ import SketchSelector from "../SketchSelector";
 import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 import { uploadRawData } from "utils/uploadRawData";
 import { useRouter } from "next/router";
+import ProductSwiper from "components/ProductSwiper";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketch: Basic },
@@ -64,12 +65,13 @@ const OutputPane = ({
           sketchId={sketchId}
         />
       </Box>
-      <Sketches
-        key={sketchRenewKey}
+
+      <ProductSwiper
         loading={loading}
         rawData={rawData}
         sketchId={sketchId}
         sketchOptions={sketchOptions}
+        sketchRenewKey={sketchRenewKey}
         theme={theme}
         uuid={uuid}
       />

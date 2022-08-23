@@ -49,10 +49,6 @@ const ImageGallery = ({ id }: { id: string }) => {
         loop
         // autoplay={{ disableOnInteraction: true, delay: 2000 }}
       >
-        {/* <SwiperSlide>
-          <ProductImageThree id={id} />
-        </SwiperSlide> */}
-
         <SwiperSlide>
           <ProductImageTwo id={id} />
         </SwiperSlide>
