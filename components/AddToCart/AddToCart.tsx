@@ -1,8 +1,18 @@
 import React from "react";
-import { styled } from "@mui/material";
-
+import { IconButton, styled } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import theme from "theme";
+
+const SwiperButton = styled(IconButton)({
+  padding: 0,
+  width: 40,
+  height: 40,
+  maxWidth: 40,
+  minWidth: 40,
+});
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -22,7 +32,15 @@ const AddToCart = ({
   loading: boolean;
 }) => {
   return (
-    <Wrapper width={1} justifyContent="flex-end">
+    <Wrapper width={1} justifyContent="space-between">
+      <Box>
+        <SwiperButton className="product-prev">
+          <ChevronLeftIcon sx={{ fill: theme.palette.text.secondary }} />
+        </SwiperButton>
+        <SwiperButton className="product-next">
+          <ChevronRightIcon sx={{ fill: theme.palette.text.secondary }} />
+        </SwiperButton>
+      </Box>
       <Button
         onClick={addToCard}
         variant="outlined"
