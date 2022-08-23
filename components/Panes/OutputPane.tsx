@@ -19,11 +19,16 @@ import PillTeamPhoto from "components/Sketches/partials/Pill/PillTeamPhoto";
 import PillWallPhoto from "components/Sketches/partials/Pill/PillWallPhoto";
 import Rotate from "components/Sketches/partials/Rotate";
 import Perspective from "components/Sketches/partials/Perspective";
+import PerspectiveTeamPhoto from "components/Sketches/partials/Perspective/PerspectiveTeamPhoto";
+import PerspectiveWallPhoto from "components/Sketches/partials/Perspective/PerspectiveWallPhoto";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
   { title: "Pills", sketches: [Pill, PillTeamPhoto, PillWallPhoto] },
-  { title: "Perspective", sketches: [Perspective] },
+  {
+    title: "Perspective",
+    sketches: [Perspective, PerspectiveTeamPhoto, PerspectiveWallPhoto],
+  },
   { title: "Rotate", sketches: [Rotate] },
 ];
 
