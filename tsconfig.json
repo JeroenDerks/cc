@@ -24,7 +24,6 @@
     "utils/getShippingOptions.ss",
     "components/Sketches/partials/Window.tsx",
     "components/Sketches/partials/Rotate.tsx",
-    "components/Sketches/partials/Basic.tsx",
     "components/Editor/Editor.js"
   ],
   "exclude": ["node_modules"]

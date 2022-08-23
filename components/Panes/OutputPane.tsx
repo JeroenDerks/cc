@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useCart } from "react-use-cart";
 import Box from "@mui/material/Box";
 
-import Basic from "components/Sketches/partials/Basic";
+import Basic from "components/Sketches/partials/Basic/";
 import Pills from "components/Sketches/partials/Pills";
 import Rotate from "components/Sketches/partials/Rotate";
 import Perspective from "components/Sketches/partials/Perspective";
@@ -15,12 +15,14 @@ import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 import { uploadRawData } from "utils/uploadRawData";
 import { useRouter } from "next/router";
 import ProductSwiper from "components/ProductSwiper";
+import BasicTeamPhoto from "components/Sketches/partials/Basic/BasicTeamPhoto";
+import BasicWallPhoto from "components/Sketches/partials/Basic/BasicWallPhoto";
 
 const sketchOptions: Array<Sketch> = [
-  { title: "Basic", sketch: Basic },
-  { title: "Pills", sketch: Pills },
-  { title: "Perspective", sketch: Perspective },
-  { title: "Rotate", sketch: Rotate },
+  { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
+  { title: "Pills", sketches: [Pills] },
+  { title: "Perspective", sketches: [Perspective] },
+  { title: "Rotate", sketches: [Rotate] },
 ];
 
 const OutputPane = ({
