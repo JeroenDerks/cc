@@ -9,7 +9,6 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { border } from "theme";
 import ProductImageOne from "components/ProductImage/ProductImageOne";
 import ProductImageTwo from "components/ProductImage/ProductImageTwo";
-// import ProductImageThree from "components/ProductImage/ProductImageThree";
 
 import "swiper/css";
 import "swiper/css/navigation";

@@ -32,7 +32,7 @@ const OutputPane = ({
       spaceBetween={50}
       slidesPerView={1}
       modules={[Navigation, Pagination, Scrollbar, Autoplay]}
-      navigation={{ nextEl: ".swiper-next", prevEl: ".swiper-prev" }}
+      navigation={{ nextEl: ".product-next", prevEl: ".product-prev" }}
       loop
       autoplay={{ disableOnInteraction: true, delay: 6000 }}
     >
