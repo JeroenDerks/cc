@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useCart } from "react-use-cart";
-import Box from "@mui/material/Box";
+import { useRouter } from "next/router";
+import { v4 as uuidv4 } from "uuid";
 
+import Box from "@mui/material/Box";
 import ProductControls from "components/ProductControls";
 import SketchSelector from "components/SketchSelector";
-
-import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
-import { uploadRawData } from "utils/uploadRawData";
-import { useRouter } from "next/router";
 
 import ProductSwiper from "components/ProductSwiper";
 import Basic from "components/Sketches/partials/Basic";
@@ -17,10 +14,14 @@ import BasicWallPhoto from "components/Sketches/partials/Basic/BasicWallPhoto";
 import Pill from "components/Sketches/partials/Pill";
 import PillTeamPhoto from "components/Sketches/partials/Pill/PillTeamPhoto";
 import PillWallPhoto from "components/Sketches/partials/Pill/PillWallPhoto";
-import Rotate from "components/Sketches/partials/Rotate";
 import Perspective from "components/Sketches/partials/Perspective";
 import PerspectiveTeamPhoto from "components/Sketches/partials/Perspective/PerspectiveTeamPhoto";
 import PerspectiveWallPhoto from "components/Sketches/partials/Perspective/PerspectiveWallPhoto";
+import Rotate from "components/Sketches/partials/Rotate";
+import RotateTeamPhoto from "components/Sketches/partials/Rotate/RotateTeamPhoto";
+import RotateWallPhoto from "components/Sketches/partials/Rotate/RotateWallPhoto";
+import { uploadRawData } from "utils/uploadRawData";
+import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
@@ -29,7 +30,7 @@ const sketchOptions: Array<Sketch> = [
     title: "Perspective",
     sketches: [Perspective, PerspectiveTeamPhoto, PerspectiveWallPhoto],
   },
-  { title: "Rotate", sketches: [Rotate] },
+  { title: "Rotate", sketches: [Rotate, RotateWallPhoto, RotateTeamPhoto] },
 ];
 
 const OutputPane = ({
