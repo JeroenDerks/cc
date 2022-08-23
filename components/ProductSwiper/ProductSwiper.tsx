@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper";
-import Sketches from "../Sketches";
+import { convertColorToRGB } from "utils";
 import type { ColoredDataSet, EditorTheme, Sketch } from "types";
 
 import "swiper/css";
@@ -27,6 +27,8 @@ const OutputPane = ({
   theme: EditorTheme;
   uuid: string;
 }) => {
+  const selectedSketch = sketchOptions[parseInt(sketchId)];
+
   return (
     <Swiper
       spaceBetween={50}
@@ -36,41 +38,17 @@ const OutputPane = ({
       loop
       autoplay={{ disableOnInteraction: true, delay: 6000 }}
     >
-      <SwiperSlide>
-        <Sketches
-          key={sketchRenewKey}
-          loading={loading}
-          rawData={rawData}
-          sketchId={sketchId}
-          sketchOptions={sketchOptions}
-          theme={theme}
-          uuid={uuid}
-        />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Sketches
-          key={sketchRenewKey}
-          loading={loading}
-          rawData={rawData}
-          sketchId={sketchId}
-          sketchOptions={sketchOptions}
-          theme={theme}
-          uuid={uuid}
-        />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <Sketches
-          key={sketchRenewKey}
-          loading={loading}
-          rawData={rawData}
-          sketchId={sketchId}
-          sketchOptions={sketchOptions}
-          theme={theme}
-          uuid={uuid}
-        />
-      </SwiperSlide>
+      {selectedSketch.sketches.map((Sketch, i) => (
+        <SwiperSlide>
+          <Sketch
+            bg={convertColorToRGB(theme.bg)}
+            key={sketchRenewKey + i}
+            loading={loading}
+            data={rawData}
+            uuid={uuid}
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
