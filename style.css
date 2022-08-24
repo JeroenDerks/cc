@@ -27,7 +27,7 @@ textarea {
   caret-color: grey;
   outline: none;
   white-space: nowrap !important;
-  overflow: auto !important;
+  overflow: hidden !important;
 }
 
 pre {
