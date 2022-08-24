@@ -30,7 +30,7 @@ const sketchOptions: Array<Sketch> = [
     title: "Perspective",
     sketches: [Perspective, PerspectiveTeamPhoto, PerspectiveWallPhoto],
   },
-  { title: "Rotate", sketches: [Rotate, RotateWallPhoto, RotateTeamPhoto] },
+  { title: "Rotate", sketches: [Rotate, RotateTeamPhoto, RotateWallPhoto] },
 ];
 
 const OutputPane = ({
