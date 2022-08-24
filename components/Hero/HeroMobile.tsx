@@ -39,11 +39,15 @@ const HeroMobile = () => {
           justifyContent="center"
         >
           <Box>
-            <Typography variant="h1" fontWeight={800}>
+            <Typography variant="h1" fontWeight={800} gutterBottom>
               Celebrate great code
             </Typography>
 
-            <Typography variant="body1" mb={2} fontSize={20}>
+            <Typography
+              variant="body1"
+              mb={3}
+              fontSize={{ xs: 18, sm: 18, md: 20 }}
+            >
               Inspire your tech team by visualizing the best code practices for
               your office.
             </Typography>
