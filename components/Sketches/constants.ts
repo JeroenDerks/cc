@@ -15,8 +15,12 @@ export const canvasWidth = Math.round((DPI * canvasWidthMM) / mmPerInch); // req
 export const canvasHeight = Math.round((DPI * canvasHeightMM) / mmPerInch); // pixels of 400mm canvas height at 150 DPI
 export const canvasPadding = Math.round((DPI * canvasPaddingMM) / mmPerInch); // pixels of 49mm canvas padding at 150 DPI
 
-export const teamPhotoDimensions = { x: 293, y: 120, w: 214, h: 146 };
-export const wallPhotoDimensions = { x: 150, y: 80, w: 321, h: 219 };
+export const teamPhotoDimensions = (s: number) => {
+  return { x: 293 * s, y: 120 * s, w: 214 * s, h: 146 * s };
+};
+export const wallPhotoDimensions = (s: number) => {
+  return { x: 150 * s, y: 80 * s, w: 321 * s, h: 219 * s };
+};
 
 // handle the drawing of the padding for the canvas.
 export const drawFrame = (p5: p5Types, bg: [number, number, number]) => {

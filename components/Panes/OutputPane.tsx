@@ -66,7 +66,7 @@ const OutputPane = ({
   };
 
   return (
-    <>
+    <Box width={1}>
       <Box height={60} mb={1}>
         <SketchSelector
           sketchOptions={sketchOptions}
@@ -86,7 +86,7 @@ const OutputPane = ({
       />
 
       <ProductControls addToCard={addToCard} loading={loading} />
-    </>
+    </Box>
   );
 };
 

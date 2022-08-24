@@ -10,7 +10,6 @@ import InputPane from "components/Panes/InputPane";
 import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-import { gridP } from "theme";
 import { Typography } from "@mui/material";
 
 const EditorSection = ({ id }: { id: string }) => {
@@ -51,30 +50,34 @@ const EditorSection = ({ id }: { id: string }) => {
 
   return (
     <Section id={id} hideSideBorders>
-      <Box py={20}>
+      <Box py={20} px={2}>
         <Typography variant="h4" mb={5}>
           Paste it right here...
         </Typography>
         <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
-            <InputPane
-              language={language}
-              setLanguage={setLanguage}
-              setTheme={setTheme}
-              setUserValue={handleInputTextChange}
-              shiki={shiki}
-              theme={theme}
-              userValue={userValue}
-            />
+            <Box maxWidth="calc(100vw - 48px)" width={1}>
+              <InputPane
+                language={language}
+                setLanguage={setLanguage}
+                setTheme={setTheme}
+                setUserValue={handleInputTextChange}
+                shiki={shiki}
+                theme={theme}
+                userValue={userValue}
+              />
+            </Box>
           </Grid>
           <Grid item sm={12} md={6}>
-            <OutputPane
-              language={language}
-              rawData={rawData}
-              sketchRenewKey={sketchRenewKey}
-              theme={theme}
-              userValue={userValue}
-            />
+            <Box maxWidth="calc(100vw - 48px)" width={1}>
+              <OutputPane
+                language={language}
+                rawData={rawData}
+                sketchRenewKey={sketchRenewKey}
+                theme={theme}
+                userValue={userValue}
+              />
+            </Box>
           </Grid>
         </Grid>
       </Box>
