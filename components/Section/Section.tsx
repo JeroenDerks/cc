@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import { MAX_WIDTH } from "utils/constants";
-import { gridP, border } from "theme";
+import { border } from "theme";
 
 const OuterWrapper = styled(Box)(({ theme }) => ({
   width: "100vw",
@@ -31,7 +31,7 @@ const Section = ({
   id?: string;
 }) => {
   return (
-    <OuterWrapper px={gridP} id={id}>
+    <OuterWrapper px={{ xs: 2, sm: 2, md: 4, lg: 10 }} id={id}>
       <ContentWrapper hideBorders={Boolean(hideSideBorders)}>
         {children}
       </ContentWrapper>
