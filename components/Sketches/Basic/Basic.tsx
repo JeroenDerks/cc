@@ -29,7 +29,7 @@ const Basic: React.FC<SketchProps> = ({
     );
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
-    const graphic = drawContent({ groupedData, bg, p5, sx: scale, sy: scale });
+    const graphic = drawContent({ groupedData, bg, p5, sx: 1, sy: 1 });
     p5.image(graphic, 0, 0);
   };
 
