@@ -8,6 +8,7 @@ import HeroImage from "public/images/hero.jpg";
 import Link from "next/link";
 import Section from "components/Section";
 import { gridP } from "theme";
+import { NAVBAR_HEIGHT } from "utils/constants";
 
 const StartButton = styled(Button)({
   background: "#fff",
@@ -15,8 +16,6 @@ const StartButton = styled(Button)({
   textDecoration: "none",
   padding: `8px 16px`,
 });
-
-const navbarHeight = 56;
 
 const HeroMobile = () => {
   return (
@@ -33,7 +32,7 @@ const HeroMobile = () => {
       <Section>
         <Box
           p={gridP}
-          minHeight={`calc(30vh - ${navbarHeight}px)`}
+          minHeight={`calc(30vh - ${NAVBAR_HEIGHT}px)`}
           display="flex"
           flexDirection="column"
           justifyContent="center"
