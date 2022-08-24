@@ -13,16 +13,21 @@ const RotateSketch = dynamic(
   { ssr: false }
 ) as typeof Sketch;
 
-const Rotate: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+const Rotate: React.FC<SketchProps> = ({
+  bg,
+  data,
+  uuid,
+  scale,
+}: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(sketchWidth, sketchHeigth, p5.WEBGL).parent(
+    p5.createCanvas(sketchWidth * scale, sketchHeigth * scale, p5.WEBGL).parent(
       canvasParentRef
     );
     p5.background(bg[0], bg[1], bg[2]);
 
-    const graphic = drawRotate({ bg, groupedData, p5, s: 1 });
+    const graphic = drawRotate({ bg, groupedData, p5, s: scale });
     p5.imageMode(p5.CENTER);
     p5.image(graphic, 0, 0);
   };

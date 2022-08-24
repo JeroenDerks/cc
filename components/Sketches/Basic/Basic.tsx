@@ -15,14 +15,21 @@ const BasicSketch = dynamic(
   { ssr: false }
 ) as typeof Sketch;
 
-const Basic: React.FC<SketchProps> = ({ bg, data, uuid }: SketchProps) => {
+const Basic: React.FC<SketchProps> = ({
+  bg,
+  data,
+  uuid,
+  scale,
+}: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
+    p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
+      canvasParentRef
+    );
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
-    const graphic = drawContent({ groupedData, bg, p5, sx: 1, sy: 1 });
+    const graphic = drawContent({ groupedData, bg, p5, sx: scale, sy: scale });
     p5.image(graphic, 0, 0);
   };
 
