@@ -54,7 +54,7 @@ const InputEditor = ({
             }}
           />
         )}
-        {!shiki && "Working on it..."}
+        {!shiki && "Just preparing the palette..."}
       </EditorWrapper>
     </>
   );
