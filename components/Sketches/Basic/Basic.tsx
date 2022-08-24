@@ -22,7 +22,7 @@ const Basic: React.FC<SketchProps> = ({
   scale,
 }: SketchProps) => {
   const groupedData = groupDataByColor(data);
-  console.log(groupedData);
+
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
       canvasParentRef
