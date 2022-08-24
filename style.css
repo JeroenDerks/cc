@@ -27,7 +27,11 @@ textarea {
   caret-color: grey;
   outline: none;
   white-space: nowrap !important;
-  overflow: hidden !important;
+  overflow: auto !important;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
 }
 
 pre {

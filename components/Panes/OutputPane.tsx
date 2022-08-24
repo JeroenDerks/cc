@@ -67,7 +67,7 @@ const OutputPane = ({
 
   return (
     <Box width={1}>
-      <Box height={60} mb={1}>
+      <Box mb={1}>
         <SketchSelector
           sketchOptions={sketchOptions}
           setSketchId={setSketchId}
