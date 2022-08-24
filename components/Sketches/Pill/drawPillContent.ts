@@ -29,10 +29,12 @@ export const drawPillContent = (props: DrawContent) => {
       ? 1
       : defaultLinesPerWindow / linesOfCode;
 
-  const offsetH =
-    linesOfCode < defaultLinesPerWindow
-      ? p5.height * 0.5 - linesOfCode * charH * 0.5 - padding
-      : 0;
+  // const offsetH =
+  //   linesOfCode < defaultLinesPerWindow
+  //     ? p5.height * 0.5 - linesOfCode * charH * 0.5 - padding
+  //     : 0;
+
+  const offsetH = 0;
 
   groupedData?.forEach((line, iY) => {
     for (let i = 0; i < line.length; i++) {
