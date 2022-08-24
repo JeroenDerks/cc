@@ -44,6 +44,31 @@ theme.typography.body2 = {
   color: theme.palette.text.secondary,
 };
 
+theme.typography.h1 = {
+  ...theme.typography.h1,
+  [theme.breakpoints.down("sm")]: { fontSize: 28 },
+  [theme.breakpoints.up("sm")]: { fontSize: 32 },
+  [theme.breakpoints.up("md")]: { fontSize: 40 },
+};
+
+theme.typography.h2 = {
+  ...theme.typography.h2,
+  [theme.breakpoints.down("md")]: { fontSize: 32 },
+  [theme.breakpoints.up("md")]: { fontSize: 60 },
+};
+
+theme.typography.h3 = {
+  ...theme.typography.h3,
+  [theme.breakpoints.down("md")]: { fontSize: 24 },
+  [theme.breakpoints.up("md")]: { fontSize: 32 },
+};
+
+theme.typography.h4 = {
+  ...theme.typography.h4,
+  [theme.breakpoints.down("sm")]: { fontSize: 20 },
+  [theme.breakpoints.up("sm")]: { fontSize: 24 },
+};
+
 export const gridP = { xs: 3, sm: 3, md: 4, lg: 10 };
 export const border = `1px solid ${theme.palette.divider}`;
 export default theme;

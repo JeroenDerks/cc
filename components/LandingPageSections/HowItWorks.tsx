@@ -53,10 +53,10 @@ const HowItWorks = () => {
       <Grid container>
         {steps.map(({ icon, heading, body, imageAlt }) => (
           <GridOuterItem>
-            <Grid item xs={3} sm={3} md={12} mb={4} pr={2}>
+            <Grid item xs={2} sm={3} md={12} mb={4} pr={2}>
               <Image alt={imageAlt} src={icon} height={54} width={80} />
             </Grid>
-            <Grid item xs={9} sm={9} md={12}>
+            <Grid item xs={10} sm={9} md={12}>
               <Typography variant="h4" gutterBottom>
                 {heading}
               </Typography>
