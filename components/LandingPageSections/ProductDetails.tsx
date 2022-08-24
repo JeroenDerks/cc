@@ -9,45 +9,55 @@ import hangDetail1 from "public/images/hang_detail_1.jpg";
 import hangDetail2 from "public/images/hang_detail_2.jpg";
 import { gridP, border } from "theme";
 
+const details = [
+  {
+    heading: "Huge frame for huge impact",
+    body: "With its dimensions of 60 x 40 centimeter, this piece of art will surely turn some heads.",
+    image: sizeDetail1,
+    imageAlt: "Artwork dimensions",
+  },
+  {
+    heading: "Made of high quality canvas",
+    body: "The artworks are created on the industry's best canvas material",
+    image: hangDetail1,
+    imageAlt: "High quality canvas",
+  },
+  {
+    heading: "Easy to mount",
+    body: "You are all engineers, and the artwork ships with everything you'll need...",
+    image: hangDetail2,
+    imageAlt: "Mounting details",
+  },
+];
 const ProductDetails = () => {
   return (
     <Section>
       <Grid container>
-        <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
-          <Box>
-            <Typography variant="h4" gutterBottom>
-              Huge frame for huge impact
-            </Typography>
-            <Typography variant="body1" mb={2}>
-              With its dimensions of 60 x 40 centimeter, this piece of art will
-              surely turn some heads.
-            </Typography>
-            <Image height={320} src={sizeDetail1} alt="Hang detail 1" />
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
-          <Box>
-            <Typography variant="h4" gutterBottom>
-              Made of high quality canvas
-            </Typography>
-            <Typography variant="body1" mb={2}>
-              The artworks are created on the industry's best canvas material
-            </Typography>
-            <Image height={320} src={hangDetail1} alt="Hang detail 2" />
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} p={gridP} borderRight={border}>
-          <Box>
-            <Typography variant="h4" gutterBottom>
-              Easy to mount
-            </Typography>
-            <Typography variant="body1" mb={2}>
-              You are all engineers, and the artwork ships with everything
-              you'll need...
-            </Typography>
-            <Image height={320} src={hangDetail2} alt="Hang detail 3" />
-          </Box>
-        </Grid>
+        {details.map(({ heading, body, image, imageAlt }) => (
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={4}
+            px={gridP}
+            py={4}
+            borderRight={border}
+          >
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                {heading}
+              </Typography>
+              <Typography variant="body1" mb={2}>
+                {body}
+              </Typography>
+              <Image
+                height={{ xs: 200, sm: 240, md: 320 }}
+                src={image}
+                alt={imageAlt}
+              />
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Section>
   );

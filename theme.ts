@@ -44,6 +44,6 @@ theme.typography.body2 = {
   color: theme.palette.text.secondary,
 };
 
-export const gridP = { xs: 2, sm: 2, md: 4, lg: 10 };
+export const gridP = { xs: 3, sm: 3, md: 4, lg: 10 };
 export const border = `1px solid ${theme.palette.divider}`;
 export default theme;

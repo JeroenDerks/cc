@@ -17,7 +17,7 @@ export const Accordion = styled(MuiAccordion)(({ theme }) => ({
 }));
 
 export const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
-  paddingLeft: theme.spacing(2),
+  paddingLeft: theme.spacing(3),
   [theme.breakpoints.up("md")]: { paddingLeft: theme.spacing(4) },
   [theme.breakpoints.up("lg")]: { paddingLeft: theme.spacing(10) },
 
@@ -37,7 +37,7 @@ export const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
 export const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: `1px solid ${theme.palette.divider}`,
   padding: theme.spacing(2),
-  paddingLeft: theme.spacing(2),
+  paddingLeft: theme.spacing(3),
   [theme.breakpoints.up("md")]: { paddingLeft: theme.spacing(4) },
   [theme.breakpoints.up("lg")]: { paddingLeft: theme.spacing(10) },
 }));

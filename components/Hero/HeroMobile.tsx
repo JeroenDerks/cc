@@ -20,7 +20,7 @@ const StartButton = styled(Button)({
 const HeroMobile = () => {
   return (
     <>
-      <Box width={1} left={0} position="relative" height="70vh">
+      <Box width={1} left={0} position="relative" height="65vh">
         <Image
           objectFit="cover"
           placeholder="blur"
@@ -31,8 +31,9 @@ const HeroMobile = () => {
       </Box>
       <Section>
         <Box
-          p={gridP}
-          minHeight={`calc(30vh - ${NAVBAR_HEIGHT}px)`}
+          px={gridP}
+          py={6}
+          minHeight={`calc(35vh - ${NAVBAR_HEIGHT}px)`}
           display="flex"
           flexDirection="column"
           justifyContent="center"
