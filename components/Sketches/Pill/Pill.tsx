@@ -31,8 +31,8 @@ const Pills: React.FC<SketchProps> = ({
       bg,
       groupedData,
       p5,
-      sx: 1,
-      sy: 1,
+      sx: scale,
+      sy: scale,
     });
     p5.image(graphic, 0, 0);
   };
