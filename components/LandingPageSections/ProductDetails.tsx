@@ -42,6 +42,7 @@ const ProductDetails = () => {
             px={gridP}
             py={4}
             borderRight={border}
+            key={heading}
           >
             <Box>
               <Typography variant="h4" gutterBottom>
