@@ -25,7 +25,7 @@ export const drawRotate = (props: DrawContent) => {
       : linesOfCode / defaultLinesPerWindow;
 
   let graphic = p5.createGraphics(
-    p5.width * 1.25 * stretchFactor,
+    p5.width * (s < 0.8 ? 1.75 : 1.25) * stretchFactor,
     linesOfCode * size + yOffset
   );
 

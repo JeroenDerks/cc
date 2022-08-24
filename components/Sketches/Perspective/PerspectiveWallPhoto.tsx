@@ -41,7 +41,7 @@ const PerspectiveWallPhoto: React.FC<SketchProps> = ({
       sx: scale,
       sy: scale,
     });
-    p5.image(backgroundImg, 0, 0);
+    p5.image(backgroundImg, 0, 0, p5.width, p5.height);
     const { x, y, w, h } = wallPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
     p5.rect(x + 4, y + 4, w, h, 2);
