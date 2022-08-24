@@ -61,13 +61,27 @@ const SketchSelector = ({
         borderRadius="4px"
         px={2}
       >
-        <Grid container>
-          {sketchOptions.map(({ title }, i) => (
-            <Grid item xs={6} key={i}>
-              <FormControlLabel control={<Radio />} label={title} value={i} />
+        <FormControl>
+          <RadioGroup
+            aria-labelledby="sketch-options"
+            name="sketch-option-group"
+            onChange={(e) => setSketchId(e.target.value)}
+            row
+            value={sketchId}
+          >
+            <Grid container>
+              {sketchOptions.map(({ title }, i) => (
+                <Grid item xs={6} key={i}>
+                  <FormControlLabel
+                    control={<Radio />}
+                    label={title}
+                    value={i}
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </RadioGroup>
+        </FormControl>
       </Box>
     </>
   );

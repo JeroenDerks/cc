@@ -31,7 +31,7 @@ const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
     p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
       canvasParentRef
     );
-    const graphic = drawRotate({ bg, groupedData, p5, s: 1 });
+    const graphic = drawRotate({ bg, groupedData, p5, s: scale });
     p5.image(backgroundImg, 0, 0, p5.width, p5.height);
     const { x, y, w, h } = teamPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
