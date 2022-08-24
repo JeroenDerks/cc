@@ -21,8 +21,8 @@ const questionsColumn1 = [
   {
     title: "What are the dimensions?",
     answerParagraphs: [
-      "The canvas is 70 centimeters wide and 50 centimeters tall. ",
-      "In the imperial system this is 20 x 28 inch.",
+      "The canvas is 60 centimeters wide and 40 centimeters tall. ",
+      "In the imperial system this is 24 x 16 inch.",
       'The canvas has a 2-3 cm (0.8-1.2") thick frame.',
     ],
   },
@@ -45,7 +45,7 @@ const questionsColumn2 = [
   {
     title: "Do you have other sizes available?",
     answerParagraphs: [
-      "Currently we only offer 70 x 50 cm, but write us on email at info@celebratecode.com and we'll make sure you get the size you want.",
+      "Currently we only offer 60 x 40 cm, but write us on email at info@celebratecode.com and we'll make sure you get the size you want.",
     ],
   },
 ];
