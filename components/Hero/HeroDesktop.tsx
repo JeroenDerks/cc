@@ -17,7 +17,7 @@ const StartButton = styled(Button)({
   padding: `8px 16px`,
 });
 
-const Hero = () => {
+const HeroDesktop = () => {
   return (
     <Box width={1} left={0} position="relative">
       <Image
@@ -31,19 +31,11 @@ const Hero = () => {
       <Flex justifyContent="center" px={gridP}>
         <Flex
           maxWidth={MAX_WIDTH}
+          justifyContent="center"
           width={1}
-          sx={{
-            zIndex: 1,
-            height: { xs: "100vh", sm: "100vh", md: "80vh", lg: "70vh" },
-            justifyContent: {
-              xs: "space-between",
-              sm: "space-between",
-              md: "center",
-            },
-          }}
+          sx={{ zIndex: 1, height: { md: "80vh", lg: "70vh" } }}
           flexDirection="column"
-          py={{ xs: 16, sm: 16, md: 10, lg: 10 }}
-          pt={{ xs: 12, sm: 12, md: 0, lg: 0 }}
+          py={{ md: 10, lg: 10 }}
           px={gridP}
         >
           <Box maxWidth={420} mb={1}>
@@ -66,4 +58,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroDesktop;
