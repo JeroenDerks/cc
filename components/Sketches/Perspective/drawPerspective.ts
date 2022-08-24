@@ -15,7 +15,7 @@ type DrawContent = {
 
 export const drawPerspective = (props: DrawContent) => {
   const { bg, groupedData, p5, sx, sy } = props;
-  const pg = p5.createGraphics(p5.width * sx, p5.height * sy, p5.WEBGL);
+  const pg = p5.createGraphics(p5.width, p5.height, p5.WEBGL);
   pg.background(bg[0], bg[1], bg[2]);
 
   pg.lights();

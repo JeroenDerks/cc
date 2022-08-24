@@ -17,7 +17,7 @@ type DrawContent = {
 };
 
 export const drawContent = ({ bg, groupedData, p5, sx, sy }: DrawContent) => {
-  const pg = p5.createGraphics(p5.width * sx, p5.height * sy);
+  const pg = p5.createGraphics(p5.width, p5.height);
   pg.background(bg[0], bg[1], bg[2]);
   pg.noStroke();
 

@@ -41,7 +41,7 @@ const OutputPane = ({
       autoplay={{ disableOnInteraction: true, delay: 6000 }}
     >
       {selectedSketch.sketches.map((Sketch, i) => (
-        <SwiperSlide>
+        <SwiperSlide key={i}>
           <Sketch
             bg={convertColorToRGB(theme.bg)}
             key={sketchRenewKey + i}
