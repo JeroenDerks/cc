@@ -7,7 +7,7 @@ const ImageComponent = ({
   src,
   alt,
 }: {
-  height: number;
+  height: number | { xs: number; sm: number; md: number };
   src: StaticImageData;
   alt: string;
 }) => {

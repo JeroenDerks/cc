@@ -20,7 +20,7 @@ const StartButton = styled(Button)({
 const HeroMobile = () => {
   return (
     <>
-      <Box width={1} left={0} position="relative" height="70vh">
+      <Box width={1} left={0} position="relative" height="65vh">
         <Image
           objectFit="cover"
           placeholder="blur"
@@ -31,18 +31,23 @@ const HeroMobile = () => {
       </Box>
       <Section>
         <Box
-          p={gridP}
-          minHeight={`calc(30vh - ${NAVBAR_HEIGHT}px)`}
+          px={gridP}
+          py={6}
+          minHeight={`calc(35vh - ${NAVBAR_HEIGHT}px)`}
           display="flex"
           flexDirection="column"
           justifyContent="center"
         >
           <Box>
-            <Typography variant="h1" fontWeight={800}>
+            <Typography variant="h1" fontWeight={800} gutterBottom>
               Celebrate great code
             </Typography>
 
-            <Typography variant="body1" mb={2} fontSize={20}>
+            <Typography
+              variant="body1"
+              mb={3}
+              fontSize={{ xs: 18, sm: 18, md: 20 }}
+            >
               Inspire your tech team by visualizing the best code practices for
               your office.
             </Typography>
