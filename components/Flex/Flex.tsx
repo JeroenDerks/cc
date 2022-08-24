@@ -3,7 +3,7 @@ import React from "react";
 import { MarginProps } from "types";
 
 type FlexDirection = "column" | "row";
-type PaddingProp = { xs: number; sm: number; md: number; lg: number };
+type PaddingProp = { xs?: number; sm?: number; md?: number; lg?: number };
 type FlexProps = {
   flexDirection?: FlexDirection | FlexDirection[];
   justifyContent?: string | string[];
