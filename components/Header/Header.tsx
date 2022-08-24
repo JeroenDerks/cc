@@ -13,7 +13,6 @@ const Wrapper = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.action.disabled}`,
   maxHeight: NAVBAR_HEIGHT,
   minHeight: NAVBAR_HEIGHT,
-  padding: "8px 32px",
 }));
 
 const CheckoutLink = styled("a")(({ theme }) => ({
@@ -45,7 +44,7 @@ const Header = () => {
   }, [items]);
 
   return (
-    <Wrapper>
+    <Wrapper px={{ xs: 2, sm: 2, md: 4 }} py={1}>
       <Box
         maxWidth={1800}
         width={1}
