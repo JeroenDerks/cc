@@ -17,6 +17,7 @@ let backgroundImg: p5Types.Image;
 const PerspectiveWallPhoto: React.FC<SketchProps> = ({
   bg,
   data,
+  scale,
 }: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
@@ -27,13 +28,21 @@ const PerspectiveWallPhoto: React.FC<SketchProps> = ({
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
+    p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
+      canvasParentRef
+    );
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
 
-    const graphic = drawPerspective({ groupedData, bg, p5, sx: 1, sy: 1 });
+    const graphic = drawPerspective({
+      groupedData,
+      bg,
+      p5,
+      sx: scale,
+      sy: scale,
+    });
     p5.image(backgroundImg, 0, 0);
-    const { x, y, w, h } = wallPhotoDimensions;
+    const { x, y, w, h } = wallPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
     p5.rect(x + 4, y + 4, w, h, 2);
     p5.rect(x + 2, y + 2, w, h, 2);

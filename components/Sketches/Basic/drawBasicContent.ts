@@ -17,8 +17,7 @@ type DrawContent = {
 };
 
 export const drawContent = ({ bg, groupedData, p5, sx, sy }: DrawContent) => {
-  const pg = p5.createGraphics(p5.width * sx, p5.height * sy);
-
+  const pg = p5.createGraphics(p5.width, p5.height);
   pg.background(bg[0], bg[1], bg[2]);
   pg.noStroke();
 
@@ -29,10 +28,12 @@ export const drawContent = ({ bg, groupedData, p5, sx, sy }: DrawContent) => {
       ? 1
       : defaultLinesPerWindow / linesOfCode;
 
-  const offsetH =
-    linesOfCode < defaultLinesPerWindow
-      ? p5.height * 0.5 - linesOfCode * charH * 0.5 - padding
-      : 0;
+  // const offsetH =
+  //   linesOfCode < defaultLinesPerWindow
+  //     ? p5.height * 0.5 - linesOfCode * charH * 0.5 - padding
+  //     : 0;
+
+  const offsetH = 0;
 
   groupedData?.forEach((line, indexY) => {
     for (let i = 0; i < line.length; i++) {

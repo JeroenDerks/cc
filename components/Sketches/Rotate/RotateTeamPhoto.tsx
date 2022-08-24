@@ -15,7 +15,7 @@ const PillSketch = dynamic(
 let backgroundImg: p5Types.Image;
 let foregroundImg: p5Types.Image;
 
-const Pills: React.FC<SketchProps> = ({ bg, data }: SketchProps) => {
+const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
   const preload = (p5: p5Types) => {
@@ -28,17 +28,18 @@ const Pills: React.FC<SketchProps> = ({ bg, data }: SketchProps) => {
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
-
+    p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
+      canvasParentRef
+    );
     const graphic = drawRotate({ bg, groupedData, p5, s: 1 });
-    p5.image(backgroundImg, 0, 0);
-    const { x, y, w, h } = teamPhotoDimensions;
+    p5.image(backgroundImg, 0, 0, p5.width, p5.height);
+    const { x, y, w, h } = teamPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
     p5.rect(x + 3, y + 3, w, h, 2);
     p5.rect(x + 2, y + 2, w, h, 2);
     p5.rect(x + 1, y + 1, w, h, 1);
     p5.image(graphic, x, y, w, h);
-    p5.image(foregroundImg, 0, 0);
+    p5.image(foregroundImg, 0, 0, p5.width, p5.height);
   };
 
   return <PillSketch setup={setup} preload={preload} />;
