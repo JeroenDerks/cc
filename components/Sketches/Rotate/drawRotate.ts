@@ -54,7 +54,7 @@ export const drawRotate = (props: DrawContent) => {
     }
   });
 
-  const preview = p5.createGraphics(p5.width * s, p5.height * s, p5.WEBGL);
+  const preview = p5.createGraphics(p5.width, p5.height, p5.WEBGL);
 
   preview.background(bg[0], bg[1], bg[2]);
 

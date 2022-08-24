@@ -18,6 +18,7 @@ let foregroundImg: p5Types.Image;
 const PerspectiveTeamPhoto: React.FC<SketchProps> = ({
   bg,
   data,
+  scale,
 }: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
@@ -31,20 +32,28 @@ const PerspectiveTeamPhoto: React.FC<SketchProps> = ({
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(sketchWidth, sketchHeigth).parent(canvasParentRef);
+    p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
+      canvasParentRef
+    );
     p5.background(bg[0], bg[1], bg[2]);
     p5.noStroke();
 
-    const graphic = drawPerspective({ groupedData, bg, p5, sx: 1, sy: 1 });
-    console.log(graphic);
-    p5.image(backgroundImg, 0, 0);
-    const { x, y, w, h } = teamPhotoDimensions;
+    const graphic = drawPerspective({
+      groupedData,
+      bg,
+      p5,
+      sx: scale,
+      sy: scale,
+    });
+
+    p5.image(backgroundImg, 0, 0, p5.width, p5.height);
+    const { x, y, w, h } = teamPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
     p5.rect(x + 3, y + 3, w, h, 2);
     p5.rect(x + 2, y + 2, w, h, 2);
     p5.rect(x + 1, y + 1, w, h, 1);
     p5.image(graphic, x, y, w, h);
-    p5.image(foregroundImg, 0, 0);
+    p5.image(foregroundImg, 0, 0, p5.width, p5.height);
   };
 
   return <PerspectiveTeamPhotoSketch setup={setup} preload={preload} />;
