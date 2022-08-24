@@ -5,14 +5,15 @@ import Box from "@mui/material/Box";
 import { useCart, Item } from "react-use-cart";
 import Badge from "@mui/material/Badge";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { NAVBAR_HEIGHT } from "utils/constants";
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  alignItems: "center",
+  display: "flex",
+  justifyContent: "center",
   borderBottom: `1px solid ${theme.palette.action.disabled}`,
-  maxHeight: 56,
-  minHeight: 56,
+  maxHeight: NAVBAR_HEIGHT,
+  minHeight: NAVBAR_HEIGHT,
   padding: "8px 32px",
-  width: "100%",
 }));
 
 const CheckoutLink = styled("a")(({ theme }) => ({
@@ -47,6 +48,7 @@ const Header = () => {
     <Wrapper>
       <Box
         maxWidth={1800}
+        width={1}
         display="flex"
         justifyContent="space-between"
         alignItems="center"
