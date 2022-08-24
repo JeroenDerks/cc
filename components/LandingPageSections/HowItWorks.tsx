@@ -52,7 +52,7 @@ const HowItWorks = () => {
     <Section>
       <Grid container>
         {steps.map(({ icon, heading, body, imageAlt }) => (
-          <GridOuterItem>
+          <GridOuterItem key={heading}>
             <Grid item xs={2} sm={3} md={12} mb={4} pr={2}>
               <Image alt={imageAlt} src={icon} height={54} width={80} />
             </Grid>

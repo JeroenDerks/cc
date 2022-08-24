@@ -10,7 +10,6 @@ import InputPane from "components/Panes/InputPane";
 import Box from "@mui/material/Box";
 import OutputPane from "components/Panes/OutputPane";
 import Section from "components/Section";
-import { gridP } from "theme";
 import { Typography } from "@mui/material";
 
 const EditorSection = ({ id }: { id: string }) => {
