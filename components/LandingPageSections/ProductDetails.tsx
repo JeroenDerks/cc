@@ -17,7 +17,7 @@ const details = [
     imageAlt: "High quality canvas",
   },
   {
-    heading: "Huge frame for huge impact",
+    heading: "Large frame for large impact",
     body: "With its dimensions of 60 x 40 centimeter, this piece of art will surely turn some heads.",
     image: sizeDetail1,
     imageAlt: "Artwork dimensions",
