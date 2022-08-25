@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper";
 import { convertColorToRGB } from "utils";
 
 import type { ColoredDataSet, EditorTheme, Sketch } from "types";
 import { useScalingFactor } from "utils/useScalingFactor";
-import { border } from "theme";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -54,7 +53,7 @@ const OutputPane = ({
         >
           <Sketch
             bg={convertColorToRGB(theme.bg)}
-            key={sketchRenewKey + i}
+            key={sketchRenewKey + "_" + i}
             loading={loading}
             scale={scalingFactor}
             data={rawData}
