@@ -51,12 +51,12 @@ const HowItWorks = () => {
   return (
     <Section>
       <Grid container>
-        {steps.map(({ icon, heading, body, imageAlt }) => (
+        {steps.map(({ icon, heading, body, imageAlt }, i) => (
           <GridOuterItem key={heading}>
-            <Grid item xs={2} sm={3} md={12} mb={4} pr={2}>
-              <Image alt={imageAlt} src={icon} height={54} width={80} />
+            <Grid item xs={12} sm={12} md={12} mb={2}>
+              <Image alt={imageAlt} src={icon} height={43} width={60} />
             </Grid>
-            <Grid item xs={10} sm={9} md={12}>
+            <Grid item xs={12} sm={12} md={12}>
               <Typography variant="h4" gutterBottom>
                 {heading}
               </Typography>

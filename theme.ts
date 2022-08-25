@@ -65,10 +65,10 @@ theme.typography.h3 = {
 
 theme.typography.h4 = {
   ...theme.typography.h4,
-  [theme.breakpoints.down("sm")]: { fontSize: 20 },
-  [theme.breakpoints.up("sm")]: { fontSize: 24 },
+  [theme.breakpoints.down("sm")]: { fontSize: 18 },
+  [theme.breakpoints.up("sm")]: { fontSize: 20 },
 };
 
-export const gridP = { xs: 3, sm: 3, md: 4, lg: 10 };
+export const gridP = { xs: 2, sm: 2, md: 4, lg: 10 };
 export const border = `1px solid ${theme.palette.divider}`;
 export default theme;

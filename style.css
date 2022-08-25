@@ -22,6 +22,10 @@ p {
   margin-bottom: 8px;
 }
 
+canvas {
+  transform: scale(1, 1.025);
+}
+
 textarea {
   z-index: 100;
   caret-color: grey;

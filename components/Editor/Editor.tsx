@@ -43,14 +43,15 @@ const InputEditor = ({
         {shiki && (
           <Editor
             value={textValue}
+            autoFocus={true}
             onValueChange={(code) => setTextValue(code)}
             highlight={(code) =>
               shiki.codeToHtml(code, { lang: language.code })
             }
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 14,
-              minHeight: 493,
+              fontSize: window?.innerWidth < 800 ? 12 : 14,
+              minHeight: window?.innerWidth < 800 ? 200 : 493,
             }}
           />
         )}

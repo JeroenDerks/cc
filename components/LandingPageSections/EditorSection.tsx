@@ -49,9 +49,9 @@ const EditorSection = ({ id }: { id: string }) => {
   }, [shiki]);
 
   return (
-    <Section id={id} hideSideBorders>
-      <Box py={20} px={2}>
-        <Typography variant="h4" mb={5}>
+    <Section id={id} hideSideBorders sx={{ backgroundColor: "#111" }}>
+      <Box py={10} px={2}>
+        <Typography variant="h4" mb={5} fontSize={{ xs: 24, sm: 32 }}>
           Paste it right here...
         </Typography>
         <Grid container spacing={2}>
