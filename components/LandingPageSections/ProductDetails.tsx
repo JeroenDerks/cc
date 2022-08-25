@@ -11,16 +11,16 @@ import { gridP, border } from "theme";
 
 const details = [
   {
-    heading: "Huge frame for huge impact",
-    body: "With its dimensions of 60 x 40 centimeter, this piece of art will surely turn some heads.",
-    image: sizeDetail1,
-    imageAlt: "Artwork dimensions",
-  },
-  {
     heading: "Made of high quality canvas",
     body: "The artworks are created on the industry's best canvas material",
     image: hangDetail1,
     imageAlt: "High quality canvas",
+  },
+  {
+    heading: "Large frame for large impact",
+    body: "With its dimensions of 60 x 40 centimeter, this piece of art will surely turn some heads.",
+    image: sizeDetail1,
+    imageAlt: "Artwork dimensions",
   },
   {
     heading: "Easy to mount",
@@ -41,7 +41,7 @@ const ProductDetails = () => {
             md={4}
             px={gridP}
             py={4}
-            borderRight={border}
+            borderRight={{ xs: "none", sm: "none", md: border }}
             key={heading}
           >
             <Box>

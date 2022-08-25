@@ -22,6 +22,7 @@ import RotateTeamPhoto from "components/Sketches/Rotate/RotateTeamPhoto";
 import RotateWallPhoto from "components/Sketches/Rotate/RotateWallPhoto";
 import { uploadRawData } from "utils/uploadRawData";
 import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
+import theme from "theme";
 
 const sketchOptions: Array<Sketch> = [
   { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
