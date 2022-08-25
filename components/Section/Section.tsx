@@ -25,13 +25,15 @@ const Section = ({
   children,
   hideSideBorders,
   id,
+  sx,
 }: {
   children: React.ReactNode;
   hideSideBorders?: true;
   id?: string;
+  sx?: any;
 }) => {
   return (
-    <OuterWrapper px={{ xs: 2, sm: 2, md: 4, lg: 10 }} id={id}>
+    <OuterWrapper px={{ xs: 1, sm: 1, md: 4, lg: 10 }} id={id} sx={sx}>
       <ContentWrapper hideBorders={Boolean(hideSideBorders)}>
         {children}
       </ContentWrapper>

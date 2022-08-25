@@ -1,6 +1,6 @@
-import { styled } from "@mui/material";
+import { styled, Theme } from "@mui/material";
 import Box from "@mui/material/Box";
-
+import { border } from "theme";
 export const LineNo = styled("span")`
   display: block;
   width: 50px;
@@ -15,15 +15,19 @@ export const LineNo = styled("span")`
 `;
 
 export const EditorWrapper = styled(Box)(
-  ({ bg }: { bg?: string | number }) => ({
+  ({ bg, theme }: { bg?: string | number; theme: Theme }) => ({
     background: bg,
+    border: border,
     boxSizing: "border-box",
     caretColor: "grey",
     fontFamily: "monospace",
     position: "relative",
-    minHeight: 533,
     width: "100%",
     padding: 16,
     maxWidth: 800,
+    borderRadius: 4,
+
+    [theme.breakpoints.down("sm")]: { minHeight: 300 },
+    [theme.breakpoints.up("sm")]: { fontSize: 541 },
   })
 );

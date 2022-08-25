@@ -4,7 +4,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import theme from "theme";
+import Flex from "components/Flex";
 
 const SwiperButton = styled(IconButton)({
   padding: 0,
@@ -23,7 +25,6 @@ const Wrapper = styled(Box)(({ theme }) => ({
   maxHeight: 56,
   minHeight: 56,
   padding: "0 16px",
-  width: "100%",
 }));
 
 const ProductControls = ({
@@ -43,15 +44,21 @@ const ProductControls = ({
           <ChevronRightIcon sx={{ fill: theme.palette.text.secondary }} />
         </SwiperButton>
       </Box>
-      <Button
-        onClick={addToCard}
-        variant="outlined"
-        color="success"
-        disabled={loading}
-        id="add_to_cart"
-      >
-        Generate artwork
-      </Button>
+
+      <Flex alignItems="center" justifyContent="center">
+        <Typography variant="h4" mr={2}>
+          € 69,-
+        </Typography>
+        <Button
+          onClick={addToCard}
+          variant="outlined"
+          color="success"
+          disabled={loading}
+          id="add_to_cart"
+        >
+          Add to cart
+        </Button>
+      </Flex>
     </Wrapper>
   );
 };

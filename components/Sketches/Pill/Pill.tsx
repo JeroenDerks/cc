@@ -23,6 +23,7 @@ const Pills: React.FC<SketchProps> = ({
   const groupedData = groupDataByColor(data);
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
+    if (!canvasParentRef) return;
     p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
       canvasParentRef
     );
