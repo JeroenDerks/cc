@@ -32,6 +32,7 @@ const BasicTeamPhoto: React.FC<SketchProps> = ({
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
+    if (!canvasParentRef) return;
     p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
       canvasParentRef
     );

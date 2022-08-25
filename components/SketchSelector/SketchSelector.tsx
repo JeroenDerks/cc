@@ -1,13 +1,14 @@
 import React from "react";
-import { Grid, styled } from "@mui/material";
-
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Sketch } from "types";
-import theme from "theme";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import Select from "@mui/material/Select";
+import type { Sketch } from "types";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -55,32 +56,21 @@ const SketchSelector = ({
         </FormControl>
       </Wrapper>
 
-      <Box
-        border={`1px solid ${theme.palette.action.disabled}`}
-        display={{ xs: "block", sm: "none", md: "none" }}
-        borderRadius="4px"
-        px={2}
-      >
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="sketch-options"
-            name="sketch-option-group"
+      {/* Mobile */}
+      <Box display={{ xs: "block", sm: "none", md: "none" }}>
+        <FormControl style={{ width: "100%" }}>
+          <InputLabel id="theme-label">Sketch</InputLabel>
+          <Select
+            label="Sketch"
             onChange={(e) => setSketchId(e.target.value)}
-            row
             value={sketchId}
           >
-            <Grid container>
-              {sketchOptions.map(({ title }, i) => (
-                <Grid item xs={6} key={i}>
-                  <FormControlLabel
-                    control={<Radio />}
-                    label={title}
-                    value={i}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </RadioGroup>
+            {sketchOptions.map(({ title }, i) => (
+              <MenuItem value={i} key={i}>
+                {title}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
       </Box>
     </>
