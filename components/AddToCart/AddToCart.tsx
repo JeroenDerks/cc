@@ -10,7 +10,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.action.disabled}`,
   borderRadius: 4,
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
   maxHeight: 56,
   minHeight: 56,
   padding: "0 16px",
@@ -25,20 +25,18 @@ const AddToCart = ({
 }) => {
   return (
     <Wrapper>
-      <Flex alignItems="center" justifyContent="center">
-        <Typography variant="h4" mr={2}>
-          € 69,-
-        </Typography>
-        <Button
-          onClick={addToCard}
-          variant="outlined"
-          color="success"
-          disabled={loading}
-          id="add_to_cart"
-        >
-          Add to cart
-        </Button>
-      </Flex>
+      <Typography variant="h4" mr={2} fontWeight={300}>
+        Price: € 69,-
+      </Typography>
+      <Button
+        onClick={addToCard}
+        variant="outlined"
+        color="success"
+        disabled={loading}
+        id="add_to_cart"
+      >
+        Generate art work
+      </Button>
     </Wrapper>
   );
 };

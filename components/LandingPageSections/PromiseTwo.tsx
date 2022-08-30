@@ -37,7 +37,6 @@ const PromiseOne = () => {
           p={gridP}
           container
           direction="row"
-          justifyContent="center"
           alignItems="center"
         >
           <Box py={3} maxWidth={600}>

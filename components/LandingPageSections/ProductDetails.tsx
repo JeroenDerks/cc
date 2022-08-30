@@ -13,10 +13,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const details = [
   {
-    heading: "Made of high quality canvas",
-    body: "The artworks are created on the industry's best canvas material",
+    heading: "Easy to mount",
+    body: "You are all engineers, and the artwork ships with everything you'll need...",
     image: hangDetail1,
-    imageAlt: "High quality canvas",
+    imageAlt: "Mounting details",
   },
   {
     heading: "Large frame for large impact",
@@ -25,10 +25,10 @@ const details = [
     imageAlt: "Artwork dimensions",
   },
   {
-    heading: "Easy to mount",
-    body: "You are all engineers, and the artwork ships with everything you'll need...",
+    heading: "Made of high quality canvas",
+    body: "The artworks are created on the industry's best canvas material",
     image: hangDetail2,
-    imageAlt: "Mounting details",
+    imageAlt: "High quality canvas",
   },
 ];
 const ProductDetails = () => {
