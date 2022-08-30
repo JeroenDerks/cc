@@ -1,5 +1,7 @@
 import p5Types from "p5";
 
+export type ArtworkScale = { x: number; y: number; w: number; h: number };
+
 // Sketch details
 export const sketchHeigth = 533;
 export const sketchWidth = 800;
@@ -15,10 +17,11 @@ export const canvasWidth = Math.round((DPI * canvasWidthMM) / mmPerInch); // req
 export const canvasHeight = Math.round((DPI * canvasHeightMM) / mmPerInch); // pixels of 400mm canvas height at 150 DPI
 export const canvasPadding = Math.round((DPI * canvasPaddingMM) / mmPerInch); // pixels of 49mm canvas padding at 150 DPI
 
-export const teamPhotoDimensions = (s: number) => {
-  return { x: 293 * s, y: 120 * s, w: 214 * s, h: 146 * s };
+export const teamPhotoDimensions: (s: number) => ArtworkScale = (s) => {
+  return { x: 270 * s, y: 130 * s, w: 257 * s, h: 175 * s };
 };
-export const wallPhotoDimensions = (s: number) => {
+
+export const wallPhotoDimensions: (s: number) => ArtworkScale = (s) => {
   return { x: 150 * s, y: 80 * s, w: 321 * s, h: 219 * s };
 };
 

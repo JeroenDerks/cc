@@ -1,9 +1,8 @@
 import React from "react";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Flex from "components/Flex";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
@@ -28,15 +27,15 @@ const AddToCart = ({
       <Typography variant="h4" mr={2} fontWeight={300}>
         Price: € 69,-
       </Typography>
-      <Button
+      <LoadingButton
         onClick={addToCard}
         variant="outlined"
         color="success"
-        disabled={loading}
+        loading={loading}
         id="add_to_cart"
       >
         Generate art work
-      </Button>
+      </LoadingButton>
     </Wrapper>
   );
 };

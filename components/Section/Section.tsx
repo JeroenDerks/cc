@@ -14,6 +14,7 @@ const OuterWrapper = styled(Box)(({ theme }) => ({
 const ContentWrapper = styled(Box)(
   ({ hideBorders }: { hideBorders: boolean }) => ({
     maxWidth: MAX_WIDTH,
+    minWidth: 0,
     width: "100vw",
     flex: "0 0 100%",
     borderLeft: hideBorders ? "none" : border,

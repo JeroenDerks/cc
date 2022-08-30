@@ -46,7 +46,7 @@ const ImageGallery = ({ id }: { id: string }) => {
           prevEl: `.swiper-prev-${id}`,
         }}
         loop
-        // autoplay={{ disableOnInteraction: true, delay: 2000 }}
+        autoplay={{ disableOnInteraction: true, delay: 5000 }}
       >
         <SwiperSlide>
           <ProductImageTwo id={id} />
