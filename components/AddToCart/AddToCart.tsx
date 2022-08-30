@@ -1,17 +1,9 @@
 import React from "react";
-import { IconButton, styled } from "@mui/material";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Flex from "components/Flex";
-
-const SwiperButton = styled(IconButton)({
-  padding: 0,
-  width: 40,
-  height: 40,
-  maxWidth: 40,
-  minWidth: 40,
-});
 
 const Wrapper = styled(Box)(({ theme }) => ({
   alignItems: "center",
