@@ -43,7 +43,6 @@ const InputEditor = ({
         {shiki && (
           <Editor
             value={textValue}
-            autoFocus={true}
             onValueChange={(code) => setTextValue(code)}
             highlight={(code) =>
               shiki.codeToHtml(code, { lang: language.code })
