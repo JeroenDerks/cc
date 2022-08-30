@@ -6,6 +6,7 @@ import { groupDataByColor } from "utils";
 import { sketchWidth, sketchHeigth, wallPhotoDimensions } from "../constants";
 import { SketchProps } from "types";
 import { drawPillContent } from "./drawPillContent";
+import { uploadPhoto } from "utils/uploadPhoto";
 
 const BasiPillWallPhotoSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
@@ -18,6 +19,7 @@ const PillWallPhoto: React.FC<SketchProps> = ({
   bg,
   data,
   scale,
+  uuid,
 }: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
@@ -50,7 +52,26 @@ const PillWallPhoto: React.FC<SketchProps> = ({
     p5.image(graphic, x, y, w, h);
   };
 
-  return <BasiPillWallPhotoSketch setup={setup} preload={preload} />;
+  const mousePressed = async (
+    p5: p5Types,
+    e: React.MouseEvent<HTMLElement>
+  ) => {
+    const target = e.target as Element;
+
+    if (target.id === "add_to_cart") {
+      const preview = drawPillContent({ groupedData, bg, p5, sx: 1, sy: 1 });
+      uploadPhoto(preview, `${uuid}_preview`);
+    }
+  };
+
+  return (
+    <BasiPillWallPhotoSketch
+      setup={setup}
+      preload={preload}
+      // @ts-ignore: P5 library does not handle event types
+      mousePressed={mousePressed}
+    />
+  );
 };
 
 export default PillWallPhoto;

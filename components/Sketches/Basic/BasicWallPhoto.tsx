@@ -53,7 +53,7 @@ const BasicWallPhoto: React.FC<SketchProps> = ({
     const target = e.target as Element;
 
     if (target.id === "add_to_cart") {
-      const preview = drawContent({ groupedData, bg, p5, sx: 0.5, sy: 0.5 });
+      const preview = drawContent({ groupedData, bg, p5, sx: 1, sy: 1 });
       uploadPhoto(preview, `${uuid}_preview`);
     }
   };
@@ -61,7 +61,8 @@ const BasicWallPhoto: React.FC<SketchProps> = ({
   return (
     <BasicWallPhotoSketch
       setup={setup}
-      preload={preload} // @ts-ignore: P5 library does not handle event types
+      preload={preload}
+      // @ts-ignore: P5 library does not handle event types
       mousePressed={mousePressed}
     />
   );
