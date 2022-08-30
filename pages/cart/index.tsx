@@ -129,7 +129,7 @@ const CartPage = () => {
       </Stack>
       <Flex justifyContent="center" width={1} px={gridP} py={gridP}>
         <Flex justifyContent="space-between" alignItems="center" width={1}>
-          <Typography variant="h5">Total Price: € {sum * 0.01},-</Typography>
+          <Typography variant="h5">Total: € {sum * 0.01},-</Typography>
           <Button
             onClick={handleCheckout}
             variant="outlined"
