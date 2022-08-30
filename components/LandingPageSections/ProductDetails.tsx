@@ -1,13 +1,15 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Image from "components/Image";
+import Image from "next/image";
 import Section from "components/Section";
 import Typography from "@mui/material/Typography";
-import sizeDetail1 from "public/images/size_detail_1.jpg";
+import sizeDetail from "public/images/artwork_scale.jpg";
 import hangDetail1 from "public/images/hang_detail_1.jpg";
 import hangDetail2 from "public/images/hang_detail_2.jpg";
 import { gridP, border } from "theme";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const details = [
   {
@@ -19,7 +21,7 @@ const details = [
   {
     heading: "Large frame for large impact",
     body: "With its dimensions of 60 x 40 centimeter, this piece of art will surely turn some heads.",
-    image: sizeDetail1,
+    image: sizeDetail,
     imageAlt: "Artwork dimensions",
   },
   {
@@ -30,6 +32,9 @@ const details = [
   },
 ];
 const ProductDetails = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Section>
       <Grid container>
@@ -52,9 +57,12 @@ const ProductDetails = () => {
                 {body}
               </Typography>
               <Image
-                height={{ xs: 200, sm: 240, md: 320 }}
+                objectFit="cover"
+                placeholder="blur"
                 src={image}
                 alt={imageAlt}
+                width={isMobile ? 800 : 600}
+                height={isMobile ? 400 : 437}
               />
             </Box>
           </Grid>

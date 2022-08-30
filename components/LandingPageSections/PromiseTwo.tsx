@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Image from "next/image";
 import Section from "components/Section";
 import Typography from "@mui/material/Typography";
-import teamWork from "public/images/office_teamwork.jpg";
+import teamWork from "public/images/office_team.jpg";
 import { gridP, border } from "theme";
 
 const PromiseOne = () => {
