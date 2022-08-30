@@ -4,34 +4,23 @@ import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 
 import Box from "@mui/material/Box";
-import ProductControls from "components/ProductControls";
+import AddToCart from "components/AddToCart";
 import SketchSelector from "components/SketchSelector";
 
-import ProductSwiper from "components/ProductSwiper";
-import Basic from "components/Sketches/Basic";
-import BasicTeamPhoto from "components/Sketches/Basic/BasicTeamPhoto";
 import BasicWallPhoto from "components/Sketches/Basic/BasicWallPhoto";
-import Pill from "components/Sketches/Pill";
-import PillTeamPhoto from "components/Sketches/Pill/PillTeamPhoto";
 import PillWallPhoto from "components/Sketches/Pill/PillWallPhoto";
-import Perspective from "components/Sketches/Perspective";
-import PerspectiveTeamPhoto from "components/Sketches/Perspective/PerspectiveTeamPhoto";
 import PerspectiveWallPhoto from "components/Sketches/Perspective/PerspectiveWallPhoto";
-import Rotate from "components/Sketches/Rotate";
-import RotateTeamPhoto from "components/Sketches/Rotate/RotateTeamPhoto";
 import RotateWallPhoto from "components/Sketches/Rotate/RotateWallPhoto";
 import { uploadRawData } from "utils/uploadRawData";
 import { ColoredDataSet, EditorTheme, LanguageOption, Sketch } from "types";
-import theme from "theme";
+import { useScalingFactor } from "utils/useScalingFactor";
+import { convertColorToRGB } from "utils";
 
-const sketchOptions: Array<Sketch> = [
-  { title: "Basic", sketches: [Basic, BasicTeamPhoto, BasicWallPhoto] },
-  { title: "Pills", sketches: [Pill, PillTeamPhoto, PillWallPhoto] },
-  {
-    title: "Perspective",
-    sketches: [Perspective, PerspectiveTeamPhoto, PerspectiveWallPhoto],
-  },
-  { title: "Rotate", sketches: [Rotate, RotateTeamPhoto, RotateWallPhoto] },
+export const sketchOptions: Array<Sketch> = [
+  { title: "Basic", sketch: BasicWallPhoto },
+  { title: "Pills", sketch: PillWallPhoto },
+  { title: "Perspective", sketch: PerspectiveWallPhoto },
+  { title: "Rotate", sketch: RotateWallPhoto },
 ];
 
 const OutputPane = ({
@@ -53,13 +42,24 @@ const OutputPane = ({
   const { addItem } = useCart();
   const router = useRouter();
 
+  const scalingFactor = typeof window !== "undefined" ? useScalingFactor() : 1;
+  const SelectedSketch = sketchOptions[parseInt(sketchId)].sketch;
+
   useEffect(() => {
     setUuid(uuidv4());
   }, [sketchId]);
 
   const addToCard = async () => {
     setLoading(true);
-    addItem({ name: "canvas_60_40", price: 6900, quantity: 1, id: uuid });
+    addItem({
+      name: "canvas_60_40",
+      price: 6900,
+      quantity: 1,
+      id: uuid,
+      theme,
+      language,
+      sketchId,
+    });
     await uploadRawData({ uuid, userValue, sketchId, theme, language });
     setUuid(uuidv4());
     await router.push("/cart");
@@ -76,17 +76,18 @@ const OutputPane = ({
         />
       </Box>
 
-      <ProductSwiper
-        loading={loading}
-        rawData={rawData}
-        sketchId={sketchId}
-        sketchOptions={sketchOptions}
-        sketchRenewKey={sketchRenewKey}
-        theme={theme}
-        uuid={uuid}
-      />
+      <Box my="14px" borderRadius="4px" overflow="hidden">
+        <SelectedSketch
+          bg={convertColorToRGB(theme.bg)}
+          key={sketchRenewKey}
+          loading={loading}
+          scale={scalingFactor}
+          data={rawData}
+          uuid={uuid}
+        />
+      </Box>
 
-      <ProductControls addToCard={addToCard} loading={loading} />
+      <AddToCart addToCard={addToCard} loading={loading} />
     </Box>
   );
 };
