@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart, Item } from "react-use-cart";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Flex from "components/Flex";
@@ -9,7 +9,6 @@ import Section from "components/Section";
 import ImageGallery from "components/ImageGallery";
 import { border, gridP } from "theme";
 import { sketchOptions } from "components/Panes/OutputPane";
-import ProductImageTwo from "components/ProductImage/ProductImageTwo";
 
 const CartPage = () => {
   const { items, removeItem } = useCart();
@@ -105,6 +104,9 @@ const CartPage = () => {
                     </Typography>
                   </Box>
                   <Flex mt={3} justifyContent="space-between" width={1}>
+                    <Typography variant="h6">
+                      Price: € {price * 0.01},-
+                    </Typography>
                     <Button
                       aria-label="delete item"
                       color="error"
@@ -115,9 +117,6 @@ const CartPage = () => {
                     >
                       Delete
                     </Button>
-                    <Typography variant="h6">
-                      Price: € {price * 0.01},-
-                    </Typography>
                   </Flex>
                 </Flex>
               </Grid>
@@ -127,20 +126,24 @@ const CartPage = () => {
           </React.Fragment>
         ))}
       </Stack>
-      <Flex justifyContent="center" width={1} px={gridP} py={gridP}>
-        <Flex justifyContent="space-between" alignItems="center" width={1}>
-          <Typography variant="h5">Total: € {sum * 0.01},-</Typography>
-          <Button
-            onClick={handleCheckout}
-            variant="outlined"
-            color="success"
-            size="large"
-            disabled={loading}
-          >
-            Checkout
-          </Button>
-        </Flex>
-      </Flex>
+
+      <Grid container>
+        <Grid item xs={0} sm={0} md={6} />
+        <Grid item xs={12} sm={12} md={6}>
+          <Flex justifyContent="space-between" alignItems="center" p={gridP}>
+            <Typography variant="h5">Total: € {sum * 0.01},-</Typography>
+            <Button
+              onClick={handleCheckout}
+              variant="contained"
+              color="success"
+              size="large"
+              disabled={loading}
+            >
+              Checkout
+            </Button>
+          </Flex>
+        </Grid>
+      </Grid>
     </Section>
   );
 };
