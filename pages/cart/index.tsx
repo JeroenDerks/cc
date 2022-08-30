@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCart, Item } from "react-use-cart";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Flex from "components/Flex";
@@ -7,6 +7,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/router";
 import Section from "components/Section";
 import ImageGallery from "components/ImageGallery";
+import { border, gridP } from "theme";
+import { sketchOptions } from "components/Panes/OutputPane";
+import ProductImageTwo from "components/ProductImage/ProductImageTwo";
 
 const CartPage = () => {
   const { items, removeItem } = useCart();
@@ -60,65 +63,72 @@ const CartPage = () => {
 
   return (
     <Section>
-      <Flex width={1} justifyContent="center">
-        <Box maxWidth={880} width={1}>
-          <Typography variant="h3" mt={5}>
-            Your code is just a work of art
-          </Typography>
-        </Box>
-      </Flex>
-      <SeparatorLine />
+      <Box p={gridP}>
+        <Typography variant="h3">Your code is just a work of art</Typography>
+      </Box>
+
+      <SeparatorLine disableMargin />
+
       <Stack>
-        {itemsInCart.map(({ id, price }) => (
+        {itemsInCart.map(({ id, price, theme, language, sketchId }) => (
           <React.Fragment key={id}>
-            <Flex width={1} justifyContent="center">
-              <Box maxWidth={880}>
-                <Grid container spacing={4} key={id}>
-                  <Grid item xs={12} sm={12} md={8}>
-                    <ImageGallery id={id} />
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={4}>
-                    <Flex
-                      height="100%"
-                      flexDirection="column"
-                      justifyContent="space-between"
+            <Grid container key={id}>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                p={gridP}
+                sx={{ borderRight: { xs: "none", sm: "none", md: border } }}
+              >
+                <ImageGallery id={id} />
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} p={gridP}>
+                <Flex
+                  height="100%"
+                  flexDirection="column"
+                  justifyContent="flex-end"
+                >
+                  <Box>
+                    <Typography variant="h5">Canvas 60 x 40 cm</Typography>
+                    <Typography variant="body2">
+                      <span>Langauge: </span>
+                      {language.title}
+                    </Typography>
+                    <Typography variant="body2">
+                      <span>Theme: </span>
+                      {theme.title}
+                    </Typography>
+                    <Typography variant="body2">
+                      <span>Sketch: </span>
+                      {sketchOptions[parseInt(sketchId)].title}
+                    </Typography>
+                  </Box>
+                  <Flex mt={3} justifyContent="space-between" width={1}>
+                    <Button
+                      aria-label="delete item"
+                      color="error"
+                      variant="outlined"
+                      size="small"
+                      startIcon={<DeleteIcon fontSize="small" />}
+                      onClick={() => removeItem(id)}
                     >
-                      <Box>
-                        <Typography variant="h5">Canvas 60 x 40 cm</Typography>
-                        <Typography variant="body2">{id}</Typography>
-                      </Box>
-                      <Flex mt={3} justifyContent="space-between" width={1}>
-                        <Button
-                          aria-label="delete item"
-                          color="error"
-                          variant="outlined"
-                          size="small"
-                          startIcon={<DeleteIcon fontSize="small" />}
-                          onClick={() => removeItem(id)}
-                        >
-                          Delete
-                        </Button>
-                        <Typography variant="h6">
-                          Price: € {price * 0.01},-
-                        </Typography>
-                      </Flex>
-                    </Flex>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Flex>
-            <SeparatorLine />
+                      Delete
+                    </Button>
+                    <Typography variant="h6">
+                      Price: € {price * 0.01},-
+                    </Typography>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </Grid>
+
+            <SeparatorLine disableMargin />
           </React.Fragment>
         ))}
       </Stack>
-      <Flex justifyContent="center" width={1}>
-        <Flex
-          justifyContent="space-between"
-          alignItems="center"
-          maxWidth={880}
-          width={1}
-          mb={10}
-        >
+      <Flex justifyContent="center" width={1} px={gridP} py={gridP}>
+        <Flex justifyContent="space-between" alignItems="center" width={1}>
           <Typography variant="h5">Total Price: € {sum * 0.01},-</Typography>
           <Button
             onClick={handleCheckout}

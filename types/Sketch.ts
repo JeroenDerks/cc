@@ -2,7 +2,7 @@ import { Color, ColoredDataSet } from "types";
 
 export type Sketch = {
   title: string;
-  sketches: React.FC<SketchProps>[];
+  sketch: React.FC<SketchProps>;
 };
 
 export type SketchProps = {
