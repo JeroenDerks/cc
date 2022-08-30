@@ -25,7 +25,7 @@ const CartPage = () => {
     return (
       <Section>
         <Flex width={1} justifyContent="center">
-          <Box maxWidth={880} width={1} my={5} minHeight="80vh">
+          <Box width={1} my={5} minHeight="80vh">
             <Typography variant="h4">
               Are you a Picasso in Python or a Javascript da Vinci?
             </Typography>
@@ -129,7 +129,7 @@ const CartPage = () => {
       </Stack>
       <Flex justifyContent="center" width={1} px={gridP} py={gridP}>
         <Flex justifyContent="space-between" alignItems="center" width={1}>
-          <Typography variant="h5">Total Price: € {sum * 0.01},-</Typography>
+          <Typography variant="h5">Total: € {sum * 0.01},-</Typography>
           <Button
             onClick={handleCheckout}
             variant="outlined"

@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.8.1",
     "@google-cloud/storage": "^5.18.2",
     "@mui/icons-material": "^5.8.0",
+    "@mui/lab": "^5.0.0-alpha.97",
     "@mui/material": "^5.4.3",
     "@mui/styled-engine-sc": "^5.4.2",
     "@pulumi/gcp": "^6.16.0",
