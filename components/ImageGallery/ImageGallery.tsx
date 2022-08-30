@@ -59,6 +59,7 @@ const ImageGallery = ({ id }: { id: string }) => {
         <SwiperSlide>
           <Image
             src={`https://storage.googleapis.com/highlight_images/${id}_preview.jpg`}
+            alt="Product close up"
           />
         </SwiperSlide>
       </Swiper>

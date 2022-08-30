@@ -41,16 +41,16 @@ const PromiseOne = () => {
         >
           <Box py={3} maxWidth={600}>
             <Typography variant="h3" gutterBottom>
-              Celebrate your team's achievements
+              Celebrate your team&apos;s achievements
             </Typography>
             <Typography variant="body1" gutterBottom>
-              • Got a piece piece of code you're very proud of?
+              • Got a piece piece of code you&apos;re very proud of?
             </Typography>
             <Typography variant="body1" gutterBottom>
               • Did your team deliver on a huge milestone?
             </Typography>
             <Typography variant="body1" gutterBottom>
-              • Want to show your appreciation for your team's efforts?
+              • Want to show your appreciation for your team&apos;s efforts?
             </Typography>
             <Typography variant="body1" gutterBottom>
               • Got anyone to thank for their contribution to your business?
