@@ -25,7 +25,7 @@ const CartPage = () => {
     return (
       <Section>
         <Flex width={1} justifyContent="center">
-          <Box maxWidth={880} width={1} my={5} minHeight="80vh">
+          <Box width={1} my={5} minHeight="80vh">
             <Typography variant="h4">
               Are you a Picasso in Python or a Javascript da Vinci?
             </Typography>
