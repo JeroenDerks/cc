@@ -18,6 +18,7 @@
     "@mui/styled-engine-sc": "^5.4.2",
     "@pulumi/gcp": "^6.16.0",
     "@pulumi/pulumi": "^3.26.1",
+    "@sendgrid/mail": "^7.7.0",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.26.0",
     "@svgr/webpack": "^5.5.0",

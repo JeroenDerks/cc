@@ -9,6 +9,7 @@ const nextConfig = {
     PROJECT_ID: process.env.PROJECT_ID,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SIGNING_SECRET: process.env.STRIPE_WEBHOOK_SIGNING_SECRET,
   },
 };
 
