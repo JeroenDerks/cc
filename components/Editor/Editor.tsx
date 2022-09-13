@@ -38,25 +38,21 @@ const InputEditor = ({
   }, [debouncedUserValue]);
 
   return (
-    <>
-      <EditorWrapper bg={shiki?.getBackgroundColor()}>
-        {shiki && (
-          <Editor
-            value={textValue}
-            onValueChange={(code) => setTextValue(code)}
-            highlight={(code) =>
-              shiki.codeToHtml(code, { lang: language.code })
-            }
-            style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: window?.innerWidth < 800 ? 12 : 14,
-              minHeight: window?.innerWidth < 800 ? 200 : 493,
-            }}
-          />
-        )}
-        {!shiki && "Just preparing the palette..."}
-      </EditorWrapper>
-    </>
+    <EditorWrapper bg={shiki?.getBackgroundColor()}>
+      {shiki && (
+        <Editor
+          value={textValue}
+          onValueChange={(code) => setTextValue(code)}
+          highlight={(code) => shiki.codeToHtml(code, { lang: language.code })}
+          style={{
+            fontFamily: '"Fira code", "Fira Mono", monospace',
+            fontSize: window?.innerWidth < 800 ? 12 : 14,
+            minHeight: window?.innerWidth < 800 ? 200 : 493,
+          }}
+        />
+      )}
+      {!shiki && "Just preparing the palette..."}
+    </EditorWrapper>
   );
 };
 
