@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
 import type { NextApiRequest, NextApiResponse } from "next";
-const mail = require("@sendgrid/mail");
+// const mail = require("@sendgrid/mail");
 
 export const config = { api: { bodyParser: false } };
 
@@ -13,7 +13,7 @@ export default async function wehhookHandler(
     process.env.STRIPE_SECRET_KEY &&
     new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2020-08-27" });
 
-  mail.setApiKey(process.env.SENDGRID_API_KEY);
+  // mail.setApiKey(process.env.SENDGRID_API_KEY);
 
   if (req.method === "POST") {
     const buf = await buffer(req);
