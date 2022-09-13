@@ -37,7 +37,7 @@ export const sendGelatoRequest = async ({ orderId }) => {
       phone: "123456789",
     },
   };
-  console.log(JSON.stringify(quoteJson));
+
   fetch(quoteUrl, {
     method: "POST",
     headers,
@@ -46,7 +46,7 @@ export const sendGelatoRequest = async ({ orderId }) => {
     .then((response) => response.text())
     .then((body) => {
       console.log("body", body);
-      return;
+
       let data = JSON.parse(body);
       let promiseUid = data.production.shipments[0].promiseUid;
       let orderCreateUrl = "https://api.gelato.com/v2/order/create";
@@ -63,6 +63,4 @@ export const sendGelatoRequest = async ({ orderId }) => {
     .catch(function (error) {
       console.log("Request failed", error);
     });
-
-  //
 };

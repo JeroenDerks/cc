@@ -14,7 +14,9 @@ export default async function handler(
   });
 
   if (!process.env.BUCKET_NAME) throw new Error("bucket name not available");
+
   const bucket = storage.bucket(process.env.BUCKET_NAME);
+  if (!bucket) throw new Error("Bucket not available");
 
   const maxAgeSeconds = 3600;
   const method = "POST";
@@ -54,5 +56,6 @@ export default async function handler(
     })
     .catch((err) => {
       console.log("Error on configuring CORS: " + err);
+      res.status(500).json({ err });
     });
 }
