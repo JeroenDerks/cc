@@ -109,11 +109,11 @@ const CartPage = () => {
                     </Typography>
                     <Button
                       aria-label="delete item"
-                      color="error"
-                      variant="outlined"
+                      variant="text"
                       size="small"
                       startIcon={<DeleteIcon fontSize="small" />}
                       onClick={() => removeItem(id)}
+                      sx={{ color: "#fff" }}
                     >
                       Delete
                     </Button>
