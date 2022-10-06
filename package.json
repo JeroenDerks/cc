@@ -23,6 +23,7 @@
     "@stripe/stripe-js": "^1.26.0",
     "@svgr/webpack": "^5.5.0",
     "babel-plugin-prismjs": "^2.1.0",
+    "date-fns": "^2.29.3",
     "formik": "^2.2.9",
     "gsap": "^3.11.0",
     "isomorphic-unfetch": "^3.1.0",

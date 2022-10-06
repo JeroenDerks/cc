@@ -1,6 +1,8 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { format } from "date-fns";
+import { object } from "yup";
 const mail = require("@sendgrid/mail");
 
 export const config = { api: { bodyParser: false } };
@@ -31,26 +33,57 @@ export default async function wehhookHandler(
         throw new Error("Stripe checkout event not available");
       }
 
-      if (event.type !== "payment_intent.succeeded")
-        throw new Error("Event is not of correct checkout type");
+      if (event.type === "payment_intent.succeeded") {
+        console.log(event);
+        const { id, shipping } = event.data.object as Stripe.PaymentIntent;
 
-      console.log(event);
+        const message = {
+          to: "jeroenderks88@gmail.com",
+          bcc: "info@celebratecode.com",
+          from: { name: "Celebrate Code", email: "info@celebratecode.com" },
+          templateId: "d-8ed3686528954bf4bd638d37dab43893",
+          replyTo: "info@celebratecode.com",
+          dynamicTemplateData: {
+            firstName: "Jeroen",
+            lastName: "Derks",
+            orderDate: format(event.created * 1000, "d MMMM yyyy HH:mm"),
+            orderId: id.replace("pi_", "cc_"),
+            addressLine1: shipping?.address?.line1,
+            addressLine2: shipping?.address?.line2,
+            postalCode: shipping?.address?.postal_code,
+            city: shipping?.address?.city,
+            state: shipping?.address?.state,
+            country: shipping?.address?.country,
+            orderData: [
+              {
+                title: "Canvas 60 x 40",
+                price: 69,
+                language: "TSX",
+                theme: "VS Code Dark",
+                sketch: "Basic",
+              },
+              {
+                title: "Canvas 60 x 40",
+                price: 69,
+                language: "Python",
+                theme: "Rose pine dawn",
+                sketch: "Rotate",
+              },
+              {
+                title: "Canvas 60 x 40",
+                price: 69,
+                language: "CSS",
+                theme: "Monokai",
+                sketch: "Perspective",
+              },
+            ],
+          },
+        };
 
-      const message = {
-        to: "jeroenderks88@gmail.com",
-        bcc: "info@celebratecode.com",
-        from: { name: "Celebrate Code", email: "info@celebratecode.com" },
-        templateId: "d-8ed3686528954bf4bd638d37dab43893",
-        replyTo: "info@celebratecode.com",
-        dynamicTemplateData: {
-          firstName: "Jeroen",
-          lastName: "Derks",
-        },
-      };
+        console.log(message);
 
-      console.log(message);
-
-      await mail.send(message);
+        await mail.send(message);
+      }
       res.status(200).send({});
     } catch (err) {
       let message;
