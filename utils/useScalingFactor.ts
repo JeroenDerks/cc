@@ -15,7 +15,7 @@ export function useScalingFactor() {
         );
       } else setScale(innerWidth >= sketchWidth ? 1 : innerWidth / sketchWidth);
     };
-    console.log(scale);
+
     onResize();
     window?.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
