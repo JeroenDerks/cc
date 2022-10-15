@@ -14,13 +14,11 @@ export default async function wehhookHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req);
   if (req.method === "GET") {
     try {
       if (!stripe) throw new Error("Stripe not available");
 
       const checkoutId = req.query.session;
-      console.log(checkoutId);
       if (!checkoutId || typeof checkoutId !== "string")
         throw new Error("No checkoutId");
       const session = await stripe.checkout.sessions.retrieve(checkoutId);

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Section from "components/Section";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
+import { gridP } from "theme";
+import SeparatorLine from "components/SeparatorLine";
 
 const Success = () => {
   const router = useRouter();
@@ -9,7 +11,6 @@ const Success = () => {
 
   useEffect(() => {
     const getCheckoutId = async () => {
-      console.log(router.query.session_id);
       const res = await fetch(
         `/api/get-payment-id/${router.query.session_id}`,
         {}
@@ -25,8 +26,21 @@ const Success = () => {
 
   return (
     <Section>
-      <Typography variant="h4">Congrats</Typography>
-      <Typography variant="h4">{orderId}</Typography>
+      <Box p={gridP}>
+        <Typography variant="h3">Thank you for your order!</Typography>
+        <Typography variant="body1">
+          You will receive a confirmation email shortly
+        </Typography>
+      </Box>
+      <SeparatorLine disableMargin />
+      <Box p={gridP} display="flex">
+        <Typography variant="body1" mr={2}>
+          Order id:
+        </Typography>
+        <Typography variant="body1" fontWeight={700}>
+          {orderId}
+        </Typography>
+      </Box>
     </Section>
   );
 };
