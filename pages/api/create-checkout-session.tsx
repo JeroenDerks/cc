@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { formatLineItems } from "utils/email";
 
 const stripe =
   process.env.STRIPE_SECRET_KEY &&
@@ -31,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         payment_method_types: ["card"],
-        metadata: { items: JSON.stringify(items) },
+        metadata: { items: JSON.stringify(formatLineItems(items)) },
         shipping_address_collection: { allowed_countries: ["DE", "DK"] },
         tax_id_collection: { enabled: true },
         mode: "payment",
