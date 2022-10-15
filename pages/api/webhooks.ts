@@ -33,9 +33,7 @@ export default async function wehhookHandler(
       if (!event) {
         throw new Error("Stripe checkout event not available");
       }
-      console.log(event);
       if (event.type === "checkout.session.completed") {
-        console.log("Pyment succeed");
         const { id, shipping, metadata, payment_intent } = event.data
           .object as Stripe.Checkout.Session;
 
