@@ -2,21 +2,22 @@ import Stripe from "stripe";
 import { buffer } from "micro";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
-import { object } from "yup";
+import { formatLineItems } from "utils/email";
+
 const mail = require("@sendgrid/mail");
 
 export const config = { api: { bodyParser: false } };
 
 mail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const stripe =
+  process.env.STRIPE_SECRET_KEY &&
+  new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2020-08-27" });
+
 export default async function wehhookHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const stripe =
-    process.env.STRIPE_SECRET_KEY &&
-    new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2020-08-27" });
-
   if (req.method === "POST") {
     const buf = await buffer(req);
     const sig = req.headers["stripe-signature"];
@@ -32,10 +33,17 @@ export default async function wehhookHandler(
       if (!event) {
         throw new Error("Stripe checkout event not available");
       }
+      console.log(event);
+      if (event.type === "checkout.session.completed") {
+        console.log("Pyment succeed");
+        const { id, shipping, metadata, payment_intent } = event.data
+          .object as Stripe.Checkout.Session;
 
-      if (event.type === "payment_intent.succeeded") {
-        console.log(event);
-        const { id, shipping } = event.data.object as Stripe.PaymentIntent;
+        const items = metadata?.items && JSON.parse(metadata.items);
+        const orderId =
+          typeof payment_intent === "string"
+            ? payment_intent?.replace("pi_", "cc_")
+            : id;
 
         const message = {
           to: "jeroenderks88@gmail.com",
@@ -47,44 +55,19 @@ export default async function wehhookHandler(
             firstName: "Jeroen",
             lastName: "Derks",
             orderDate: format(event.created * 1000, "d MMMM yyyy HH:mm"),
-            orderId: id.replace("pi_", "cc_"),
+            orderId,
             addressLine1: shipping?.address?.line1,
             addressLine2: shipping?.address?.line2,
             postalCode: shipping?.address?.postal_code,
             city: shipping?.address?.city,
             state: shipping?.address?.state,
             country: shipping?.address?.country,
-            orderData: [
-              {
-                title: "Canvas 60 x 40",
-                price: 69,
-                language: "TSX",
-                theme: "VS Code Dark",
-                sketch: "Basic",
-              },
-              {
-                title: "Canvas 60 x 40",
-                price: 69,
-                language: "Python",
-                theme: "Rose pine dawn",
-                sketch: "Rotate",
-              },
-              {
-                title: "Canvas 60 x 40",
-                price: 69,
-                language: "CSS",
-                theme: "Monokai",
-                sketch: "Perspective",
-              },
-            ],
+            orderData: formatLineItems(items),
           },
         };
 
-        console.log(message);
-
         await mail.send(message);
       }
-      res.status(200).send({});
     } catch (err) {
       let message;
       if (err instanceof Error) message = err.message;
@@ -92,6 +75,7 @@ export default async function wehhookHandler(
 
       return res.status(500).send(`Webhook error: ${message}`);
     }
+    res.status(200).send({});
   } else {
     res.status(405).end("Method Not Allowed");
   }

@@ -31,11 +31,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         payment_method_types: ["card"],
+        metadata: { items: JSON.stringify(items) },
         shipping_address_collection: { allowed_countries: ["DE", "DK"] },
         tax_id_collection: { enabled: true },
         mode: "payment",
         success_url: `${req.headers.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.referer}`,
+        cancel_url: `${req.headers.referer}/cart`,
       });
 
       res.status(200).send({ url: session.url });

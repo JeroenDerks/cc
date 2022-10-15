@@ -52,7 +52,7 @@ const OutputPane = ({
   const addToCard = async () => {
     setLoading(true);
     addItem({
-      name: "canvas_60_40",
+      name: "Canvas 60 x 40",
       price: 6900,
       quantity: 1,
       id: uuid,
