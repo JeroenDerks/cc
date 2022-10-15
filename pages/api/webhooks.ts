@@ -36,6 +36,7 @@ export default async function wehhookHandler(
         const { id, shipping, metadata, payment_intent } = event.data
           .object as Stripe.Checkout.Session;
 
+        const items = metadata?.items && JSON.parse(metadata.items);
         const orderId =
           typeof payment_intent === "string"
             ? payment_intent?.replace("pi_", "cc_")
@@ -58,7 +59,7 @@ export default async function wehhookHandler(
             city: shipping?.address?.city,
             state: shipping?.address?.state,
             country: shipping?.address?.country,
-            orderData: metadata?.items,
+            orderData: items && Object.values(items),
           },
         };
 
