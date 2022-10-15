@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { formatLineItems } from "utils/email";
+import { sketchOptions } from "components/Panes/OutputPane";
 
 const stripe =
   process.env.STRIPE_SECRET_KEY &&
@@ -29,10 +29,28 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         };
       });
 
+      // Needed because stripe doesnt accept stringified metadata of more than 500 characters
+      // This creates an object for each item.
+      const formattedItems = items.reduce(
+        (accumulator: any, value: any, i: number) => {
+          return {
+            ...accumulator,
+            ["item_" + i]: {
+              name: value.name,
+              price: value.itemTotal / 100,
+              theme: value.theme.title,
+              language: value.language.title,
+              sketch: sketchOptions[parseInt(value.sketchId)].title,
+            },
+          };
+        },
+        {}
+      );
+
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         payment_method_types: ["card"],
-        metadata: { items: JSON.stringify(formatLineItems(items)) },
+        metadata: { items: JSON.stringify(formattedItems) },
         shipping_address_collection: { allowed_countries: ["DE", "DK"] },
         tax_id_collection: { enabled: true },
         mode: "payment",
