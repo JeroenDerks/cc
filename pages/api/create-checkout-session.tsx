@@ -35,13 +35,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         (accumulator: any, value: any, i: number) => {
           return {
             ...accumulator,
-            ["item_" + i]: {
+            ["item_" + i]: JSON.stringify({
               name: value.name,
               price: value.itemTotal / 100,
               theme: value.theme.title,
               language: value.language.title,
               sketch: sketchOptions[parseInt(value.sketchId)].title,
-            },
+            }),
           };
         },
         {}
@@ -50,7 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         payment_method_types: ["card"],
-        metadata: { items: JSON.stringify(formattedItems) },
+        metadata: formattedItems,
         shipping_address_collection: { allowed_countries: ["DE", "DK"] },
         tax_id_collection: { enabled: true },
         mode: "payment",
