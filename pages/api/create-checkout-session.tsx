@@ -55,7 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         tax_id_collection: { enabled: true },
         mode: "payment",
         success_url: `${req.headers.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.referer}/cart`,
+        cancel_url: `${req.headers.referer}`,
       });
 
       res.status(200).send({ url: session.url });
