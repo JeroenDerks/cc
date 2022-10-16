@@ -22,29 +22,28 @@ export default function App(props: AppProps) {
   const { Component, pageProps } = props;
 
   if (!stripePromise) return null;
-  console.log(process.env.GOOGLE_ANALYTICS_ID);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Elements stripe={stripePromise}>
           <CartProvider>
             <CssBaseline />
-            {/* {!process.env.NODE_ENV &&
-              process.env.NODE_ENV !== "development" && ( */}
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
-              strategy="afterInteractive"
-            />
-            {/* )}
-            {!process.env.NODE_ENV && process.env.NODE_ENV !== "development" && ( */}
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
+            {process.env.NODE_ENV && process.env.NODE_ENV !== "development" && (
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+                strategy="afterInteractive"
+              />
+            )}
+            {process.env.NODE_ENV && process.env.NODE_ENV !== "development" && (
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`window.dataLayer = window.dataLayer || [];
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
             `}
-            </Script>
-            {/* )} */}
+              </Script>
+            )}
             <Flex
               minHeight="100vh"
               flexDirection="column"
