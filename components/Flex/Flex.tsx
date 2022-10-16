@@ -10,6 +10,7 @@ type FlexProps = {
   alignItems?: string | string[];
   width?: number | number[] | string | string[];
   height?: string;
+  minHeight?: string;
   p?: PaddingProp;
   px?: PaddingProp;
   pt?: PaddingProp;
