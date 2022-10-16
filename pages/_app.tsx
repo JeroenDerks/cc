@@ -7,10 +7,18 @@ import { CartProvider } from "react-use-cart";
 import { AppProps } from "next/app";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import { styled } from "@mui/material";
 import theme from "theme";
 import { setCDN } from "shiki";
 import "style.css";
 setCDN("https://unpkg.com/shiki/");
+
+const Container = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  minHeight: "100vh",
+}));
 
 const stripePromise =
   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY &&
@@ -27,9 +35,11 @@ export default function App(props: AppProps) {
         <Elements stripe={stripePromise}>
           <CartProvider>
             <CssBaseline />
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
+            <Container>
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+            </Container>
           </CartProvider>
         </Elements>
       </ThemeProvider>

@@ -7,7 +7,7 @@ import { gridP } from "theme";
 
 const TermsAndConditions = () => {
   return (
-    <Section>
+    <Section flexGrow={1}>
       <Box maxWidth={880} p={gridP}>
         <Typography variant="h2" gutterBottom>
           Terms and conditions

@@ -3,12 +3,13 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import { MAX_WIDTH } from "utils/constants";
 import { border } from "theme";
-
-const OuterWrapper = styled(Box)(({ theme }) => ({
+import theme from "theme";
+const OuterWrapper = styled(Box)(({ flexGrow }: { flexGrow?: number }) => ({
   width: "100vw",
   borderBottom: `1px solid ${theme.palette.divider}`,
   display: "flex",
   justifyContent: "center",
+  flexGrow: flexGrow,
 }));
 
 const ContentWrapper = styled(Box)(
@@ -24,17 +25,24 @@ const ContentWrapper = styled(Box)(
 
 const Section = ({
   children,
+  flexGrow,
   hideSideBorders,
   id,
   sx,
 }: {
   children: React.ReactNode;
+  flexGrow?: number;
   hideSideBorders?: true;
   id?: string;
   sx?: any;
 }) => {
   return (
-    <OuterWrapper px={{ xs: 1, sm: 1, md: 4, lg: 10 }} id={id} sx={sx}>
+    <OuterWrapper
+      px={{ xs: 1, sm: 1, md: 4, lg: 10 }}
+      id={id}
+      sx={sx}
+      flexGrow={flexGrow}
+    >
       <ContentWrapper hideBorders={Boolean(hideSideBorders)}>
         {children}
       </ContentWrapper>
