@@ -1,10 +1,25 @@
 import React from "react";
+import Section from "components/Section";
+import { Box, Typography } from "@mui/material";
+import { gridP } from "theme";
 
-const Error = () => {
+const Success = () => {
   return (
-    <div>
-      <h4>Oops something unfortunate happened</h4>
-    </div>
+    <Section flexGrow={1}>
+      <Box p={gridP}>
+        <Typography variant="h3" paragraph>
+          Oops, something went wrong.
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          The checkout session has failed.
+        </Typography>
+        <Typography variant="body1">
+          Please try again or contact our support if the issue persists.
+        </Typography>
+      </Box>
+    </Section>
   );
 };
-export default Error;
+
+export default Success;
+1;

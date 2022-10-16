@@ -22,21 +22,19 @@ const CartPage = () => {
 
   if (itemsInCart.length < 1) {
     return (
-      <Section>
-        <Flex width={1} justifyContent="center">
-          <Box width={1} my={5} minHeight="80vh">
-            <Typography variant="h4">
-              Are you a Picasso in Python or a Javascript da Vinci?
-            </Typography>
-            <Typography variant="body1" mt={2}>
-              Get started{" "}
-              <a href="/#editor" style={{ color: "#fff" }}>
-                here
-              </a>{" "}
-              because your cart is empty.
-            </Typography>
-          </Box>
-        </Flex>
+      <Section flexGrow={1}>
+        <Box p={gridP} my={5}>
+          <Typography variant="h4">
+            Are you a Picasso in Python or a Javascript da Vinci?
+          </Typography>
+          <Typography variant="body1" mt={2}>
+            Get started{" "}
+            <a href="/#editor" style={{ color: "#fff" }}>
+              here
+            </a>{" "}
+            because your cart is empty.
+          </Typography>
+        </Box>
       </Section>
     );
   }
@@ -61,7 +59,7 @@ const CartPage = () => {
   };
 
   return (
-    <Section>
+    <Section flexGrow={1}>
       <Box p={gridP}>
         <Typography variant="h3">Your code is just a work of art</Typography>
       </Box>

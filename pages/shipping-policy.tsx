@@ -8,7 +8,7 @@ const Td = styled("td")`
 `;
 const LegalNotice = () => {
   return (
-    <Section>
+    <Section flexGrow={1}>
       <Box maxWidth={880} p={gridP}>
         <Typography variant="h2" paragraph>
           Shipping policy
