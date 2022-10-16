@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag: any;
+  }
+}
+
 export type { BorderProps } from "./Styling";
 export type { Color } from "./ColoredData";
 export type { ColoredCharacter } from "./ColoredData";

@@ -15,8 +15,9 @@ const Wrapper = styled(Box)(({ theme }) => ({
   minHeight: NAVBAR_HEIGHT,
 }));
 
-const CheckoutLink = styled("a")(({ theme }) => ({
+const CheckoutLink = styled("div")(({ theme }) => ({
   border: `1px solid ${theme.palette.action.disabled}`,
+  cursor: "pointer",
   width: 42,
   height: 42,
   lineHeight: 2.4,
@@ -56,10 +57,12 @@ const Header = () => {
         <Link href="/" passHref>
           <Logo as="a">CC</Logo>
         </Link>
-        <CheckoutLink href="/cart">
-          <Badge badgeContent={itemsInCart.length} color="success">
-            <ShoppingCartRoundedIcon color="action" fontSize="small" />
-          </Badge>
+        <CheckoutLink>
+          <Link href="/cart">
+            <Badge badgeContent={itemsInCart.length} color="success">
+              <ShoppingCartRoundedIcon color="action" fontSize="small" />
+            </Badge>
+          </Link>
         </CheckoutLink>
       </Box>
     </Wrapper>
