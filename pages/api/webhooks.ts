@@ -33,8 +33,8 @@ export default async function wehhookHandler(
         throw new Error("Stripe checkout event not available");
       }
       if (event.type === "checkout.session.completed") {
-        const { id, shipping, metadata, payment_intent } = event.data
-          .object as Stripe.Checkout.Session;
+        const { id, shipping, metadata, payment_intent, customer_details } =
+          event.data.object as Stripe.Checkout.Session;
 
         const items = metadata && Object.values(metadata);
         const orderId =
@@ -43,14 +43,13 @@ export default async function wehhookHandler(
             : id;
 
         const message = {
-          to: "jeroenderks88@gmail.com",
+          to: customer_details?.email,
           bcc: "info@celebratecode.com",
           from: { name: "Celebrate Code", email: "info@celebratecode.com" },
           templateId: "d-8ed3686528954bf4bd638d37dab43893",
           replyTo: "info@celebratecode.com",
           dynamicTemplateData: {
-            firstName: "Jeroen",
-            lastName: "Derks",
+            name: customer_details?.name,
             orderDate: format(event.created * 1000, "d MMMM yyyy HH:mm"),
             orderId,
             addressLine1: shipping?.address?.line1,
