@@ -66,15 +66,11 @@ const Footer = () => {
                   href="https://www.linkedin.com/company/celebrate-code/"
                   passHref
                 >
-                  <IconButton component="a" target="_blank">
-                    <LinkedInIcon sx={{ opacity: 0.7 }} />
-                  </IconButton>
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/company/celebrate-code/"
-                  passHref
-                >
-                  <IconButton component="a" target="_blank">
+                  <IconButton
+                    component="a"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                  >
                     <LinkedInIcon sx={{ opacity: 0.7 }} />
                   </IconButton>
                 </Link>
