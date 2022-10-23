@@ -11,15 +11,7 @@ import Section from "components/Section";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { gridP } from "theme";
-
-const Logo = styled(Typography)(({ theme }) => ({
-  "-webkit-text-stroke": theme.palette.text.primary,
-  "-webkit-text-fill-color": theme.palette.background.default,
-  "-webkit-text-stroke-width": "1px",
-  fontSize: 50,
-  lineHeight: 1,
-  textDecoration: "none",
-}));
+import { Logo } from "components/Logo";
 
 const Footer = () => {
   return (
@@ -32,7 +24,7 @@ const Footer = () => {
               justifyContent="space-between"
               flexDirection="column"
             >
-              <Logo>CC</Logo>
+              <Logo />
 
               <Typography color="text.secondary" my={{ xs: 3, sm: 3, md: "0" }}>
                 Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
@@ -66,15 +58,11 @@ const Footer = () => {
                   href="https://www.linkedin.com/company/celebrate-code/"
                   passHref
                 >
-                  <IconButton component="a" target="_blank">
-                    <LinkedInIcon sx={{ opacity: 0.7 }} />
-                  </IconButton>
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/company/celebrate-code/"
-                  passHref
-                >
-                  <IconButton component="a" target="_blank">
+                  <IconButton
+                    component="a"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                  >
                     <LinkedInIcon sx={{ opacity: 0.7 }} />
                   </IconButton>
                 </Link>

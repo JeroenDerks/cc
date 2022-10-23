@@ -40,7 +40,7 @@ const PromiseOne = () => {
           alignItems="center"
         >
           <Box py={3} maxWidth={600}>
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h3" gutterBottom component="h2">
               Celebrate your team's achievements
             </Typography>
             <Typography variant="body1" gutterBottom>

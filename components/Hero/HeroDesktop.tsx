@@ -26,6 +26,8 @@ const HeroDesktop = () => {
         placeholder="blur"
         src={HeroImage}
         alt="hero"
+        width={2048}
+        height={1365}
       />
 
       <Flex justifyContent="center" px={gridP}>

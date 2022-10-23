@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { styled, Typography } from "@mui/material";
+import { Logo } from "components/Logo";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useCart, Item } from "react-use-cart";
 import Badge from "@mui/material/Badge";
@@ -15,6 +16,10 @@ const Wrapper = styled(Box)(({ theme }) => ({
   minHeight: NAVBAR_HEIGHT,
 }));
 
+const UnstyledLink = styled("a")({
+  textDecoration: "none",
+});
+
 const CheckoutLink = styled("div")(({ theme }) => ({
   border: `1px solid ${theme.palette.action.disabled}`,
   cursor: "pointer",
@@ -25,15 +30,6 @@ const CheckoutLink = styled("div")(({ theme }) => ({
   textDecoration: "none",
   textAlign: "center",
   color: theme.palette.text.primary,
-}));
-
-const Logo = styled(Typography)(({ theme }) => ({
-  "-webkit-text-stroke": theme.palette.text.primary,
-  "-webkit-text-fill-color": theme.palette.background.default,
-  "-webkit-text-stroke-width": "1px",
-  fontSize: 40,
-  lineHeight: 1,
-  textDecoration: "none",
 }));
 
 const Header = () => {
@@ -55,7 +51,9 @@ const Header = () => {
         height="100%"
       >
         <Link href="/" passHref>
-          <Logo as="a">CC</Logo>
+          <UnstyledLink>
+            <Logo />
+          </UnstyledLink>
         </Link>
         <CheckoutLink>
           <Link href="/cart">
