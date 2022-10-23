@@ -4,12 +4,14 @@ import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { gridP } from "theme";
 import Skeleton from "@mui/material/Skeleton";
+import { useCart } from "react-use-cart";
 
 const Success = () => {
   const router = useRouter();
   const [orderId, setOrderId] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | false>(false);
+  const { emptyCart } = useCart();
 
   useEffect(() => {
     const getCheckoutId = async () => {
@@ -21,6 +23,7 @@ const Success = () => {
         if (res.status === 200) {
           const data = await res.json();
           setOrderId(data.orderId);
+          emptyCart();
         } else throw new Error("Server didnt respond with 200");
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err));
