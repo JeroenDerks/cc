@@ -11,15 +11,7 @@ import Section from "components/Section";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { gridP } from "theme";
-
-const Logo = styled(Typography)(({ theme }) => ({
-  WebkitTextStroke: theme.palette.text.primary,
-  WebkitTextFillColor: theme.palette.background.default,
-  WebkitTextStrokeWidth: "1px",
-  fontSize: 50,
-  lineHeight: 1,
-  textDecoration: "none",
-}));
+import { Logo } from "components/Logo";
 
 const Footer = () => {
   return (
@@ -32,7 +24,7 @@ const Footer = () => {
               justifyContent="space-between"
               flexDirection="column"
             >
-              <Logo>CC</Logo>
+              <Logo />
 
               <Typography color="text.secondary" my={{ xs: 3, sm: 3, md: "0" }}>
                 Copyright Ⓡ {new Date().getFullYear()}, Celebrate Code
