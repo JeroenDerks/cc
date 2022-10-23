@@ -38,22 +38,15 @@ const InputEditor = ({
     setUserValue(debouncedUserValue);
   }, [debouncedUserValue]);
 
-  useEffect(() => {
-    if (editorRef.current) {
-      const editor = document.getElementById("input_editor");
-    }
-  }, [editorRef]);
-
   return (
     <EditorWrapper bg={shiki?.getBackgroundColor()}>
       {shiki && (
         <>
-          <label htmlFor="input_editor" style={{ display: "none" }}>
+          <label htmlFor="input_editor" style={{ opacity: "0" }}>
             Input editor
           </label>
           <Editor
             value={textValue}
-            ref={editorRef}
             textareaId="input_editor"
             onValueChange={(code) => setTextValue(code)}
             highlight={(code) =>

@@ -16,6 +16,10 @@ const Wrapper = styled(Box)(({ theme }) => ({
   minHeight: NAVBAR_HEIGHT,
 }));
 
+const UnstyledLink = styled("a")({
+  textDecoration: "none",
+});
+
 const CheckoutLink = styled("div")(({ theme }) => ({
   border: `1px solid ${theme.palette.action.disabled}`,
   cursor: "pointer",
@@ -47,7 +51,9 @@ const Header = () => {
         height="100%"
       >
         <Link href="/" passHref>
-          <Logo as="a" />
+          <UnstyledLink>
+            <Logo />
+          </UnstyledLink>
         </Link>
         <CheckoutLink>
           <Link href="/cart">
