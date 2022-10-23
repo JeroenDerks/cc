@@ -13,9 +13,9 @@ import Typography from "@mui/material/Typography";
 import { gridP } from "theme";
 
 const Logo = styled(Typography)(({ theme }) => ({
-  "-webkit-text-stroke": theme.palette.text.primary,
-  "-webkit-text-fill-color": theme.palette.background.default,
-  "-webkit-text-stroke-width": "1px",
+  WebkitTextStroke: theme.palette.text.primary,
+  WebkitTextFillColor: theme.palette.background.default,
+  WebkitTextStrokeWidth: "1px",
   fontSize: 50,
   lineHeight: 1,
   textDecoration: "none",

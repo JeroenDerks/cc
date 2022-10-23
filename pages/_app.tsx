@@ -6,6 +6,7 @@ import { AppProps } from "next/app";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import Flex from "components/Flex";
+import Head from "next/head";
 import theme from "theme";
 import { setCDN } from "shiki";
 import Script from "next/script";
@@ -17,9 +18,13 @@ export default function App(props: AppProps) {
 
   return (
     <>
+      <Head>
+        <title>Celebrate your team's code with a custom art work</title>
+      </Head>
       <ThemeProvider theme={theme}>
         <CartProvider>
           <CssBaseline />
+
           {process.env.NODE_ENV && process.env.NODE_ENV !== "development" && (
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}

@@ -57,7 +57,7 @@ const HowItWorks = () => {
               <Image alt={imageAlt} src={icon} height={43} width={60} />
             </Grid>
             <Grid item xs={12} sm={12} md={12}>
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h4" gutterBottom component="h3">
                 {heading}
               </Typography>
               <Typography variant="body1">{body}</Typography>
