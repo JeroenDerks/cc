@@ -2,25 +2,38 @@ import React from "react";
 import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material";
 import { LanguageOption } from "types";
+import { Lang } from "shiki";
 
-export const languageOptions: Array<LanguageOption> = [
-  { title: "C", code: "c", id: 0 },
-  { title: "C++", code: "cpp", id: 1 },
-  { title: "CSS", code: "css", id: 2 },
-  { title: "Go", code: "go", id: 3 },
-  { title: "GraphQL", code: "graphql", id: 4 },
-  { title: "Javascript", code: "javascript", id: 5 },
-  { title: "Json", code: "json", id: 6 },
-  { title: "JSX", code: "jsx", id: 7 },
-  { title: "Less", code: "less", id: 8 },
-  { title: "Markdown", code: "markdown", id: 9 },
-  { title: "Python", code: "python", id: 10 },
-  { title: "Sass", code: "sass", id: 11 },
-  { title: "Scss", code: "scss", id: 12 },
-  { title: "SQL", code: "sql", id: 13 },
-  { title: "TSX", code: "tsx", id: 14 },
-  { title: "TypeScript", code: "typescript", id: 15 },
+const selectedLanguages: { title: string; code: Lang }[] = [
+  { title: "C", code: "c" },
+  { title: "C#", code: "c#" },
+  { title: "C++", code: "cpp" },
+  { title: "CSS", code: "css" },
+  { title: "Go", code: "go" },
+  { title: "GraphQL", code: "graphql" },
+  { title: "Java", code: "java" },
+  { title: "Javascript", code: "javascript" },
+  { title: "Json", code: "json" },
+  { title: "JSX", code: "jsx" },
+  { title: "Kotlin", code: "kotlin" },
+  { title: "Markdown", code: "markdown" },
+  { title: "PHP", code: "php" },
+  { title: "Python", code: "python" },
+  { title: "Ruby", code: "ruby" },
+  { title: "Rust", code: "rust" },
+  { title: "Sass", code: "sass" },
+  { title: "Scss", code: "scss" },
+  { title: "SQL", code: "sql" },
+  { title: "Svelte", code: "svelte" },
+  { title: "Swift", code: "swift" },
+  { title: "TSX", code: "tsx" },
+  { title: "TypeScript", code: "typescript" },
 ];
+export const languageOptions: Array<LanguageOption> = selectedLanguages.map(
+  ({ title, code }, index) => {
+    return { title, code, id: index };
+  }
+);
 
 const LanguageSelector = ({
   language,
