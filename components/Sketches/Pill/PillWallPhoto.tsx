@@ -59,7 +59,13 @@ const PillWallPhoto: React.FC<SketchProps> = ({
     const target = e.target as Element;
 
     if (target.id === "add_to_cart") {
-      const preview = drawPillContent({ groupedData, bg, p5, sx: 1, sy: 1 });
+      const preview = drawPillContent({
+        groupedData,
+        bg,
+        p5,
+        sx: scale,
+        sy: scale,
+      });
       uploadPhoto(preview, `${uuid}_preview`);
     }
   };
