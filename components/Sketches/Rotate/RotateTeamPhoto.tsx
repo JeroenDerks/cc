@@ -7,7 +7,7 @@ import { sketchWidth, sketchHeigth, teamPhotoDimensions } from "../constants";
 import { drawRotate } from "./drawRotate";
 import { SketchProps } from "types";
 
-const PillSketch = dynamic(
+const RotateTeamSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
@@ -15,7 +15,11 @@ const PillSketch = dynamic(
 let backgroundImg: p5Types.Image;
 let foregroundImg: p5Types.Image;
 
-const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
+const RotateTeamPhoto: React.FC<SketchProps> = ({
+  bg,
+  data,
+  scale,
+}: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
   const preload = (p5: p5Types) => {
@@ -42,7 +46,7 @@ const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
     p5.image(foregroundImg, 0, 0, p5.width, p5.height);
   };
 
-  return <PillSketch setup={setup} preload={preload} />;
+  return <RotateTeamSketch setup={setup} preload={preload} />;
 };
 
-export default Pills;
+export default RotateTeamPhoto;
