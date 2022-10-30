@@ -1,7 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import HeroImage from "public/images/hero.jpg";
@@ -10,14 +8,7 @@ import Section from "components/Section";
 import { gridP } from "theme";
 import { NAVBAR_HEIGHT } from "utils/constants";
 import { HeroCopyProps } from "./Hero";
-import { HeroButton, HeroButtonSpanMobile } from "./styled";
-
-const StartButton = styled(Button)({
-  background: "#fff",
-  color: "#000",
-  textDecoration: "none",
-  padding: `8px 16px`,
-});
+import { HeroButtonMobile } from "./styled";
 
 const HeroMobile = ({ copy }: { copy: HeroCopyProps }) => {
   const { body, heading, buttonText } = copy;
@@ -54,9 +45,9 @@ const HeroMobile = ({ copy }: { copy: HeroCopyProps }) => {
               {body}
             </Typography>
             <Link href="#editor" passHref>
-              <HeroButton variant="contained" as="a">
-                <HeroButtonSpanMobile>{buttonText}</HeroButtonSpanMobile>
-              </HeroButton>
+              <HeroButtonMobile variant="contained">
+                {buttonText}
+              </HeroButtonMobile>
             </Link>
           </Box>
         </Box>

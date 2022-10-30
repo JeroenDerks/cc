@@ -8,7 +8,7 @@ import { MAX_WIDTH } from "utils/constants";
 import Flex from "components/Flex";
 import { gridP } from "theme";
 import { HeroCopyProps } from "./Hero";
-import { HeroButton, HeroButtonSpan } from "./styled";
+import { HeroButton } from "./styled";
 
 const HeroDesktop = ({ copy }: { copy: HeroCopyProps }) => {
   const { body, heading, buttonText } = copy;
@@ -45,9 +45,7 @@ const HeroDesktop = ({ copy }: { copy: HeroCopyProps }) => {
               {body}
             </Typography>
             <Link href="#editor" passHref>
-              <HeroButton variant="contained" as="a">
-                <HeroButtonSpan>{buttonText}</HeroButtonSpan>
-              </HeroButton>
+              <HeroButton variant="contained">{buttonText}</HeroButton>
             </Link>
           </Box>
         </Flex>
