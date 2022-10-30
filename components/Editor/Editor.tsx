@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { EditorWrapper } from "./Editor.styles";
 import { LanguageOption } from "types";
 import Editor from "react-simple-code-editor";
@@ -32,7 +32,6 @@ const InputEditor = ({
 }) => {
   const [textValue, setTextValue] = useState<string>(userValue || "");
   const debouncedUserValue = useDebounce(textValue, 500);
-  const editorRef = useRef(null);
 
   useEffect(() => {
     setUserValue(debouncedUserValue);
@@ -42,7 +41,7 @@ const InputEditor = ({
     <EditorWrapper bg={shiki?.getBackgroundColor()}>
       {shiki && (
         <>
-          <label htmlFor="input_editor" style={{ opacity: "0" }}>
+          <label htmlFor="input_editor" style={{ display: "none" }}>
             Input editor
           </label>
           <Editor

@@ -1,7 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import HeroImage from "public/images/hero.jpg";
@@ -9,15 +7,11 @@ import Link from "next/link";
 import Section from "components/Section";
 import { gridP } from "theme";
 import { NAVBAR_HEIGHT } from "utils/constants";
+import { HeroCopyProps } from "./Hero";
+import { HeroButtonMobile } from "./styled";
 
-const StartButton = styled(Button)({
-  background: "#fff",
-  color: "#000",
-  textDecoration: "none",
-  padding: `8px 16px`,
-});
-
-const HeroMobile = () => {
+const HeroMobile = ({ copy }: { copy: HeroCopyProps }) => {
+  const { body, heading, buttonText } = copy;
   return (
     <>
       <Box width={1} left={0} position="relative" height="65vh">
@@ -40,7 +34,7 @@ const HeroMobile = () => {
         >
           <Box>
             <Typography variant="h1" fontWeight={800} gutterBottom>
-              Celebrate great code
+              {heading}
             </Typography>
 
             <Typography
@@ -48,11 +42,12 @@ const HeroMobile = () => {
               mb={3}
               fontSize={{ xs: 18, sm: 18, md: 20 }}
             >
-              Inspire your tech team by visualizing the best code practices for
-              your office.
+              {body}
             </Typography>
             <Link href="#editor" passHref>
-              <StartButton variant="contained">Paste your code</StartButton>
+              <HeroButtonMobile variant="contained">
+                {buttonText}
+              </HeroButtonMobile>
             </Link>
           </Box>
         </Box>
