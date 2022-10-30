@@ -9,6 +9,7 @@ import Link from "next/link";
 import { MAX_WIDTH } from "utils/constants";
 import Flex from "components/Flex";
 import { gridP } from "theme";
+import { HeroCopyProps } from "./Hero";
 
 const StartButton = styled(Button)({
   background: "#000",
@@ -17,7 +18,9 @@ const StartButton = styled(Button)({
   padding: `8px 16px`,
 });
 
-const HeroDesktop = () => {
+const HeroDesktop = ({ copy }: { copy: HeroCopyProps }) => {
+  const { body, heading, buttonText } = copy;
+
   return (
     <Box width={1} left={0} position="relative">
       <Image
@@ -42,16 +45,15 @@ const HeroDesktop = () => {
         >
           <Box maxWidth={420} mb={1}>
             <Typography variant="h1" fontWeight={800} color="#000">
-              Celebrate great code
+              {heading}
             </Typography>
           </Box>
           <Box maxWidth={420}>
             <Typography variant="body1" color="#000" mb={2} fontSize={20}>
-              Inspire your tech team by visualizing the best code practices for
-              your office.
+              {body}
             </Typography>
             <Link href="#editor" passHref>
-              <StartButton variant="contained">Paste your code</StartButton>
+              <StartButton variant="contained">{buttonText}</StartButton>
             </Link>
           </Box>
         </Flex>
