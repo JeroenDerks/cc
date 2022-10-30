@@ -13,7 +13,9 @@ import Section from "components/Section";
 import { Typography } from "@mui/material";
 
 const EditorSection = ({ id }: { id: string }) => {
-  const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
+  const defaultLanguage =
+    languageOptions.find(({ code }) => code === "tsx") || languageOptions[0];
+  const [language, setLanguage] = useState<LanguageOption>(defaultLanguage);
   const [rawData, setRawData] = useState<ColoredDataSet>([[]]);
   const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [sketchRenewKey, setSketchRenewKey] = useState<number>(1);
