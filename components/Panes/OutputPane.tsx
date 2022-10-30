@@ -7,8 +7,7 @@ import Box from "@mui/material/Box";
 import AddToCart from "components/AddToCart";
 import SketchSelector from "components/SketchSelector";
 
-import BasicWallPhoto from "components/Sketches/Basic/BasicWallPhoto";
-import PillWallPhoto from "components/Sketches/Pill/PillWallPhoto";
+import ClassicWallPhoto from "components/Sketches/Classic/ClassicWallPhoto";
 import PerspectiveWallPhoto from "components/Sketches/Perspective/PerspectiveWallPhoto";
 import RotateWallPhoto from "components/Sketches/Rotate/RotateWallPhoto";
 import { uploadRawData } from "utils/uploadRawData";
@@ -17,8 +16,7 @@ import { useScalingFactor } from "utils/useScalingFactor";
 import { convertColorToRGB } from "utils";
 
 export const sketchOptions: Array<Sketch> = [
-  { title: "Basic", sketch: BasicWallPhoto },
-  { title: "Pills", sketch: PillWallPhoto },
+  { title: "Classic", sketch: ClassicWallPhoto },
   { title: "Perspective", sketch: PerspectiveWallPhoto },
   { title: "Rotate", sketch: RotateWallPhoto },
 ];

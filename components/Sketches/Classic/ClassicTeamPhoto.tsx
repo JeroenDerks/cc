@@ -4,10 +4,10 @@ import p5Types from "p5";
 import Sketch from "react-p5";
 import { groupDataByColor } from "utils";
 import { sketchWidth, sketchHeigth, teamPhotoDimensions } from "../constants";
-import { drawPillContent } from "./drawPillContent";
 import { SketchProps } from "types";
+import { drawContent } from "./drawClassicContent";
 
-const PillSketch = dynamic(
+const ClassicTeamPhotoSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
@@ -15,7 +15,11 @@ const PillSketch = dynamic(
 let backgroundImg: p5Types.Image;
 let foregroundImg: p5Types.Image;
 
-const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
+const ClassicTeamPhoto: React.FC<SketchProps> = ({
+  bg,
+  data,
+  scale,
+}: SketchProps) => {
   const groupedData = groupDataByColor(data);
 
   const preload = (p5: p5Types) => {
@@ -31,14 +35,10 @@ const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
     p5.createCanvas(sketchWidth * scale, sketchHeigth * scale).parent(
       canvasParentRef
     );
+    p5.background(bg[0], bg[1], bg[2]);
+    p5.noStroke();
 
-    const graphic = drawPillContent({
-      bg,
-      groupedData,
-      p5,
-      sx: scale,
-      sy: scale,
-    });
+    const graphic = drawContent({ groupedData, bg, p5, sx: scale, sy: scale });
     p5.image(backgroundImg, 0, 0, p5.width, p5.height);
     const { x, y, w, h } = teamPhotoDimensions(scale);
     p5.fill(0, 0, 0, 50);
@@ -49,7 +49,7 @@ const Pills: React.FC<SketchProps> = ({ bg, data, scale }: SketchProps) => {
     p5.image(foregroundImg, 0, 0, p5.width, p5.height);
   };
 
-  return <PillSketch setup={setup} preload={preload} />;
+  return <ClassicTeamPhotoSketch setup={setup} preload={preload} />;
 };
 
-export default Pills;
+export default ClassicTeamPhoto;
