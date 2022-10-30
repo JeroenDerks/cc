@@ -1,7 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import HeroImage from "public/images/hero.jpg";
@@ -10,13 +8,7 @@ import { MAX_WIDTH } from "utils/constants";
 import Flex from "components/Flex";
 import { gridP } from "theme";
 import { HeroCopyProps } from "./Hero";
-
-const StartButton = styled(Button)({
-  background: "#000",
-  color: "#fff",
-  textDecoration: "none",
-  padding: `8px 16px`,
-});
+import { HeroButton, HeroButtonSpan } from "./styled";
 
 const HeroDesktop = ({ copy }: { copy: HeroCopyProps }) => {
   const { body, heading, buttonText } = copy;
@@ -53,7 +45,9 @@ const HeroDesktop = ({ copy }: { copy: HeroCopyProps }) => {
               {body}
             </Typography>
             <Link href="#editor" passHref>
-              <StartButton variant="contained">{buttonText}</StartButton>
+              <HeroButton variant="contained" as="a">
+                <HeroButtonSpan>{buttonText}</HeroButtonSpan>
+              </HeroButton>
             </Link>
           </Box>
         </Flex>

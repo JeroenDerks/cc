@@ -10,6 +10,7 @@ import Section from "components/Section";
 import { gridP } from "theme";
 import { NAVBAR_HEIGHT } from "utils/constants";
 import { HeroCopyProps } from "./Hero";
+import { HeroButton, HeroButtonSpanMobile } from "./styled";
 
 const StartButton = styled(Button)({
   background: "#fff",
@@ -53,7 +54,9 @@ const HeroMobile = ({ copy }: { copy: HeroCopyProps }) => {
               {body}
             </Typography>
             <Link href="#editor" passHref>
-              <StartButton variant="contained">{buttonText}</StartButton>
+              <HeroButton variant="contained" as="a">
+                <HeroButtonSpanMobile>{buttonText}</HeroButtonSpanMobile>
+              </HeroButton>
             </Link>
           </Box>
         </Box>
