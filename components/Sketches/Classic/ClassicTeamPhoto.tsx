@@ -5,9 +5,9 @@ import Sketch from "react-p5";
 import { groupDataByColor } from "utils";
 import { sketchWidth, sketchHeigth, teamPhotoDimensions } from "../constants";
 import { SketchProps } from "types";
-import { drawContent } from "./drawBasicContent";
+import { drawContent } from "./drawClassicContent";
 
-const BasicTeamPhotoSketch = dynamic(
+const ClassicTeamPhotoSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
@@ -15,7 +15,7 @@ const BasicTeamPhotoSketch = dynamic(
 let backgroundImg: p5Types.Image;
 let foregroundImg: p5Types.Image;
 
-const BasicTeamPhoto: React.FC<SketchProps> = ({
+const ClassicTeamPhoto: React.FC<SketchProps> = ({
   bg,
   data,
   scale,
@@ -49,7 +49,7 @@ const BasicTeamPhoto: React.FC<SketchProps> = ({
     p5.image(foregroundImg, 0, 0, p5.width, p5.height);
   };
 
-  return <BasicTeamPhotoSketch setup={setup} preload={preload} />;
+  return <ClassicTeamPhotoSketch setup={setup} preload={preload} />;
 };
 
-export default BasicTeamPhoto;
+export default ClassicTeamPhoto;

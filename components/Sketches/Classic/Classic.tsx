@@ -8,14 +8,14 @@ import { sketchWidth, sketchHeigth } from "../constants";
 import { canvasWidth, canvasHeight, canvasPadding } from "../constants";
 import { drawFrame } from "../constants";
 import { SketchProps } from "types";
-import { drawContent } from "./drawBasicContent";
+import { drawContent } from "./drawClassicContent";
 
-const BasicSketch = dynamic(
+const ClassicSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
 
-const Basic: React.FC<SketchProps> = ({
+const Classic: React.FC<SketchProps> = ({
   bg,
   data,
   uuid,
@@ -61,7 +61,7 @@ const Basic: React.FC<SketchProps> = ({
   };
 
   return (
-    <BasicSketch
+    <ClassicSketch
       setup={setup}
       // @ts-ignore: P5 library does not handle event types
       mousePressed={mousePressed}
@@ -69,4 +69,4 @@ const Basic: React.FC<SketchProps> = ({
   );
 };
 
-export default Basic;
+export default Classic;

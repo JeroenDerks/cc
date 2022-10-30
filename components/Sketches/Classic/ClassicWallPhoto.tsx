@@ -5,17 +5,17 @@ import Sketch from "react-p5";
 import { groupDataByColor } from "utils";
 import { sketchWidth, sketchHeigth, wallPhotoDimensions } from "../constants";
 import { SketchProps } from "types";
-import { drawContent } from "./drawBasicContent";
+import { drawContent } from "./drawClassicContent";
 import { uploadPhoto } from "utils/uploadPhoto";
 
-const BasicWallPhotoSketch = dynamic(
+const ClassicWallPhotoSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
 
 let backgroundImg: p5Types.Image;
 
-const BasicWallPhoto: React.FC<SketchProps> = ({
+const ClassicWallPhoto: React.FC<SketchProps> = ({
   bg,
   data,
   scale,
@@ -65,7 +65,7 @@ const BasicWallPhoto: React.FC<SketchProps> = ({
   };
 
   return (
-    <BasicWallPhotoSketch
+    <ClassicWallPhotoSketch
       setup={setup}
       preload={preload}
       // @ts-ignore: P5 library does not handle event types
@@ -74,4 +74,4 @@ const BasicWallPhoto: React.FC<SketchProps> = ({
   );
 };
 
-export default BasicWallPhoto;
+export default ClassicWallPhoto;
