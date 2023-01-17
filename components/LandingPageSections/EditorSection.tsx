@@ -22,6 +22,7 @@ const EditorSection = ({ id }: { id: string }) => {
   const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [userValue, setUserValue] = useState<string>(intialEditorValue);
 
+  console.log(JSON.stringify(rawData));
   const regenerateArtWork = () => {
     setRawData(convertTextToArtworkColors());
     setSketchRenewKey((c) => c + 1);

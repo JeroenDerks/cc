@@ -1,6 +1,5 @@
 import React from "react";
 import Section from "components/Section";
-import SeparatorLine from "components/SeparatorLine";
 import { Box, Typography } from "@mui/material";
 import { gridP } from "theme";
 

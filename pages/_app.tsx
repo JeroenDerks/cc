@@ -24,7 +24,6 @@ export default function App(props: AppProps) {
       <ThemeProvider theme={theme}>
         <CartProvider>
           <CssBaseline />
-
           {process.env.NODE_ENV && process.env.NODE_ENV !== "development" && (
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
