@@ -11,10 +11,12 @@ import theme from "theme";
 import { setCDN } from "shiki";
 import Script from "next/script";
 import "style.css";
+import { useRouter } from "next/router";
 setCDN("https://unpkg.com/shiki/");
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const router = useRouter();
 
   return (
     <>
@@ -39,15 +41,20 @@ export default function App(props: AppProps) {
             `}
             </Script>
           )}
-          <Flex
-            minHeight="100vh"
-            flexDirection="column"
-            justifyContent="space-between"
-          >
-            <Header />
+
+          {router.pathname.includes("video") ? (
             <Component {...pageProps} />
-            <Footer />
-          </Flex>
+          ) : (
+            <Flex
+              minHeight="100vh"
+              flexDirection="column"
+              justifyContent="space-between"
+            >
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+            </Flex>
+          )}
         </CartProvider>
       </ThemeProvider>
     </>
