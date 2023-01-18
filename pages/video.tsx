@@ -6,7 +6,7 @@ import { intialEditorValue } from "utils/intialEditorValue";
 import { languageOptions } from "components/LanguageSelector/LanguageSelector";
 import { themeOptions } from "components/ThemeSelector";
 import Grid from "@mui/material/Grid";
-import VideoBackground from "components/Sketches/VideoBackground/VideoBackground";
+import AnimatedBackground from "components/Sketches/AnimatedBackground/AnimatedBackground";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import Editor from "components/Editor";
 import EditorSection from "components/LandingPageSections/EditorSection";
@@ -54,7 +54,7 @@ const Video = () => {
 
   return (
     <>
-      <VideoBackground />
+      <AnimatedBackground />
       <Box
         position="absolute"
         top="0"
@@ -65,7 +65,7 @@ const Video = () => {
         alignItems="center"
         justifyContent="center"
       >
-        <Stack width={1400} my={10}>
+        {/* <Stack width={1400} my={10}>
           <Typography variant="h3" textAlign="center" mb={4}>
             Turn your code into art
           </Typography>
@@ -95,7 +95,7 @@ const Video = () => {
               </Box>
             </Grid>
           </Grid>
-        </Stack>
+        </Stack> */}
       </Box>
     </>
   );

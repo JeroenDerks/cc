@@ -33,12 +33,12 @@ export class LineOfCode {
     }
 
     this._lineOfExampleCode.forEach(({ char, background: col }, i) => {
-      if (i < this._count) {
+      if (i <= this._count) {
         this._p5.fill(col[0], col[1], col[2], this._opacity);
         this._p5.text(char, x + i * lw, y + letterHeight);
       }
 
-      if (this._lineOfExampleCode.length * 0.5 + i < this._count) {
+      if (this._lineOfExampleCode.length + (i - 1) <= this._count) {
         this._p5.fill(col[0], col[1], col[2], this._opacity);
         this._p5.rect(x + i * lw, y + 4, lw, letterHeight);
       }
