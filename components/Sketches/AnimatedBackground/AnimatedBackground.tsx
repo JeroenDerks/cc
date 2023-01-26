@@ -19,7 +19,7 @@ const AnimatedBackground = () => {
     const h = Math.random() * window.innerHeight;
     const index = Math.round(Math.random() * (lineOfExampleCode.length - 1));
 
-    return new LineOfCode(p5, p5.createVector(w, h), lineOfExampleCode[index]);
+    return new LineOfCode(p5, p5.createVector(300, 300), lineOfExampleCode);
   };
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -30,6 +30,7 @@ const AnimatedBackground = () => {
     p5.noStroke();
     p5.textFont("Monaco");
     p5.frameRate(30);
+    p5.pixelDensity();
 
     linesOfCode.push(addNewCircle(p5));
   };
@@ -37,16 +38,17 @@ const AnimatedBackground = () => {
   const draw = (p5: p5Types) => {
     p5.background(20);
 
-    // add new lines
-    if (Math.random() < 0.05) {
-      linesOfCode.push(addNewCircle(p5));
-    }
+    // // add new lines
+    // if (Math.random() < 0.05) {
+    //   linesOfCode.push(addNewCircle(p5));
+    // }
 
     for (let i = linesOfCode.length - 1; i >= 0; i--) {
       linesOfCode[i].display();
 
       if (linesOfCode[i]._opacity < -1) {
         linesOfCode.splice(i, 1);
+        linesOfCode.push(addNewCircle(p5));
       }
     }
   };
