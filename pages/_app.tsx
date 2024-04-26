@@ -11,7 +11,7 @@ import theme from "theme";
 import { setCDN } from "shiki";
 import Script from "next/script";
 import "style.css";
-setCDN("https://unpkg.com/shiki/");
+setCDN("https://cdn.jsdelivr.net/npm/shiki/");
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
