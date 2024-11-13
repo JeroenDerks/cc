@@ -11,34 +11,39 @@ import ProductDetails from "components/LandingPageSections/ProductDetails";
 import { intialEditorValue } from "utils/intialEditorValue";
 import { languageOptions } from "components/LanguageSelector/LanguageSelector";
 import { themeOptions } from "components/ThemeSelector";
-import { getHighlighter, Highlighter } from "shiki";
 import type { EditorTheme, LanguageOption } from "types";
+import { codeToTokens, TokensResult } from "shiki";
+import { hexToRgb } from "utils";
+import HeroAnimatedSketch from "components/Hero/HeroAnimatedSketch";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Index = () => {
-  // const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
+  const [result, setResult] = useState<TokensResult | null>(null);
 
-  // useEffect(() => {
-  //   // if (!theme) return;
-  //   getHighlighter({
-  //     theme: theme.code,
-  //     langs: languageOptions.map(({ code }) => code),
-  //   }).then((hl: Highlighter) => {
-  //     setShiki(hl);
-
-  //     console.log(
-  //       hl.codeToThemedTokens(intialEditorValue, "tsx", "dark-plus", {
-  //         includeExplanation: false,
-  //       })
-  //     );
-  //   });
-  // }, [theme]);
+  useEffect(() => {
+    const init = async () => {
+      const tokensResult = await codeToTokens(intialEditorValue, {
+        lang: language.code,
+        theme,
+      });
+      setResult(tokensResult);
+    };
+    init();
+  }, []);
 
   return (
     <>
       {/* <Hero /> */}
-      <HeroAnimated />
+      {result ? (
+        <HeroAnimatedSketch
+          bg={!result?.bg ? [100, 100, 100] : hexToRgb(result.bg)}
+          data={result?.tokens}
+        />
+      ) : (
+        <CircularProgress />
+      )}
       {/* <PromiseOne /> */}
       {/* <PromiseTwo />
       <HowItWorks />

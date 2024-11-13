@@ -7,33 +7,27 @@ import { Color } from "types";
 import { ThemedToken } from "shiki";
 import { TokenRow } from "./Line";
 
-export type ShikiData = { content: string; color: Color; offsetX: number };
+export type ShikiData = { content: string; color: Color };
+export const charW = 8;
+export const charH = 16;
+export const charHOffset = 4;
+let rows: TokenRow[] = [];
+let width = 100;
+let height = 700;
 
 const BasicSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
 
-export const charW = 8;
-export const charH = 16;
-export const charHOffset = 4;
-let rows: TokenRow[] = [];
-
-const convertData = (data: ThemedToken[][], bg: Color) => {
+const convertData = (data: ThemedToken[][]) => {
   let rows: ShikiData[][] = [];
 
-  console.log(data.length);
-
   data?.forEach((line) => {
-    let preceedingCharactersCounter = 0;
     let lines: ShikiData[] = [];
+
     line.forEach(({ content, color }) => {
-      lines.push({
-        content,
-        color: convertColorToRGB(color),
-        offsetX: preceedingCharactersCounter,
-      });
-      preceedingCharactersCounter += content.length;
+      lines.push({ content, color: convertColorToRGB(color) });
     });
 
     rows.push(lines);
@@ -42,16 +36,18 @@ const convertData = (data: ThemedToken[][], bg: Color) => {
 };
 
 const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
-  const convertedData = convertData(data, bg);
+  const convertedData = convertData(data);
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(
-      document?.querySelector("body")?.clientWidth || 100,
-      700
-    ).parent(canvasParentRef);
+    const body = document?.querySelector("body");
+    width = body?.clientWidth || width;
+    height = body?.clientHeight || height;
+
+    p5.createCanvas(width, height).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
     p5.textFont("monospace");
     p5.textAlign("center");
+
     rows.push(new TokenRow(convertedData[1], 100, 100));
   };
 
@@ -59,7 +55,7 @@ const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
     p5.background(bg[0], bg[1], bg[2]);
 
     rows.forEach((row) => {
-      if (row.isActive) row.draw(p5);
+      row.isActive && row.draw(p5);
     });
 
     if (Math.random() < 0.01) {
@@ -67,11 +63,7 @@ const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
         convertedData[Math.floor(Math.random() * convertedData.length)];
 
       rows.push(
-        new TokenRow(
-          newLine,
-          Math.random() * 200,
-          Math.random() * window.innerHeight
-        )
+        new TokenRow(newLine, Math.random() * 200, Math.random() * height)
       );
     }
   };

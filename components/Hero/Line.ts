@@ -18,11 +18,7 @@ export class TokenRow {
     tokens.forEach((token) => {
       const letter = token.content.split("");
       this.letters.push(
-        ...letter.map((letter, i) => ({
-          ...token,
-          content: letter,
-          offsetX: i + token.offsetX,
-        }))
+        ...letter.map((letter) => ({ ...token, content: letter }))
       );
     });
   }
