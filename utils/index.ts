@@ -25,7 +25,7 @@ export const convertColorToRGB = (col: string | number | void): Color => {
   return defaultColor;
 };
 
-const hexToRgb = (hex: string): Color => {
+export const hexToRgb = (hex: string): Color => {
   const res = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
   if (res) {

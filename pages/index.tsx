@@ -15,30 +15,30 @@ import { getHighlighter, Highlighter } from "shiki";
 import type { EditorTheme, LanguageOption } from "types";
 
 const Index = () => {
-  const [shiki, setShiki] = useState<Highlighter | null>(null);
+  // const [shiki, setShiki] = useState<Highlighter | null>(null);
   const [theme, setTheme] = useState<EditorTheme>(themeOptions[6]);
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
 
-  useEffect(() => {
-    // if (!theme) return;
-    getHighlighter({
-      theme: theme.code,
-      langs: languageOptions.map(({ code }) => code),
-    }).then((hl: Highlighter) => {
-      setShiki(hl);
+  // useEffect(() => {
+  //   // if (!theme) return;
+  //   getHighlighter({
+  //     theme: theme.code,
+  //     langs: languageOptions.map(({ code }) => code),
+  //   }).then((hl: Highlighter) => {
+  //     setShiki(hl);
 
-      console.log(
-        hl.codeToThemedTokens(intialEditorValue, "tsx", "dark-plus", {
-          includeExplanation: false,
-        })
-      );
-    });
-  }, [theme]);
+  //     console.log(
+  //       hl.codeToThemedTokens(intialEditorValue, "tsx", "dark-plus", {
+  //         includeExplanation: false,
+  //       })
+  //     );
+  //   });
+  // }, [theme]);
 
   return (
     <>
       {/* <Hero /> */}
-      <HeroAnimated shiki={shiki} />
+      <HeroAnimated />
       {/* <PromiseOne /> */}
       {/* <PromiseTwo />
       <HowItWorks />

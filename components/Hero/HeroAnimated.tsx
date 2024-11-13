@@ -1,24 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import HeroAnimatedSketch from "./HeroAnimatedSketch";
 import { intialEditorValue } from "utils/intialEditorValue";
-import type { Highlighter } from "shiki";
+import { codeToTokens, TokensResult } from "shiki";
+import { hexToRgb } from "utils";
 
-const HeroAnimated = ({ shiki }: { shiki: Highlighter | null }) => {
-  console.log({ shiki });
+const HeroAnimated = () => {
+  const [result, setResult] = useState<TokensResult | null>(null);
+
+  useEffect(() => {
+    const init = async () => {
+      const tokensResult = await codeToTokens(intialEditorValue, {
+        lang: "tsx",
+        theme: "dark-plus",
+      });
+      setResult(tokensResult);
+    };
+    init();
+  }, []);
+
+  const getBg = () => {
+    if (!result?.bg) return [100, 100, 100];
+    return hexToRgb(result.bg);
+  };
+
   return (
     <>
-      {shiki ? (
-        <HeroAnimatedSketch
-          bg={[100, 100, 100]}
-          data={shiki.codeToThemedTokens(
-            intialEditorValue,
-            "tsx",
-            "dark-plus",
-            { includeExplanation: false }
-          )}
-        />
+      {result ? (
+        <HeroAnimatedSketch bg={getBg()} data={result.tokens} />
       ) : (
         <CircularProgress />
       )}
