@@ -6,13 +6,14 @@ export class TokenRow {
   private xOff: number = 0;
   private yOff: number = 0;
   private letters: ShikiData[] = [];
-  private p5: p5Types;
+  private incr = 0;
+  private opacityIncr = 1;
+  public isActive = true;
 
-  constructor(tokens: ShikiData[], xOff: number, yOff: number, p5: p5Types) {
+  constructor(tokens: ShikiData[], xOff: number, yOff: number) {
     this.tokens = tokens;
     this.xOff = xOff;
     this.yOff = yOff;
-    this.p5 = p5;
 
     tokens.forEach((token) => {
       const letter = token.content.split("");
@@ -26,17 +27,22 @@ export class TokenRow {
     });
   }
 
-  draw() {
-    this.p5.noStroke();
-    this.letters.forEach(({ content, color, offsetX }) => {
-      this.p5.fill(color[0], color[1], color[2], 100);
-      const _x = this.xOff + offsetX * charW;
-      const _y = this.yOff;
+  draw(p5: p5Types) {
+    if (this.incr < charW) this.incr += 0.1;
+    else if (this.opacityIncr >= 0) this.opacityIncr -= 0.01;
+    else this.isActive = false;
 
-      this.p5.rect(_x, _y, charW, charH);
+    p5.noStroke();
+    this.letters.forEach(({ content, color }, index) => {
+      p5.fill(color[0], color[1], color[2], 150 * this.opacityIncr);
+      const w = charW + this.incr;
+      const x = this.xOff + w * index;
+      const y = this.yOff;
 
-      this.p5.fill(color);
-      this.p5.text(content, _x, _y + charH - charHOffset);
+      p5.rect(x, y, w, charH);
+
+      p5.fill(color[0], color[1], color[2], 255 * this.opacityIncr);
+      p5.text(content, x, y + charHOffset, w, charH);
     });
   }
 }

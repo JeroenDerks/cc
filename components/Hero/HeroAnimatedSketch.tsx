@@ -2,8 +2,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 import p5Types from "p5";
 import Sketch from "react-p5";
-import { groupDataByColor, isSameColor, convertColorToRGB } from "../../utils";
-import { Color, SketchProps } from "types";
+import { convertColorToRGB } from "../../utils";
+import { Color } from "types";
 import { ThemedToken } from "shiki";
 import { TokenRow } from "./Line";
 
@@ -14,13 +14,10 @@ const BasicSketch = dynamic(
   { ssr: false }
 ) as typeof Sketch;
 
-const padding = 20;
 export const charW = 8;
-export const charH = 15;
+export const charH = 16;
 export const charHOffset = 4;
-const defaultLinesPerWindow = 34;
-const tokenRows: TokenRow[] = [];
-let newRow: TokenRow;
+let rows: TokenRow[] = [];
 
 const convertData = (data: ThemedToken[][], bg: Color) => {
   let rows: ShikiData[][] = [];
@@ -46,9 +43,6 @@ const convertData = (data: ThemedToken[][], bg: Color) => {
 
 const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
   const convertedData = convertData(data, bg);
-  console.log({ bg });
-  console.log({ data });
-  console.log({ convertedData });
 
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     p5.createCanvas(
@@ -56,33 +50,33 @@ const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
       700
     ).parent(canvasParentRef);
     p5.background(bg[0], bg[1], bg[2]);
-    p5.frameRate(5);
     p5.textFont("monospace");
-
-    newRow = new TokenRow(convertedData[1], 100, 100, p5);
-    console.log({ newRow });
-    newRow.draw();
+    p5.textAlign("center");
+    rows.push(new TokenRow(convertedData[1], 100, 100));
   };
 
-  // const draw = (p5: p5Types, sx: number = 1, sy: number = 1) => {
-  //   p5.background(bg[0], bg[1], bg[2]);
+  const draw = (p5: p5Types) => {
+    p5.background(bg[0], bg[1], bg[2]);
 
-  //   convertedData?.forEach((line, indexY) => {
-  //     for (let i = 0; i < line.length; i++) {
-  //       const _x = line[i].offsetX * charW;
-  //       const _y = indexY * charH - charHOffset;
-  //       p5.fill(line[i].color);
-  //       p5.text(line[i].content, _x, _y);
-  //     }
-  //   });
-  // };
+    rows.forEach((row) => {
+      if (row.isActive) row.draw(p5);
+    });
 
-  return (
-    <BasicSketch
-      setup={setup}
-      // draw={draw}
-    />
-  );
+    if (Math.random() < 0.01) {
+      const newLine =
+        convertedData[Math.floor(Math.random() * convertedData.length)];
+
+      rows.push(
+        new TokenRow(
+          newLine,
+          Math.random() * 200,
+          Math.random() * window.innerHeight
+        )
+      );
+    }
+  };
+
+  return <BasicSketch setup={setup} draw={draw} />;
 };
 
 export default Basic;
