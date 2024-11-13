@@ -20,7 +20,7 @@ const Index = () => {
   const [language, setLanguage] = useState<LanguageOption>(languageOptions[14]);
 
   useEffect(() => {
-    if (!theme) return;
+    // if (!theme) return;
     getHighlighter({
       theme: theme.code,
       langs: languageOptions.map(({ code }) => code),
@@ -40,7 +40,7 @@ const Index = () => {
       {/* <Hero /> */}
       <HeroAnimated shiki={shiki} />
       {/* <PromiseOne /> */}
-      <PromiseTwo />
+      {/* <PromiseTwo />
       <HowItWorks />
       <EditorSection
         id="editor"
@@ -51,7 +51,7 @@ const Index = () => {
         theme={theme}
       />
       <ProductDetails />
-      <FAQ />
+      <FAQ /> */}
     </>
   );
 };

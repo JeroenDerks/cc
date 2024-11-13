@@ -6,6 +6,7 @@ import { intialEditorValue } from "utils/intialEditorValue";
 import type { Highlighter } from "shiki";
 
 const HeroAnimated = ({ shiki }: { shiki: Highlighter | null }) => {
+  console.log({ shiki });
   return (
     <>
       {shiki ? (
