@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FAQ from "components/FAQ";
 import Hero from "components/Hero";
-import HeroAnimated from "components/Hero/HeroAnimated";
 // import PromiseOne from "components/LandingPageSections/PromiseOne";
 import PromiseTwo from "components/LandingPageSections/PromiseTwo";
 import HowItWorks from "components/LandingPageSections/HowItWorks";
@@ -26,12 +25,12 @@ const Index = () => {
     const init = async () => {
       const tokensResult = await codeToTokens(intialEditorValue, {
         lang: language.code,
-        theme,
+        theme: theme.code,
       });
       setResult(tokensResult);
     };
-    init();
-  }, []);
+    if (language && theme) init();
+  }, [language, theme]);
 
   return (
     <>
@@ -39,7 +38,7 @@ const Index = () => {
       {result ? (
         <HeroAnimatedSketch
           bg={!result?.bg ? [100, 100, 100] : hexToRgb(result.bg)}
-          data={result?.tokens}
+          data={result.tokens}
         />
       ) : (
         <CircularProgress />

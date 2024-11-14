@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import p5Types from "p5";
 import Sketch from "react-p5";
-import { convertColorToRGB } from "../../utils";
+import { hexToRgb } from "../../utils";
 import { Color } from "types";
 import { ThemedToken } from "shiki";
 import { TokenRow } from "./Line";
@@ -27,7 +27,7 @@ const convertData = (data: ThemedToken[][]) => {
     let lines: ShikiData[] = [];
 
     line.forEach(({ content, color }) => {
-      lines.push({ content, color: convertColorToRGB(color) });
+      if (color) lines.push({ content, color: hexToRgb(color) });
     });
 
     rows.push(lines);
@@ -37,7 +37,6 @@ const convertData = (data: ThemedToken[][]) => {
 
 const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
   const convertedData = convertData(data);
-
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     const body = document?.querySelector("body");
     width = body?.clientWidth || width;
@@ -54,9 +53,10 @@ const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
   const draw = (p5: p5Types) => {
     p5.background(bg[0], bg[1], bg[2]);
 
-    rows.forEach((row) => {
-      row.isActive && row.draw(p5);
-    });
+    for (let i = rows.length - 1; i >= 0; i--) {
+      rows[i].isActive && rows[i].draw(p5);
+      if (!rows[i].isActive) rows.splice(i, 1);
+    }
 
     if (Math.random() < 0.01) {
       const newLine =
