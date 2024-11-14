@@ -31,18 +31,25 @@ export class TokenRow {
     else this.isActive = false;
 
     p5.noStroke();
+
+    const w = charW + this.incr;
+    const y = this.yOff;
+
     this.letters.forEach(({ content, color }, index) => {
       if (index > this.typeCount) return;
-
-      const w = charW + this.incr;
       const x = this.xOff + w * index;
-      const y = this.yOff;
-
-      // p5.fill(color[0], color[1], color[2], Math.round(220 * this.opacityIncr));
-      // p5.rect(x, y, w, charH);
 
       p5.fill(color[0], color[1], color[2], Math.round(255 * this.opacityIncr));
       p5.text(content, x, y + charHOffset, w, charH);
+    });
+
+    this.letters.forEach(({ content, color }, index) => {
+      if (index + this.letters.length > this.typeCount) return;
+
+      const x = this.xOff + w * index;
+
+      p5.fill(color[0], color[1], color[2], Math.round(220 * this.opacityIncr));
+      p5.rect(x, y, w, charH);
     });
   }
 }
