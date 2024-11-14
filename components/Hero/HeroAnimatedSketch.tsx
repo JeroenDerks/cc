@@ -15,28 +15,28 @@ let rows: TokenRow[] = [];
 let width = 100;
 let height = 700;
 
+const lineCounter = 0;
+
 const BasicSketch = dynamic(
   () => import("react-p5").then((mod) => mod.default as typeof Sketch),
   { ssr: false }
 ) as typeof Sketch;
 
-const convertData = (data: ThemedToken[][]) => {
-  let rows: ShikiData[][] = [];
-
-  data?.forEach((line) => {
-    let lines: ShikiData[] = [];
-
-    line.forEach(({ content, color }) => {
-      if (color) lines.push({ content, color: hexToRgb(color) });
-    });
-
-    rows.push(lines);
-  });
-  return rows;
-};
+export function convertData(tokens: ThemedToken[][]): ShikiData[][] {
+  return tokens.map((line) =>
+    line.flatMap((token) =>
+      token.content.split("").map((letter) => ({
+        content: letter,
+        color: hexToRgb(token.color || "#000000") as Color,
+      }))
+    )
+  );
+}
 
 const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
   const convertedData = convertData(data);
+  console.log(convertedData);
+
   const setup = (p5: p5Types, canvasParentRef: Element) => {
     const body = document?.querySelector("body");
     width = body?.clientWidth || width;
@@ -46,25 +46,23 @@ const Basic = ({ bg, data }: { bg: any; data: ThemedToken[][] }) => {
     p5.background(bg[0], bg[1], bg[2]);
     p5.textFont("monospace");
     p5.textAlign("center");
-
-    rows.push(new TokenRow(convertedData[1], 100, 100));
   };
 
   const draw = (p5: p5Types) => {
     p5.background(bg[0], bg[1], bg[2]);
+
+    p5.scale(1.7);
+    p5.translate(100, -100);
+    p5.rotate(0.5);
 
     for (let i = rows.length - 1; i >= 0; i--) {
       rows[i].isActive && rows[i].draw(p5);
       if (!rows[i].isActive) rows.splice(i, 1);
     }
 
-    if (Math.random() < 0.01) {
-      const newLine =
-        convertedData[Math.floor(Math.random() * convertedData.length)];
-
-      rows.push(
-        new TokenRow(newLine, Math.random() * 200, Math.random() * height)
-      );
+    if (p5.frameCount % 20 === 1 && rows.length < convertedData.length) {
+      const newLine = convertedData[rows.length];
+      rows.push(new TokenRow(newLine, 10, 10 + rows.length * charH * 1.5));
     }
   };
 
